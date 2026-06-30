@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Checkout Summary | Wanderlust Payment Gateway{% endblock %}
+
+{% block content %}
+<section class="py-5" style="margin-top: 20px;">
+    <div class="container">
+        
+        <!-- Booking Progress Bar -->
+        <div class="glass-panel p-3 mb-5 d-flex justify-content-between text-center small text-secondary" data-aos="fade-up">
+            <span class="text-muted"><i class="bi bi-1-circle-fill me-1"></i> Options Selected</span>
+            <span class="text-muted"><i class="bi bi-2-circle-fill me-1"></i> Traveler Details</span>
+            <span class="text-gold fw-bold"><i class="bi bi-3-circle-fill text-gold me-1"></i> Summary & Pay</span>
+        </div>
+
+        <div class="row g-5">
+            <!-- Left Column: Booking details & invoice summary -->
+            <div class="col-lg-7" data-aos="fade-right">
+                <div class="glass-panel p-5 h-100">
+                    <h3 class="font-heading mb-4 text-primary-theme"><i class="bi bi-file-earmark-text-fill text-gold me-2"></i>Booking Summary</h3>
+                    
+                    <div class="mb-4">
+                        <h5 class="fw-semibold mb-1">{{ package.title }}</h5>
+                        <span class="text-gold small"><i class="bi bi-geo-alt-fill me-1"></i>{{ package.destination.name }}</span>
+                    </div>
+
+                    <div class="row mb-4 bg-glass-dark rounded p-3 border border-secondary border-opacity-10 g-3">
+                        <div class="col-6 col-md-4">
+                            <span class="text-muted small d-block">Travel Date</span>
+                            <strong class="text-primary-theme small">{{ travel_date }}</strong>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <span class="text-muted small d-block">Travelers</span>
+                            <strong class="text-primary-theme small">{{ num_travelers }} Traveler{{ num_travelers|pluralize }}</strong>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <span class="text-muted small d-block">Base Price per Guest</span>
+                            <strong class="text-gold small">${{ unit_price }}</strong>
+                        </div>
+                    </div>
+
+                    <!-- Traveler names list -->
+                    <h5 class="fw-semibold text-gold mb-3">Passenger List</h5>
+                    <div class="d-flex flex-column gap-2 mb-4">
+                        {% for traveler in travelers %}
+                        <div class="d-flex justify-content-between align-items-center bg-transparent border-bottom border-secondary border-opacity-10 pb-2">
+                            <span class="small text-primary-theme"><i class="bi bi-person-fill text-gold me-2"></i>{{ traveler.full_name }}</span>
+                            <span class="small text-muted text-capitalize">{{ traveler.gender }} ({{ traveler.age }} yrs)</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Invoice Cost Breakdown -->
+                    <h5 class="fw-semibold text-gold mb-3">Invoice Details</h5>
+                    <div class="d-flex flex-column gap-2">
+                        <div class="d-flex justify-content-between text-secondary small">
+                            <span>Subtotal ({{ num_travelers }} x ${{ unit_price }})</span>
+                            <span>${{ subtotal }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between text-secondary small pb-2 border-bottom border-secondary border-opacity-10">
+                            <span>Local service fee & VAT (10%)</span>
+                            <span>${{ tax_amount|stringformat:".2f" }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between fw-bold text-primary-theme fs-5 pt-2">
+                            <span>Grand Total Cost</span>
+                            <span class="text-gold">${{ total_amount|stringformat:".2f" }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Card payment terminal widget -->
+            <div class="col-lg-5" data-aos="fade-left">
+                <div class="glass-panel p-5 h-100 border border-gold border-opacity-25 shadow-lg d-flex flex-column justify-content-center">
+                    <div class="text-center mb-4">
+                        <i class="bi bi-credit-card-2-front text-gold display-4 mb-2 d-block animate__animated animate__pulse animate__infinite"></i>
+                        <h3 class="font-heading mb-1">Payment Terminal</h3>
+                        <p class="text-secondary small mb-0">Simulated credit card gateway checkout</p>
+                    </div>
+
+                    <form method="POST">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label for="card_name" class="form-label text-gold small fw-medium">Cardholder Name</label>
+                            <input type="text" name="card_name" id="card_name" class="form-control form-glass" placeholder="Marcus Sterling" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="card_number" class="form-label text-gold small fw-medium">Credit Card Number</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-transparent border-secondary border-opacity-25 text-gold"><i class="bi bi-credit-card"></i></span>
+                                <input type="text" name="card_number" id="card_number" class="form-control form-glass border-start-0" placeholder="4111 2222 3333 4444" pattern="[0-9\s]{13,19}" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6 mb-4">
+                                <label for="card_expiry" class="form-label text-gold small fw-medium">Expiry Month/Yr</label>
+                                <input type="text" name="card_expiry" id="card_expiry" class="form-control form-glass" placeholder="MM/YY" required>
+                            </div>
+                            <div class="col-6 mb-4">
+                                <label for="card_cvv" class="form-label text-gold small fw-medium">CVV / Code</label>
+                                <input type="password" name="card_cvv" id="card_cvv" class="form-control form-glass" placeholder="123" maxlength="3" required>
+                            </div>
+                        </div>
+
+                        <div class="bg-glass-dark p-3 rounded text-center small text-secondary mb-4 border border-secondary border-opacity-10">
+                            <i class="bi bi-shield-fill-check text-gold me-1"></i> SSL encrypted transaction sandbox
+                        </div>
+
+                        <button type="submit" class="btn btn-gold w-100 py-3 fs-5"><i class="bi bi-lock-fill me-1"></i> Pay ${{ total_amount|stringformat:".2f" }}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

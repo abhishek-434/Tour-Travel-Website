@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact Us | Wanderlust Private Concierge{% endblock %}
+
+{% block content %}
+<!-- Subpage Header -->
+<section class="py-5 text-center position-relative" style="background: linear-gradient(rgba(11, 19, 43, 0.5), rgba(11, 19, 43, 0.7)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover; padding-top: 120px !important; padding-bottom: 80px !important;">
+    <div class="container position-relative z-2" data-aos="fade-up">
+        <h1 class="display-4 text-white fw-bold mb-3 font-heading">Contact Us</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center mb-0 bg-transparent">
+                <li class="breadcrumb-item"><a href="{% url 'core:home' %}" class="text-white-50 text-decoration-none">Home</a></li>
+                <li class="breadcrumb-item text-gold active" aria-current="page">Contact</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- Contact Form and Map Grid -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Left Column: Agency Info & Map -->
+            <div class="col-lg-5" data-aos="fade-right">
+                <span class="text-gold text-uppercase letter-spacing-1 fw-semibold d-block mb-2">Get In Touch</span>
+                <h2 class="display-5 font-heading mb-4">Wanderlust HQ</h2>
+                <p class="text-secondary mb-4">Our luxury curators are ready to help you plan your next escape. Reach out through any of our channels or drop by our headquarters.</p>
+                
+                <!-- Contact info cards -->
+                <div class="d-flex flex-column gap-3 mb-4">
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="rounded-circle d-flex align-items-center justify-content-center text-gold border border-gold" style="width: 45px; height: 45px; flex-shrink: 0;">
+                            <i class="bi bi-geo-alt-fill fs-5"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-semibold mb-1">Office Address</h6>
+                            <p class="text-secondary small mb-0">{{ settings.address|linebreaksbr }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="rounded-circle d-flex align-items-center justify-content-center text-gold border border-gold" style="width: 45px; height: 45px; flex-shrink: 0;">
+                            <i class="bi bi-telephone-fill fs-5"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-semibold mb-1">Phone Number</h6>
+                            <p class="text-secondary small mb-0">{{ settings.contact_phone }}</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-start gap-3">
+                        <div class="rounded-circle d-flex align-items-center justify-content-center text-gold border border-gold" style="width: 45px; height: 45px; flex-shrink: 0;">
+                            <i class="bi bi-envelope-at-fill fs-5"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-semibold mb-1">Email Address</h6>
+                            <p class="text-secondary small mb-0">{{ settings.contact_email }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Google Map -->
+                <div class="glass-panel overflow-hidden border border-white border-opacity-25" style="height: 250px;">
+                    {% if settings.google_maps_embed_url %}
+                        <iframe src="{{ settings.google_maps_embed_url }}" class="w-100 h-100 border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    {% else %}
+                        <!-- Fallback Premium Map Placeholder -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.428588829598!2d-73.98701042342371!3d40.751680135118774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sin!4v1703222384910!5m2!1sen!2sin" class="w-100 h-100 border-0" allowfullscreen="" loading="lazy"></iframe>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Right Column: Contact Inquiry Form -->
+            <div class="col-lg-7" data-aos="fade-left">
+                <div class="glass-panel p-5">
+                    <h3 class="font-heading mb-4 text-primary-theme">Send An Inquiry</h3>
+                    <form action="{% url 'contact:contact' %}" method="POST">
+                        {% csrf_token %}
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.name.id_for_label }}" class="form-label text-gold small fw-medium">Your Name</label>
+                                {{ form.name }}
+                                {% if form.name.errors %}
+                                    <div class="text-danger small mt-1">{{ form.name.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.email.id_for_label }}" class="form-label text-gold small fw-medium">Your Email</label>
+                                {{ form.email }}
+                                {% if form.email.errors %}
+                                    <div class="text-danger small mt-1">{{ form.email.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.phone.id_for_label }}" class="form-label text-gold small fw-medium">Phone Number</label>
+                                {{ form.phone }}
+                                {% if form.phone.errors %}
+                                    <div class="text-danger small mt-1">{{ form.phone.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.subject.id_for_label }}" class="form-label text-gold small fw-medium">Subject</label>
+                                {{ form.subject }}
+                                {% if form.subject.errors %}
+                                    <div class="text-danger small mt-1">{{ form.subject.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="{{ form.message.id_for_label }}" class="form-label text-gold small fw-medium">Message Detail</label>
+                            {{ form.message }}
+                            {% if form.message.errors %}
+                                    <div class="text-danger small mt-1">{{ form.message.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <button type="submit" class="btn btn-gold w-100 py-3"><i class="bi bi-send-check me-2"></i> Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

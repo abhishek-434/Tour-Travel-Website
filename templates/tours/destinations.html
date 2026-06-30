@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Explore Luxury Destinations | Wanderlust{% endblock %}
+
+{% block content %}
+<!-- Subpage Header -->
+<section class="py-5 text-center position-relative" style="background: linear-gradient(rgba(11, 19, 43, 0.5), rgba(11, 19, 43, 0.7)), url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover; padding-top: 120px !important; padding-bottom: 80px !important;">
+    <div class="container position-relative z-2" data-aos="fade-up">
+        <h1 class="display-4 text-white fw-bold mb-3 font-heading">Luxury Destinations</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center mb-0 bg-transparent">
+                <li class="breadcrumb-item"><a href="{% url 'core:home' %}" class="text-white-50 text-decoration-none">Home</a></li>
+                <li class="breadcrumb-item text-gold active" aria-current="page">Destinations</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- Search Bar & Destinations Grid -->
+<section class="py-5">
+    <div class="container">
+        
+        <!-- Search form widget -->
+        <div class="row justify-content-center mb-5" data-aos="fade-up">
+            <div class="col-md-6">
+                <form action="{% url 'tours:destinations' %}" method="GET">
+                    <div class="input-group glass-panel p-1">
+                        <input type="text" name="search" class="form-control form-glass border-0" placeholder="Search by destination name or attractions..." value="{{ search_query }}" required>
+                        <button type="submit" class="btn btn-gold rounded-3"><i class="bi bi-search me-1"></i> Find</button>
+                        {% if search_query %}
+                            <a href="{% url 'tours:destinations' %}" class="btn btn-outline-secondary d-flex align-items-center justify-content-center border-0 text-muted"><i class="bi bi-x-lg"></i></a>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Grid of Destinations -->
+        <div class="row g-4 mb-5">
+            {% if destinations %}
+                {% for destination in destinations %}
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter }}00">
+                    <div class="glass-panel glass-panel-hover overflow-hidden h-100 d-flex flex-column">
+                        <div class="position-relative ratio ratio-4x3 overflow-hidden">
+                            <img src="{{ destination.hero_image.url }}" class="w-100 h-100 object-fit-cover transition-transform duration-500 hover-scale" alt="{{ destination.name }}">
+                            <div class="position-absolute top-3 end-3 bg-glass-dark text-gold border border-gold border-opacity-25 rounded-pill px-3 py-1 small">
+                                <i class="bi bi-cloud-sun me-1"></i> {{ destination.weather_info }}
+                            </div>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <h3 class="font-heading fs-4 mb-2 text-primary-theme">{{ destination.name }}</h3>
+                            <p class="text-secondary small mb-3 flex-grow-1">{{ destination.description|truncatewords:25 }}</p>
+                            
+                            <div class="border-top border-secondary border-opacity-10 pt-3 mt-auto d-flex justify-content-between align-items-center">
+                                <span class="small text-muted"><i class="bi bi-calendar-event text-gold me-1"></i> Best time: {{ destination.best_time_to_visit }}</span>
+                                <a href="{% url 'tours:destination_detail' destination.slug %}" class="btn btn-outline-gold btn-sm">Explore <i class="bi bi-arrow-right ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12 text-center py-5">
+                    <div class="glass-panel p-5 mx-auto" style="max-width: 500px;">
+                        <i class="bi bi-geo-fill text-gold display-3 mb-3"></i>
+                        <h4 class="font-heading">No Destinations Found</h4>
+                        <p class="text-secondary">We couldn't find any destinations matching your criteria. Try adjusting your search query.</p>
+                        <a href="{% url 'tours:destinations' %}" class="btn btn-gold">Reset Search</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Pagination -->
+        {% if destinations.has_other_pages %}
+        <nav aria-label="Page navigation" data-aos="fade-up">
+            <ul class="pagination justify-content-center gap-2">
+                {% if destinations.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link glass-panel text-gold border-0" href="?page={{ destinations.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+                
+                {% for num in destinations.paginator.page_range %}
+                    {% if destinations.number == num %}
+                        <li class="page-item"><span class="page-link btn-gold border-0 text-white rounded-circle active-pagination" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">{{ num }}</span></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link glass-panel text-gold border-0 rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;" href="?page={{ num }}{% if search_query %}&search={{ search_query }}{% endif %}">{{ num }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if destinations.has_next %}
+                    <li class="page-item">
+                        <a class="page-link glass-panel text-gold border-0" href="?page={{ destinations.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+
+    </div>
+</section>
+{% endblock %}

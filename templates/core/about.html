@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us | Wanderlust Luxury Travel Boutique{% endblock %}
+
+{% block content %}
+<!-- Subpage Header -->
+<section class="py-5 text-center position-relative" style="background: linear-gradient(rgba(11, 19, 43, 0.5), rgba(11, 19, 43, 0.7)), url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover; padding-top: 120px !important; padding-bottom: 80px !important;">
+    <div class="container position-relative z-2" data-aos="fade-up">
+        <h1 class="display-4 text-white fw-bold mb-3 font-heading">Our Story</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center mb-0 bg-transparent">
+                <li class="breadcrumb-item"><a href="{% url 'core:home' %}" class="text-white-50 text-decoration-none">Home</a></li>
+                <li class="breadcrumb-item text-gold active" aria-current="page">About Us</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- Company History/Vision -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6" data-aos="fade-right">
+                <span class="text-gold text-uppercase letter-spacing-1 fw-semibold mb-2 d-block">Who We Are</span>
+                <h2 class="display-5 font-heading mb-4">Designing Custom Expeditions Since 2012</h2>
+                <p class="text-secondary mb-3">Wanderlust was born out of a simple realization: standard group packages fail to capture the true soul of a destination. We set out to build a travel agency that listens, understands, and designs experiences specifically for each individual guest.</p>
+                <p class="text-secondary mb-4">Our relationships with elite luxury resorts, native private charters, and professional guides give us access to hidden corridors and itineraries that remain closed to the general public. From luxury overwater bungalows in Bora Bora to high-altitude treks in the Himalayas, we provide seamless, end-to-end luxury management.</p>
+                <div class="d-flex gap-3">
+                    <a href="{% url 'tours:packages' %}" class="btn btn-gold">Explore Packages</a>
+                    <a href="{% url 'contact:contact' %}" class="btn btn-outline-gold">Talk to Designer</a>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="position-relative">
+                    <img src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded-4 shadow-lg w-100 object-fit-cover" style="height: 450px;" alt="Agency Workspace">
+                    <!-- Glass floating badge -->
+                    <div class="position-absolute bottom-4 start-4 glass-panel p-4 shadow-lg border border-white border-opacity-25" style="max-width: 250px;">
+                        <h4 class="text-gold font-heading mb-1">15 Years</h4>
+                        <p class="text-secondary mb-0 small">Leading the bespoke tourism market worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Core Values Grid -->
+<section class="py-5 bg-secondary-bg-styled" style="background: rgba(197, 160, 89, 0.02);">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="text-gold text-uppercase letter-spacing-1 fw-semibold d-block mb-2">Our Foundation</span>
+            <h2 class="display-5 font-heading">Our Core Values</h2>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="glass-panel p-4 h-100 text-center glass-panel-hover">
+                    <div class="rounded-circle bg-gold-rgb-20 d-inline-flex align-items-center justify-content-center text-gold mb-3" style="width: 60px; height: 60px; background: rgba(197, 160, 89, 0.1);">
+                        <i class="bi bi-award fs-3 animate__animated animate__pulse animate__infinite"></i>
+                    </div>
+                    <h4 class="font-heading mb-3">Excellence</h4>
+                    <p class="text-secondary small mb-0">We curate only the highest-rated stays, private guides, and premium transport for a flawless travel experience.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="glass-panel p-4 h-100 text-center glass-panel-hover">
+                    <div class="rounded-circle bg-gold-rgb-20 d-inline-flex align-items-center justify-content-center text-gold mb-3" style="width: 60px; height: 60px; background: rgba(197, 160, 89, 0.1);">
+                        <i class="bi bi-sliders fs-3"></i>
+                    </div>
+                    <h4 class="font-heading mb-3">Bespoke Design</h4>
+                    <p class="text-secondary small mb-0">No pre-packaged plans. We craft every day of your itinerary to match your unique interests, pace, and preference.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="glass-panel p-4 h-100 text-center glass-panel-hover">
+                    <div class="rounded-circle bg-gold-rgb-20 d-inline-flex align-items-center justify-content-center text-gold mb-3" style="width: 60px; height: 60px; background: rgba(197, 160, 89, 0.1);">
+                        <i class="bi bi-globe-americas fs-3"></i>
+                    </div>
+                    <h4 class="font-heading mb-3">Eco Luxury</h4>
+                    <p class="text-secondary small mb-0">We emphasize eco-conscious travel, working with local businesses and offsets to safeguard the beautiful Earth.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                <div class="glass-panel p-4 h-100 text-center glass-panel-hover">
+                    <div class="rounded-circle bg-gold-rgb-20 d-inline-flex align-items-center justify-content-center text-gold mb-3" style="width: 60px; height: 60px; background: rgba(197, 160, 89, 0.1);">
+                        <i class="bi bi-headset fs-3"></i>
+                    </div>
+                    <h4 class="font-heading mb-3">Elite Support</h4>
+                    <p class="text-secondary small mb-0">Your private concierge is on-call 24 hours a day during your trip, resolving issues instantly and seamlessly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="text-gold text-uppercase letter-spacing-1 fw-semibold d-block mb-2">Our Curators</span>
+            <h2 class="display-5 font-heading">Meet the Founders</h2>
+        </div>
+        
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="glass-panel p-4 text-center glass-panel-hover h-100">
+                    <div class="mb-4 overflow-hidden rounded-4" style="height: 300px;">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80" class="w-100 h-100 object-fit-cover" alt="CEO">
+                    </div>
+                    <h4 class="font-heading mb-1 text-primary-theme">Marcus Sterling</h4>
+                    <span class="text-gold small d-block mb-3">CEO & Co-Founder</span>
+                    <p class="text-secondary small mb-0">Former hospitality executive with 20+ years setting up premium hotels and eco-resorts across Southeast Asia and the Pacific.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="glass-panel p-4 text-center glass-panel-hover h-100">
+                    <div class="mb-4 overflow-hidden rounded-4" style="height: 300px;">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" class="w-100 h-100 object-fit-cover" alt="Director">
+                    </div>
+                    <h4 class="font-heading mb-1 text-primary-theme">Helena Thorne</h4>
+                    <span class="text-gold small d-block mb-3">Lead Designer & Co-Founder</span>
+                    <p class="text-secondary small mb-0">Professional geographer and luxury travel journalist who has explored over 90 countries and documented private itineraries.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Booking History | Wanderlust Portal{% endblock %}
+
+{% block content %}
+<section class="py-5" style="margin-top: 20px;">
+    <div class="container">
+        <div class="row g-4">
+            
+            <!-- Sidebar Navigation Panel -->
+            <div class="col-lg-4" data-aos="fade-right">
+                <div class="glass-panel p-4 text-center">
+                    <div class="mb-4">
+                        {% if user.profile.profile_picture %}
+                            <img src="{{ user.profile.profile_picture.url }}" class="rounded-circle object-fit-cover border border-gold p-1" style="width: 130px; height: 130px;" alt="{{ user.username }}">
+                        {% else %}
+                            <div class="rounded-circle bg-secondary bg-opacity-25 border border-gold d-inline-flex align-items-center justify-content-center text-gold" style="width: 130px; height: 130px;">
+                                <i class="bi bi-person-fill display-3"></i>
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <h3 class="font-heading mb-1 text-primary-theme">{{ user.get_full_name|default:user.username }}</h3>
+                    <span class="text-gold small d-block mb-4">Traveler Booking Chamber</span>
+
+                    <div class="list-group list-group-flush text-start border-top border-secondary border-opacity-10 pt-3">
+                        <a href="{% url 'dashboard:profile' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-secondary py-2"><i class="bi bi-speedometer2 me-2 text-gold"></i> Portal Overview</a>
+                        <a href="{% url 'dashboard:edit_profile' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-secondary py-2"><i class="bi bi-person-gear me-2 text-gold"></i> Edit Profile</a>
+                        <a href="{% url 'dashboard:booking_history' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-gold fw-semibold py-2"><i class="bi bi-calendar2-check me-2"></i> Booking History</a>
+                        <a href="{% url 'dashboard:saved_packages' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-secondary py-2"><i class="bi bi-heart me-2 text-gold"></i> Saved Journeys</a>
+                        <a href="{% url 'accounts:logout' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-danger py-2"><i class="bi bi-box-arrow-right me-2"></i> Log Out</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking History Grid Sheet -->
+            <div class="col-lg-8" data-aos="fade-left">
+                <div class="glass-panel p-5">
+                    <h2 class="font-heading mb-4 text-primary-theme"><i class="bi bi-calendar2-check-fill text-gold me-2"></i>Your Booking History</h2>
+                    
+                    {% if bookings %}
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead>
+                                    <tr>
+                                        <th class="border-0 bg-transparent text-gold small text-uppercase">Reference</th>
+                                        <th class="border-0 bg-transparent text-gold small text-uppercase">Package</th>
+                                        <th class="border-0 bg-transparent text-gold small text-uppercase">Travel Date</th>
+                                        <th class="border-0 bg-transparent text-gold small text-uppercase">Guests</th>
+                                        <th class="border-0 bg-transparent text-gold small text-uppercase">Cost</th>
+                                        <th class="border-0 bg-transparent text-gold small text-uppercase">Status</th>
+                                        <th class="border-0 bg-transparent text-gold small text-uppercase text-end">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for booking in bookings %}
+                                    <tr>
+                                        <td class="bg-transparent fw-semibold text-primary-theme small">{{ booking.booking_reference }}</td>
+                                        <td class="bg-transparent text-primary-theme small">
+                                            <a href="{% url 'tours:package_detail' booking.package.slug %}" class="text-decoration-none text-primary-theme">{{ booking.package.title|truncatewords:3 }}</a>
+                                        </td>
+                                        <td class="bg-transparent text-secondary small">{{ booking.travel_date|date:"d M Y" }}</td>
+                                        <td class="bg-transparent text-secondary small text-center">{{ booking.number_of_travelers }}</td>
+                                        <td class="bg-transparent text-gold fw-bold small">${{ booking.total_amount }}</td>
+                                        <td class="bg-transparent">
+                                            {% if booking.status == 'confirmed' %}
+                                                <span class="badge bg-success bg-opacity-20 text-success border border-success border-opacity-25 rounded-pill px-2 py-1 small">Confirmed</span>
+                                            {% elif booking.status == 'pending' %}
+                                                <span class="badge bg-warning bg-opacity-20 text-warning border border-warning border-opacity-25 rounded-pill px-2 py-1 small">Pending</span>
+                                            {% elif booking.status == 'cancelled' %}
+                                                <span class="badge bg-danger bg-opacity-20 text-danger border border-danger border-opacity-25 rounded-pill px-2 py-1 small">Cancelled</span>
+                                            {% else %}
+                                                <span class="badge bg-secondary bg-opacity-20 text-secondary border border-secondary border-opacity-25 rounded-pill px-2 py-1 small text-capitalize">{{ booking.status }}</span>
+                                            {% endif %}
+                                        </td>
+                                        <td class="bg-transparent text-end">
+                                            <a href="{% url 'bookings:booking_detail' booking.booking_reference %}" class="btn btn-gold btn-sm"><i class="bi bi-eye me-1"></i> View Receipt</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="text-center py-5">
+                            <i class="bi bi-calendar-x text-gold display-4 mb-3"></i>
+                            <h5 class="font-heading">No bookings logged yet</h5>
+                            <p class="text-secondary small mb-4">Start your wanderlust exploration by browsing our elite tour list catalog.</p>
+                            <a href="{% url 'tours:packages' %}" class="btn btn-gold px-4 py-2">Explore Packages</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,2 @@
+travel_app/templates/travel_app/dashboard.html
+travel_app/templates/**/*.html

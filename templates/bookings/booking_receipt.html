@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Invoice Receipt - {{ booking.booking_reference }} | Wanderlust{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Printing stylesheet overrides */
+    @media print {
+        body {
+            background: #ffffff !important;
+            color: #000000 !important;
+            font-size: 12pt;
+        }
+        .navbar-custom, footer, #back-to-top, .no-print {
+            display: none !important;
+        }
+        main {
+            padding-top: 20px !important;
+        }
+        .glass-panel {
+            background: #ffffff !important;
+            border: 1px solid #dee2e6 !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            color: #000000 !important;
+        }
+        .text-gold, .navbar-brand-text {
+            color: #b08d46 !important;
+            -webkit-text-fill-color: initial !important;
+            background: none !important;
+        }
+        .table th {
+            background-color: #f8f9fa !important;
+            color: #000000 !important;
+            border-bottom: 2px solid #000000 !important;
+        }
+        .border-bottom {
+            border-bottom: 1px solid #dee2e6 !important;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="py-5" style="margin-top: 20px;">
+    <div class="container" style="max-width: 850px;">
+        
+        <!-- Action Buttons Panel (no-print) -->
+        <div class="d-flex justify-content-between align-items-center mb-4 no-print" data-aos="fade-up">
+            <a href="{% url 'dashboard:booking_history' %}" class="btn btn-outline-gold"><i class="bi bi-arrow-left me-1"></i> Back to History</a>
+            
+            <div class="d-flex gap-2">
+                <button onclick="window.print()" class="btn btn-gold"><i class="bi bi-printer-fill me-1"></i> Print / Save PDF</button>
+                
+                {% if booking.status != 'cancelled' %}
+                    <form action="{% url 'bookings:cancel_booking' booking.booking_reference %}" method="POST" onsubmit="return confirm('Are you sure you want to cancel this booking? This will immediately return your seats to the pool and log a refund request.');">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-x-circle-fill me-1"></i> Cancel Booking</button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Receipt Form Container -->
+        <div class="glass-panel p-5 shadow-lg border border-white border-opacity-25" id="receiptPrint" data-aos="zoom-in">
+            <!-- Receipt Header -->
+            <div class="row align-items-center mb-5 pb-4 border-bottom border-secondary border-opacity-10">
+                <div class="col-sm-6">
+                    <h2 class="navbar-brand-text mb-1 fw-bold">Wanderlust</h2>
+                    <span class="text-secondary small">Luxury Custom Travel Boutique</span>
+                </div>
+                <div class="col-sm-6 text-sm-end mt-3 mt-sm-0">
+                    <h4 class="font-heading text-gold mb-1">INVOICE RECEIPT</h4>
+                    <span class="text-secondary small d-block">Issued: {{ booking.created_at|date:"d M Y, h:i A" }}</span>
+                    <span class="badge bg-gold-rgb-20 text-gold border border-gold border-opacity-25 rounded-pill px-3 mt-2 small text-capitalize">{{ booking.get_status_display }}</span>
+                </div>
+            </div>
+
+            <!-- Meta details row -->
+            <div class="row g-4 mb-5">
+                <div class="col-sm-6">
+                    <span class="text-gold small fw-semibold text-uppercase d-block mb-2">Billed To:</span>
+                    <h6 class="mb-1 text-primary-theme">{{ booking.user.get_full_name|default:booking.user.username }}</h6>
+                    <span class="small text-secondary d-block">{{ booking.user.email }}</span>
+                    {% if booking.user.profile.phone_number %}
+                        <span class="small text-secondary d-block">{{ booking.user.profile.phone_number }}</span>
+                    {% endif %}
+                </div>
+                <div class="col-sm-6 text-sm-end">
+                    <span class="text-gold small fw-semibold text-uppercase d-block mb-2">Booking Reference:</span>
+                    <h5 class="font-heading mb-1 fw-bold text-primary-theme">{{ booking.booking_reference }}</h5>
+                    <span class="small text-secondary d-block">Departure: {{ booking.travel_date|date:"l, d F Y" }}</span>
+                </div>
+            </div>
+
+            <!-- Tour description details table -->
+            <h5 class="fw-semibold text-gold mb-3 text-uppercase small letter-spacing-1">Itinerary Selection</h5>
+            <div class="table-responsive mb-5">
+                <table class="table align-middle">
+                    <thead>
+                        <tr class="table-light">
+                            <th class="border-0 text-gold small text-uppercase">Tour Package</th>
+                            <th class="border-0 text-gold small text-uppercase text-center">Duration</th>
+                            <th class="border-0 text-gold small text-uppercase text-center">Travelers</th>
+                            <th class="border-0 text-gold small text-uppercase text-end">Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="bg-transparent border-bottom border-secondary border-opacity-10 py-3">
+                                <h6 class="fw-semibold text-primary-theme mb-1">{{ booking.package.title }}</h6>
+                                <span class="text-secondary small"><i class="bi bi-geo-alt-fill text-gold me-1"></i>{{ booking.package.destination.name }}</span>
+                            </td>
+                            <td class="bg-transparent border-bottom border-secondary border-opacity-10 text-center text-secondary small py-3">{{ booking.package.duration_days }} Days</td>
+                            <td class="bg-transparent border-bottom border-secondary border-opacity-10 text-center text-secondary small py-3">{{ booking.number_of_travelers }}</td>
+                            <td class="bg-transparent border-bottom border-secondary border-opacity-10 text-end text-gold fw-bold py-3">${{ booking.package.current_price }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Passenger list grid -->
+            <h5 class="fw-semibold text-gold mb-3 text-uppercase small letter-spacing-1">Passenger Manifest</h5>
+            <div class="row g-3 mb-5">
+                {% for traveler in booking.travelers.all %}
+                <div class="col-sm-6">
+                    <div class="p-3 border border-secondary border-opacity-10 rounded bg-glass-dark">
+                        <span class="small text-secondary fw-semibold d-block mb-1">Traveler #{{ forloop.counter }}</span>
+                        <h6 class="mb-1 text-primary-theme text-truncate">{{ traveler.full_name }}</h6>
+                        <span class="small text-secondary text-capitalize">{{ traveler.gender }} ({{ traveler.age }} Years)</span>
+                    </div>
+                </div>
+                {% empty %}
+                    <div class="col-12">
+                        <p class="text-muted small">No traveler profiles configured.</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Special Requests if any -->
+            {% if booking.special_requests %}
+            <div class="mb-5">
+                <h5 class="fw-semibold text-gold mb-2 text-uppercase small letter-spacing-1">Special Requests</h5>
+                <div class="p-3 border border-secondary border-opacity-10 rounded bg-glass-dark text-secondary small">
+                    {{ booking.special_requests|linebreaksbr }}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Costs breakdowns -->
+            <div class="row pt-4 border-top border-secondary border-opacity-10 justify-content-end">
+                <div class="col-sm-6 col-md-5">
+                    <div class="d-flex flex-column gap-2">
+                        <div class="d-flex justify-content-between text-secondary small">
+                            <span>Subtotal</span>
+                            <span>${{ subtotal|stringformat:".2f" }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between text-secondary small pb-2 border-bottom border-secondary border-opacity-10">
+                            <span>Service Fee & VAT (10%)</span>
+                            <span>${{ tax_amount|stringformat:".2f" }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between fw-bold text-primary-theme fs-5 pt-2">
+                            <span>Total Amount Paid</span>
+                            <span class="text-gold">${{ booking.total_amount|stringformat:".2f" }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Invoice Footer -->
+            <div class="text-center mt-5 pt-4 border-top border-secondary border-opacity-10 text-muted small">
+                <p class="mb-1">Thank you for traveling with Wanderlust.</p>
+                <p class="mb-0">For cancellations, transfers, or custom guides, write to concierge@wanderlust.com.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

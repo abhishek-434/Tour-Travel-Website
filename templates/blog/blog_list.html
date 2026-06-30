@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Travel Blog & Stories | Wanderlust{% endblock %}
+
+{% block content %}
+<!-- Subpage Header -->
+<section class="py-5 text-center position-relative" style="background: linear-gradient(rgba(11, 19, 43, 0.5), rgba(11, 19, 43, 0.7)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover; padding-top: 120px !important; padding-bottom: 80px !important;">
+    <div class="container position-relative z-2" data-aos="fade-up">
+        <h1 class="display-4 text-white fw-bold mb-3 font-heading">Travel Blog</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center mb-0 bg-transparent">
+                <li class="breadcrumb-item"><a href="{% url 'core:home' %}" class="text-white-50 text-decoration-none">Home</a></li>
+                <li class="breadcrumb-item text-gold active" aria-current="page">Blog</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- Blog Section -->
+<section class="py-5">
+    <div class="container">
+        
+        <!-- Featured Spotlight Post (Only on Page 1 when no active filters) -->
+        {% if featured_post and not search_query and not selected_category and not posts.has_previous %}
+        <div class="row mb-5" data-aos="fade-up">
+            <div class="col-12">
+                <div class="glass-panel overflow-hidden">
+                    <div class="row g-0">
+                        <div class="col-lg-7" style="min-height: 350px;">
+                            <img src="{{ featured_post.cover_image.url }}" class="w-100 h-100 object-fit-cover" alt="{{ featured_post.title }}">
+                        </div>
+                        <div class="col-lg-5 p-5 d-flex flex-column justify-content-center">
+                            <span class="text-gold small fw-semibold text-uppercase mb-2"><i class="bi bi-star-fill text-gold me-1"></i> Featured Article</span>
+                            <h2 class="font-heading display-6 mb-3 text-primary-theme"><a href="{% url 'blog:blog_detail' featured_post.slug %}" class="text-decoration-none text-primary-theme">{{ featured_post.title }}</a></h2>
+                            <p class="text-secondary small mb-4">{{ featured_post.excerpt }}</p>
+                            
+                            <div class="d-flex align-items-center justify-content-between border-top border-secondary border-opacity-10 pt-3 mt-auto">
+                                <div class="d-flex align-items-center gap-2 text-muted small">
+                                    <i class="bi bi-person-circle text-gold"></i>
+                                    <span>By {{ featured_post.author.get_full_name|default:featured_post.author.username }}</span>
+                                </div>
+                                <a href="{% url 'blog:blog_detail' featured_post.slug %}" class="btn btn-gold btn-sm">Read Article <i class="bi bi-arrow-right ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Split Grid & Sidebar Layout -->
+        <div class="row g-5">
+            <!-- Left: Articles Grid -->
+            <div class="col-lg-8" data-aos="fade-right">
+                <div class="row g-4">
+                    {% if posts %}
+                        {% for post in posts %}
+                        <div class="col-md-6">
+                            <div class="glass-panel glass-panel-hover overflow-hidden h-100 d-flex flex-column">
+                                <div class="position-relative" style="height: 200px; overflow: hidden;">
+                                    <img src="{{ post.cover_image.url }}" class="w-100 h-100 object-fit-cover transition-transform duration-500 hover-scale" alt="{{ post.title }}">
+                                    {% if post.category %}
+                                        <span class="position-absolute top-3 start-3 badge bg-glass-dark text-gold border border-gold border-opacity-25 py-2 px-3 rounded-pill">{{ post.category.name }}</span>
+                                    {% endif %}
+                                </div>
+                                <div class="p-4 d-flex flex-column flex-grow-1">
+                                    <span class="text-muted small mb-2"><i class="bi bi-calendar-event me-1 text-gold"></i>{{ post.created_at|date:"M d, Y" }}</span>
+                                    <h4 class="font-heading fs-5 mb-3 fw-semibold"><a href="{% url 'blog:blog_detail' post.slug %}" class="text-decoration-none text-primary-theme">{{ post.title }}</a></h4>
+                                    <p class="text-secondary small mb-4 flex-grow-1">{{ post.excerpt }}</p>
+                                    
+                                    <div class="d-flex justify-content-between align-items-center mt-auto border-top border-secondary border-opacity-10 pt-3">
+                                        <span class="small text-muted"><i class="bi bi-eye me-1 text-gold"></i>{{ post.views_count }} view{{ post.views_count|pluralize }}</span>
+                                        <a href="{% url 'blog:blog_detail' post.slug %}" class="text-gold fw-medium text-decoration-none small">Read More <i class="bi bi-arrow-right ms-1"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="col-12 text-center py-5">
+                            <div class="glass-panel p-5 mx-auto" style="max-width: 450px;">
+                                <i class="bi bi-journal-x text-gold display-3 mb-3"></i>
+                                <h4 class="font-heading">No Articles Logged</h4>
+                                <p class="text-secondary">We couldn't find any articles matching your search query or category filter. Try clearing selectors.</p>
+                                <a href="{% url 'blog:blog_home' %}" class="btn btn-gold px-4 py-2">Reset Blog</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Pagination grid -->
+                {% if posts.has_other_pages %}
+                <nav aria-label="Page navigation" class="mt-5">
+                    <ul class="pagination justify-content-center gap-2">
+                        {% if posts.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link glass-panel text-gold border-0" href="?page={{ posts.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                        
+                        {% for num in posts.paginator.page_range %}
+                            {% if posts.number == num %}
+                                <li class="page-item"><span class="page-link btn-gold border-0 text-white rounded-circle active-pagination" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">{{ num }}</span></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link glass-panel text-gold border-0 rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;" href="?page={{ num }}{% if search_query %}&search={{ search_query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}">{{ num }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% if posts.has_next %}
+                            <li class="page-item">
+                                <a class="page-link glass-panel text-gold border-0" href="?page={{ posts.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                {% endif %}
+            </div>
+
+            <!-- Right: Sidebar Filters -->
+            <div class="col-lg-4" data-aos="fade-left">
+                <div class="d-flex flex-column gap-4 sticky-lg-top" style="top: 100px; z-index: 10;">
+                    
+                    <!-- Search Widget -->
+                    <div class="glass-panel p-4">
+                        <h5 class="font-heading text-gold mb-3">Search Blog</h5>
+                        <form action="{% url 'blog:blog_home' %}" method="GET">
+                            <div class="input-group">
+                                <input type="text" name="search" class="form-control form-glass" placeholder="Search keywords..." value="{{ search_query }}">
+                                <button type="submit" class="btn btn-gold"><i class="bi bi-search"></i></button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Categories Filter Card -->
+                    <div class="glass-panel p-4">
+                        <h5 class="font-heading text-gold mb-3">Categories</h5>
+                        <div class="list-group list-group-flush border-0">
+                            <a href="{% url 'blog:blog_home' %}" class="list-group-item list-group-item-action bg-transparent border-0 {% if not selected_category %}text-gold fw-semibold{% else %}text-secondary{% endif %} py-2 px-0 d-flex justify-content-between align-items-center">
+                                <span>All Articles</span>
+                            </a>
+                            {% for category in categories %}
+                            <a href="?category={{ category.slug }}{% if search_query %}&search={{ search_query }}{% endif %}" class="list-group-item list-group-item-action bg-transparent border-0 {% if selected_category == category.slug %}text-gold fw-semibold{% else %}text-secondary{% endif %} py-2 px-0 d-flex justify-content-between align-items-center">
+                                <span>{{ category.name }}</span>
+                                <span class="badge bg-secondary bg-opacity-25 text-muted rounded-pill small">{{ category.posts.count }}</span>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}FAQs | Wanderlust Travel Support{% endblock %}
+
+{% block content %}
+<!-- Subpage Header -->
+<section class="py-5 text-center position-relative" style="background: linear-gradient(rgba(11, 19, 43, 0.5), rgba(11, 19, 43, 0.7)), url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover; padding-top: 120px !important; padding-bottom: 80px !important;">
+    <div class="container position-relative z-2" data-aos="fade-up">
+        <h1 class="display-4 text-white fw-bold mb-3 font-heading">Frequently Asked Questions</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center mb-0 bg-transparent">
+                <li class="breadcrumb-item"><a href="{% url 'core:home' %}" class="text-white-50 text-decoration-none">Home</a></li>
+                <li class="breadcrumb-item text-gold active" aria-current="page">FAQs</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- FAQs Tabbed Interface -->
+<section class="py-5">
+    <div class="container" style="max-width: 900px;">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="text-gold text-uppercase letter-spacing-1 fw-semibold d-block mb-2">Help Center</span>
+            <h2 class="display-5 font-heading">Answers to Your Travel Queries</h2>
+        </div>
+
+        <!-- Custom Glassmorphic Tabs -->
+        <ul class="nav nav-pills justify-content-center mb-5 gap-2" id="faqTabs" role="tablist" data-aos="fade-up">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link btn-outline-gold active px-4 py-2" id="general-tab" data-bs-toggle="pill" data-bs-target="#general-panel" type="button" role="tab" aria-controls="general-panel" aria-selected="true">General</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link btn-outline-gold px-4 py-2" id="booking-tab" data-bs-toggle="pill" data-bs-target="#booking-panel" type="button" role="tab" aria-controls="booking-panel" aria-selected="false">Booking & Cancellations</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link btn-outline-gold px-4 py-2" id="tours-tab" data-bs-toggle="pill" data-bs-target="#tours-panel" type="button" role="tab" aria-controls="tours-panel" aria-selected="false">Tours & Destinations</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link btn-outline-gold px-4 py-2" id="payments-tab" data-bs-toggle="pill" data-bs-target="#payments-panel" type="button" role="tab" aria-controls="payments-panel" aria-selected="false">Payments</button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="faqTabContent" data-aos="fade-up">
+            <!-- General Panel -->
+            <div class="tab-pane fade show active" id="general-panel" role="tabpanel" aria-labelledby="general-tab">
+                <div class="accordion" id="generalAccordion">
+                    {% if categorized_faqs.general %}
+                        {% for faq in categorized_faqs.general %}
+                        <div class="accordion-item glass-panel border-0 mb-3 overflow-hidden">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed form-glass border-0 fw-semibold fs-5 text-primary-theme" type="button" data-bs-toggle="collapse" data-bs-target="#gen{{ faq.id }}">
+                                    {{ faq.question }}
+                                </button>
+                            </h2>
+                            <div id="gen{{ faq.id }}" class="accordion-collapse collapse" data-bs-parent="#generalAccordion">
+                                <div class="accordion-body text-secondary bg-transparent py-4 px-4 border-top border-secondary border-opacity-10">
+                                    {{ faq.answer }}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-center text-muted py-4">No general FAQs populated yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Booking Panel -->
+            <div class="tab-pane fade" id="booking-panel" role="tabpanel" aria-labelledby="booking-tab">
+                <div class="accordion" id="bookingAccordion">
+                    {% if categorized_faqs.booking %}
+                        {% for faq in categorized_faqs.booking %}
+                        <div class="accordion-item glass-panel border-0 mb-3 overflow-hidden">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed form-glass border-0 fw-semibold fs-5 text-primary-theme" type="button" data-bs-toggle="collapse" data-bs-target="#book{{ faq.id }}">
+                                    {{ faq.question }}
+                                </button>
+                            </h2>
+                            <div id="book{{ faq.id }}" class="accordion-collapse collapse" data-bs-parent="#bookingAccordion">
+                                <div class="accordion-body text-secondary bg-transparent py-4 px-4 border-top border-secondary border-opacity-10">
+                                    {{ faq.answer }}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-center text-muted py-4">No booking FAQs populated yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Tours Panel -->
+            <div class="tab-pane fade" id="tours-panel" role="tabpanel" aria-labelledby="tours-tab">
+                <div class="accordion" id="toursAccordion">
+                    {% if categorized_faqs.tours %}
+                        {% for faq in categorized_faqs.tours %}
+                        <div class="accordion-item glass-panel border-0 mb-3 overflow-hidden">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed form-glass border-0 fw-semibold fs-5 text-primary-theme" type="button" data-bs-toggle="collapse" data-bs-target="#tour{{ faq.id }}">
+                                    {{ faq.question }}
+                                </button>
+                            </h2>
+                            <div id="tour{{ faq.id }}" class="accordion-collapse collapse" data-bs-parent="#toursAccordion">
+                                <div class="accordion-body text-secondary bg-transparent py-4 px-4 border-top border-secondary border-opacity-10">
+                                    {{ faq.answer }}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-center text-muted py-4">No tour packages FAQs populated yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Payments Panel -->
+            <div class="tab-pane fade" id="payments-panel" role="tabpanel" aria-labelledby="payments-tab">
+                <div class="accordion" id="paymentsAccordion">
+                    {% if categorized_faqs.payments %}
+                        {% for faq in categorized_faqs.payments %}
+                        <div class="accordion-item glass-panel border-0 mb-3 overflow-hidden">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed form-glass border-0 fw-semibold fs-5 text-primary-theme" type="button" data-bs-toggle="collapse" data-bs-target="#pay{{ faq.id }}">
+                                    {{ faq.question }}
+                                </button>
+                            </h2>
+                            <div id="pay{{ faq.id }}" class="accordion-collapse collapse" data-bs-parent="#paymentsAccordion">
+                                <div class="accordion-body text-secondary bg-transparent py-4 px-4 border-top border-secondary border-opacity-10">
+                                    {{ faq.answer }}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-center text-muted py-4">No payment FAQs populated yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

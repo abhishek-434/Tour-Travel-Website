@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Tourist Gallery | Wanderlust Luxury Moments{% endblock %}
+
+{% block content %}
+<!-- Subpage Header -->
+<section class="py-5 text-center position-relative" style="background: linear-gradient(rgba(11, 19, 43, 0.5), rgba(11, 19, 43, 0.7)), url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover; padding-top: 120px !important; padding-bottom: 80px !important;">
+    <div class="container position-relative z-2" data-aos="fade-up">
+        <h1 class="display-4 text-white fw-bold mb-3 font-heading">Explorer Gallery</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center mb-0 bg-transparent">
+                <li class="breadcrumb-item"><a href="{% url 'core:home' %}" class="text-white-50 text-decoration-none">Home</a></li>
+                <li class="breadcrumb-item text-gold active" aria-current="page">Gallery</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- Gallery Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up" style="max-width: 600px; margin: 0 auto;">
+            <span class="text-gold text-uppercase letter-spacing-1 fw-semibold d-block mb-2">Captured Moments</span>
+            <h2 class="display-5 font-heading mb-3">Wanderlust in Frames</h2>
+            <p class="text-secondary mb-0">Browse through candid snapshots captured by our global explorers on their custom journeys.</p>
+        </div>
+
+        <div class="row g-4" data-aos="fade-up">
+            {% if images %}
+                {% for item in images %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="glass-panel glass-panel-hover overflow-hidden position-relative ratio ratio-1x1 gallery-card cursor-pointer" onclick="openLightbox('{{ item.image.url }}', '{{ item.caption }}', '{{ item.tourist_name }}', '{{ item.location }}')">
+                        <img src="{{ item.image.url }}" class="w-100 h-100 object-fit-cover transition-transform duration-500 hover-scale" alt="{{ item.caption }}">
+                        <div class="position-absolute bottom-0 start-0 w-100 p-4 text-white d-flex flex-column justify-content-end gallery-overlay" style="background: linear-gradient(transparent, rgba(11, 19, 43, 0.95)); height: 50%; opacity: 0; transition: opacity 0.3s ease;">
+                            <h5 class="font-heading mb-1 text-white">{{ item.caption }}</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-2 border-top border-white border-opacity-10 pt-2">
+                                <span class="small text-white-50"><i class="bi bi-person-fill text-gold me-1"></i>{{ item.tourist_name|default:"Explorer" }}</span>
+                                {% if item.location %}
+                                <span class="small text-white-50"><i class="bi bi-geo-alt-fill text-gold me-1"></i>{{ item.location }}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <!-- Mock images if empty -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="glass-panel glass-panel-hover overflow-hidden position-relative ratio ratio-1x1 gallery-card cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=800&q=80', 'Sunny Sydney Opera House', 'Charlotte Webb', 'Sydney, Australia')">
+                        <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=800&q=80" class="w-100 h-100 object-fit-cover" alt="Sydney">
+                        <div class="position-absolute bottom-0 start-0 w-100 p-4 text-white d-flex flex-column justify-content-end gallery-overlay" style="background: linear-gradient(transparent, rgba(11, 19, 43, 0.9)); height: 50%; opacity: 0; transition: opacity 0.3s ease;">
+                            <h5 class="font-heading mb-1 text-white">Sunny Sydney Opera House</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-2 border-top border-white border-opacity-10 pt-2">
+                                <span class="small text-white-50"><i class="bi bi-person-fill text-gold me-1"></i>Charlotte Webb</span>
+                                <span class="small text-white-50"><i class="bi bi-geo-alt-fill text-gold me-1"></i>Sydney, Australia</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="glass-panel glass-panel-hover overflow-hidden position-relative ratio ratio-1x1 gallery-card cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80', 'Sunset Boat Ride', 'Ethan Mercer', 'Amalfi, Italy')">
+                        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80" class="w-100 h-100 object-fit-cover" alt="Amalfi">
+                        <div class="position-absolute bottom-0 start-0 w-100 p-4 text-white d-flex flex-column justify-content-end gallery-overlay" style="background: linear-gradient(transparent, rgba(11, 19, 43, 0.9)); height: 50%; opacity: 0; transition: opacity 0.3s ease;">
+                            <h5 class="font-heading mb-1 text-white">Sunset Boat Ride</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-2 border-top border-white border-opacity-10 pt-2">
+                                <span class="small text-white-50"><i class="bi bi-person-fill text-gold me-1"></i>Ethan Mercer</span>
+                                <span class="small text-white-50"><i class="bi bi-geo-alt-fill text-gold me-1"></i>Amalfi, Italy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="glass-panel glass-panel-hover overflow-hidden position-relative ratio ratio-1x1 gallery-card cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80', 'The Romantic Eiffel Tower', 'Sophia Laurent', 'Paris, France')">
+                        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80" class="w-100 h-100 object-fit-cover" alt="Paris">
+                        <div class="position-absolute bottom-0 start-0 w-100 p-4 text-white d-flex flex-column justify-content-end gallery-overlay" style="background: linear-gradient(transparent, rgba(11, 19, 43, 0.9)); height: 50%; opacity: 0; transition: opacity 0.3s ease;">
+                            <h5 class="font-heading mb-1 text-white">The Romantic Eiffel Tower</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-2 border-top border-white border-opacity-10 pt-2">
+                                <span class="small text-white-50"><i class="bi bi-person-fill text-gold me-1"></i>Sophia Laurent</span>
+                                <span class="small text-white-50"><i class="bi bi-geo-alt-fill text-gold me-1"></i>Paris, France</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content glass-panel border-0 shadow-lg theme-transition">
+            <div class="modal-body p-0 position-relative">
+                <button type="button" class="btn-close btn-close-white position-absolute top-3 end-3 z-3" data-bs-dismiss="modal" aria-label="Close"></button>
+                <img src="" id="lightbox-img" class="img-fluid w-100 object-fit-contain rounded-top" style="max-height: 70vh;" alt="">
+                <div class="p-4">
+                    <h4 class="font-heading mb-2 text-primary-theme" id="lightbox-caption"></h4>
+                    <div class="d-flex justify-content-between text-muted small">
+                        <span id="lightbox-tourist"></span>
+                        <span id="lightbox-location"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .gallery-card:hover .gallery-overlay {
+        opacity: 1 !important;
+    }
+    .gallery-card:hover img {
+        transform: scale(1.1);
+    }
+    .hover-scale {
+        transition: transform 0.5s ease;
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function openLightbox(imageUrl, caption, tourist, location) {
+        document.getElementById('lightbox-img').src = imageUrl;
+        document.getElementById('lightbox-caption').innerText = caption;
+        document.getElementById('lightbox-tourist').innerHTML = tourist ? '<i class="bi bi-person-fill text-gold me-1"></i>' + tourist : '';
+        document.getElementById('lightbox-location').innerHTML = location ? '<i class="bi bi-geo-alt-fill text-gold me-1"></i>' + location : '';
+        
+        const myModal = new bootstrap.Modal(document.getElementById('lightboxModal'));
+        myModal.show();
+    }
+</script>
+{% endblock %}

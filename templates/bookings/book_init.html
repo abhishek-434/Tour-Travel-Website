@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Book Journey | {{ package.title }} | Wanderlust{% endblock %}
+
+{% block content %}
+<section class="py-5" style="margin-top: 20px;">
+    <div class="container">
+        
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb" class="mb-4" data-aos="fade-up">
+            <ol class="breadcrumb bg-transparent p-0">
+                <li class="breadcrumb-item"><a href="{% url 'core:home' %}" class="text-gold text-decoration-none">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'tours:packages' %}" class="text-gold text-decoration-none">Packages</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'tours:package_detail' package.slug %}" class="text-gold text-decoration-none">{{ package.title }}</a></li>
+                <li class="breadcrumb-item text-secondary active" aria-current="page">Initialize Booking</li>
+            </ol>
+        </nav>
+
+        <div class="row g-5">
+            <!-- Left Column: Package Highlights Card -->
+            <div class="col-lg-5" data-aos="fade-right">
+                <div class="glass-panel overflow-hidden h-100 d-flex flex-column">
+                    <img src="{{ package.cover_image.url }}" class="w-100 object-fit-cover" style="height: 250px;" alt="{{ package.title }}">
+                    <div class="p-4 flex-grow-1">
+                        <span class="text-gold small fw-semibold text-uppercase mb-1"><i class="bi bi-geo-alt-fill me-1"></i>{{ package.destination.name }}</span>
+                        <h3 class="font-heading mb-3">{{ package.title }}</h3>
+                        <p class="text-secondary small mb-4">{{ package.description|truncatewords:40 }}</p>
+                        
+                        <div class="border-top border-secondary border-opacity-10 pt-3 mt-auto d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="text-muted small d-block">Cost per traveler</span>
+                                <span class="fs-4 fw-bold text-gold">${{ package.current_price }}</span>
+                            </div>
+                            <span class="badge bg-glass-dark text-gold border border-gold border-opacity-25 py-2 px-3 rounded-pill">{{ package.duration_days }} Days / {{ package.duration_nights }} Nights</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Initial Booking Parameters Form -->
+            <div class="col-lg-7" data-aos="fade-left">
+                <div class="glass-panel p-5">
+                    <h2 class="font-heading mb-4 text-primary-theme"><i class="bi bi-calendar2-plus text-gold me-2"></i>Select Travel Options</h2>
+                    <p class="text-secondary small mb-4">Choose your preferred travel departure date and indicate the size of your group. Your personal manager will synchronize hotel vouchers accordingly.</p>
+                    
+                    <form method="POST">
+                        {% csrf_token %}
+                        
+                        <div class="row">
+                            <!-- Travel Date picker -->
+                            <div class="col-md-6 mb-3">
+                                <label for="travel_date" class="form-label text-gold small fw-medium">Departure Date</label>
+                                <input type="date" name="travel_date" id="travel_date" class="form-control form-glass" min="{{ today }}" required>
+                                <div class="text-muted small mt-1" style="font-size: 0.75rem;">Departures available from today.</div>
+                            </div>
+                            
+                            <!-- Traveler count -->
+                            <div class="col-md-6 mb-3">
+                                <label for="number_of_travelers" class="form-label text-gold small fw-medium">Number of Travelers</label>
+                                <input type="number" name="number_of_travelers" id="number_of_travelers" class="form-control form-glass" min="1" max="{{ package.available_seats }}" value="1" required>
+                                <div class="text-muted small mt-1" style="font-size: 0.75rem;">Max seats open: {{ package.available_seats }}.</div>
+                            </div>
+                        </div>
+
+                        <!-- Special requests text field -->
+                        <div class="mb-4">
+                            <label for="special_requests" class="form-label text-gold small fw-medium">Special Requests (Optional)</label>
+                            <textarea name="special_requests" id="special_requests" class="form-control form-glass" rows="4" placeholder="E.g. dietary restrictions, room upgrades, honeymoon packages, flight coordination..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-gold w-100 py-3"><i class="bi bi-arrow-right-circle me-1"></i> Continue to Traveler Details</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

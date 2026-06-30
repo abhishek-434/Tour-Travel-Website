@@ -1,0 +1,414 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Wanderlust | Luxury Bespoke Tour & Travel{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section position-relative overflow-hidden d-flex align-items-center justify-content-center text-center" style="min-height: 90vh; margin-top: -90px; background: linear-gradient(rgba(11, 19, 43, 0.45), rgba(11, 19, 43, 0.65)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;">
+    <div class="container position-relative z-2" data-aos="fade-up">
+        <span class="text-gold text-uppercase letter-spacing-2 fw-semibold animate__animated animate__fadeInDown d-block mb-3 fs-5">Premium Travel Boutique</span>
+        <h1 class="display-3 text-white fw-bold mb-4 font-heading animate__animated animate__zoomIn">Discover the Art of Bespoke Travel</h1>
+        <p class="lead text-white-50 fs-4 mb-5 mx-auto animate__animated animate__fadeInUp" style="max-width: 700px;">Crafting unforgettable journeys and luxury escapes designed around your unique wanderlust.</p>
+        
+        <!-- Search Widget -->
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <form action="{% url 'tours:packages' %}" method="GET" class="glass-panel p-4 shadow-lg animate__animated animate__fadeInUp" style="animation-delay: 0.5s;">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-md-4 text-start">
+                            <label class="form-label text-gold small fw-medium mb-1"><i class="bi bi-geo-alt-fill me-1"></i> Destination</label>
+                            <input type="text" name="search" class="form-control form-glass" placeholder="Where do you want to go?">
+                        </div>
+                        <div class="col-md-3 text-start">
+                            <label class="form-label text-gold small fw-medium mb-1"><i class="bi bi-tag-fill me-1"></i> Travel Type</label>
+                            <select name="category" class="form-select form-glass">
+                                <option value="">All Categories</option>
+                                <option value="adventure">Adventure</option>
+                                <option value="luxury">Luxury Escapes</option>
+                                <option value="nature">Nature & Wildlife</option>
+                                <option value="cultural">Cultural Tours</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 text-start">
+                            <label class="form-label text-gold small fw-medium mb-1"><i class="bi bi-clock-fill me-1"></i> Max Duration</label>
+                            <select name="duration" class="form-select form-glass">
+                                <option value="">Any Duration</option>
+                                <option value="5">Up to 5 Days</option>
+                                <option value="10">Up to 10 Days</option>
+                                <option value="15">Up to 15 Days</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 d-grid mt-4">
+                            <button type="submit" class="btn btn-gold py-2"><i class="bi bi-search me-1"></i> Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Smooth Transition Bottom Overlay -->
+    <div class="position-absolute bottom-0 start-0 w-100" style="height: 100px; background: linear-gradient(to top, var(--primary-bg), transparent);"></div>
+</section>
+
+<!-- Stats Badge Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4 text-center">
+            <div class="col-6 col-lg-3" data-aos="zoom-in" data-aos-delay="100">
+                <div class="glass-panel p-4">
+                    <h2 class="text-gold display-5 fw-bold mb-1">50+</h2>
+                    <p class="text-secondary mb-0 fw-medium">Elite Destinations</p>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3" data-aos="zoom-in" data-aos-delay="200">
+                <div class="glass-panel p-4">
+                    <h2 class="text-gold display-5 fw-bold mb-1">250+</h2>
+                    <p class="text-secondary mb-0 fw-medium">Bespoke Packages</p>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3" data-aos="zoom-in" data-aos-delay="300">
+                <div class="glass-panel p-4">
+                    <h2 class="text-gold display-5 fw-bold mb-1">12K+</h2>
+                    <p class="text-secondary mb-0 fw-medium">Satisfied Explorers</p>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3" data-aos="zoom-in" data-aos-delay="400">
+                <div class="glass-panel p-4">
+                    <h2 class="text-gold display-5 fw-bold mb-1">99%</h2>
+                    <p class="text-secondary mb-0 fw-medium">Luxury Ratings</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Destinations Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-end mb-5" data-aos="fade-up">
+            <div>
+                <span class="text-gold text-uppercase letter-spacing-1 fw-semibold d-block mb-2">Curated Escapes</span>
+                <h2 class="display-5 font-heading mb-0">Popular Destinations</h2>
+            </div>
+            <a href="{% url 'tours:destinations' %}" class="btn btn-outline-gold">View All <i class="bi bi-arrow-right ms-1"></i></a>
+        </div>
+        
+        <div class="row g-4">
+            {% if featured_destinations %}
+                {% for destination in featured_destinations %}
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter }}00">
+                    <div class="glass-panel glass-panel-hover overflow-hidden position-relative ratio ratio-4x3 card-destination">
+                        <img src="{{ destination.hero_image.url }}" class="img-fluid w-100 h-100 object-fit-cover" alt="{{ destination.name }}">
+                        <div class="position-absolute bottom-0 start-0 w-100 p-4 bg-gradient-dark text-white d-flex flex-column justify-content-end" style="background: linear-gradient(transparent, rgba(7, 11, 25, 0.95)); height: 60%;">
+                            <h4 class="font-heading mb-1 text-white">{{ destination.name }}</h4>
+                            <p class="text-white-50 small mb-2"><i class="bi bi-sun-fill text-gold me-1"></i> Best time: {{ destination.best_time_to_visit }}</p>
+                            <a href="{% url 'tours:destination_detail' destination.slug %}" class="text-gold text-decoration-none fw-medium mt-2 small">Explore Tours <i class="bi bi-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <!-- Luxury fallback mock display if DB empty -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                    <div class="glass-panel glass-panel-hover overflow-hidden position-relative ratio ratio-4x3">
+                        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80" class="w-100 h-100 object-fit-cover" alt="Bali">
+                        <div class="position-absolute bottom-0 start-0 w-100 p-4" style="background: linear-gradient(transparent, rgba(7, 11, 25, 0.9));">
+                            <h4 class="font-heading text-white mb-1">Bali, Indonesia</h4>
+                            <p class="text-white-50 small mb-0"><i class="bi bi-sun-fill text-gold me-1"></i> Best Season: Apr - Oct</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-panel glass-panel-hover overflow-hidden position-relative ratio ratio-4x3">
+                        <img src="https://images.unsplash.com/photo-1486916856992-e4db22c8df33?auto=format&fit=crop&w=800&q=80" class="w-100 h-100 object-fit-cover" alt="Swiss Alps">
+                        <div class="position-absolute bottom-0 start-0 w-100 p-4" style="background: linear-gradient(transparent, rgba(7, 11, 25, 0.9));">
+                            <h4 class="font-heading text-white mb-1">Swiss Alps, Switzerland</h4>
+                            <p class="text-white-50 small mb-0"><i class="bi bi-sun-fill text-gold me-1"></i> Best Season: Dec - Apr</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-panel glass-panel-hover overflow-hidden position-relative ratio ratio-4x3">
+                        <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=800&q=80" class="w-100 h-100 object-fit-cover" alt="Kenya Safari">
+                        <div class="position-absolute bottom-0 start-0 w-100 p-4" style="background: linear-gradient(transparent, rgba(7, 11, 25, 0.9));">
+                            <h4 class="font-heading text-white mb-1">Masai Mara, Kenya</h4>
+                            <p class="text-white-50 small mb-0"><i class="bi bi-sun-fill text-gold me-1"></i> Best Season: Jul - Oct</p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Featured Packages Section -->
+<section class="py-5 bg-secondary-bg-styled" style="background: rgba(197, 160, 89, 0.03);">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-end mb-5" data-aos="fade-up">
+            <div>
+                <span class="text-gold text-uppercase letter-spacing-1 fw-semibold d-block mb-2">Unparalleled Journeys</span>
+                <h2 class="display-5 font-heading mb-0">Featured Packages</h2>
+            </div>
+            <a href="{% url 'tours:packages' %}" class="btn btn-outline-gold">View All Packages <i class="bi bi-arrow-right ms-1"></i></a>
+        </div>
+        
+        <div class="row g-4">
+            {% if featured_packages %}
+                {% for package in featured_packages %}
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="{{ forloop.counter }}00">
+                    <div class="glass-panel glass-panel-hover overflow-hidden h-100 d-flex flex-column">
+                        <div class="position-relative overflow-hidden" style="height: 200px;">
+                            <img src="{{ package.cover_image.url }}" class="w-100 h-100 object-fit-cover transition-transform duration-500 hover-scale" alt="{{ package.title }}">
+                            <span class="position-absolute top-3 start-3 badge bg-glass-dark text-gold border border-gold border-opacity-25 py-2 px-3 rounded-pill">{{ package.duration_days }} Days</span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <span class="text-gold small fw-semibold text-uppercase mb-1"><i class="bi bi-geo-alt-fill me-1"></i>{{ package.destination.name }}</span>
+                            <h5 class="fw-semibold mb-3"><a href="{% url 'tours:package_detail' package.slug %}" class="text-decoration-none text-primary-theme">{{ package.title }}</a></h5>
+                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-secondary border-opacity-10">
+                                <div>
+                                    <span class="text-muted small d-block">Starting from</span>
+                                    <span class="fs-4 fw-bold text-gold">${{ package.price }}</span>
+                                </div>
+                                <a href="{% url 'tours:package_detail' package.slug %}" class="btn btn-gold py-2 px-3 rounded-circle"><i class="bi bi-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <!-- Mock display -->
+                <div class="col-md-6 col-lg-3" data-aos="fade-up">
+                    <div class="glass-panel glass-panel-hover overflow-hidden h-100 d-flex flex-column">
+                        <div class="position-relative overflow-hidden" style="height: 200px;">
+                            <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=500&q=80" class="w-100 h-100 object-fit-cover" alt="Swiss">
+                            <span class="position-absolute top-3 start-3 badge bg-dark py-2 px-3 rounded-pill bg-opacity-70">8 Days</span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <span class="text-gold small fw-semibold text-uppercase mb-1"><i class="bi bi-geo-alt-fill me-1"></i>Maldives</span>
+                            <h5 class="fw-semibold mb-3">Maldives Luxury Lagoon Retreat</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-secondary border-opacity-10">
+                                <div>
+                                    <span class="text-muted small d-block">Starting from</span>
+                                    <span class="fs-4 fw-bold text-gold">$4,850</span>
+                                </div>
+                                <button class="btn btn-gold py-2 px-3 rounded-circle"><i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-panel glass-panel-hover overflow-hidden h-100 d-flex flex-column">
+                        <div class="position-relative overflow-hidden" style="height: 200px;">
+                            <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=500&q=80" class="w-100 h-100 object-fit-cover" alt="Amalfi">
+                            <span class="position-absolute top-3 start-3 badge bg-dark py-2 px-3 rounded-pill bg-opacity-70">10 Days</span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <span class="text-gold small fw-semibold text-uppercase mb-1"><i class="bi bi-geo-alt-fill me-1"></i>Amalfi, Italy</span>
+                            <h5 class="fw-semibold mb-3">Amalfi Coast Luxury Getaway</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-secondary border-opacity-10">
+                                <div>
+                                    <span class="text-muted small d-block">Starting from</span>
+                                    <span class="fs-4 fw-bold text-gold">$6,200</span>
+                                </div>
+                                <button class="btn btn-gold py-2 px-3 rounded-circle"><i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-panel glass-panel-hover overflow-hidden h-100 d-flex flex-column">
+                        <div class="position-relative overflow-hidden" style="height: 200px;">
+                            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=500&q=80" class="w-100 h-100 object-fit-cover" alt="Kyoto">
+                            <span class="position-absolute top-3 start-3 badge bg-dark py-2 px-3 rounded-pill bg-opacity-70">7 Days</span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <span class="text-gold small fw-semibold text-uppercase mb-1"><i class="bi bi-geo-alt-fill me-1"></i>Kyoto, Japan</span>
+                            <h5 class="fw-semibold mb-3">Imperial Kyoto & Tea Ceremonies</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-secondary border-opacity-10">
+                                <div>
+                                    <span class="text-muted small d-block">Starting from</span>
+                                    <span class="fs-4 fw-bold text-gold">$3,900</span>
+                                </div>
+                                <button class="btn btn-gold py-2 px-3 rounded-circle"><i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-panel glass-panel-hover overflow-hidden h-100 d-flex flex-column">
+                        <div class="position-relative overflow-hidden" style="height: 200px;">
+                            <img src="https://images.unsplash.com/photo-1542401886-65d6c61db217?auto=format&fit=crop&w=500&q=80" class="w-100 h-100 object-fit-cover" alt="Cairo">
+                            <span class="position-absolute top-3 start-3 badge bg-dark py-2 px-3 rounded-pill bg-opacity-70">12 Days</span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <span class="text-gold small fw-semibold text-uppercase mb-1"><i class="bi bi-geo-alt-fill me-1"></i>Cairo, Egypt</span>
+                            <h5 class="fw-semibold mb-3">Mysterious Pyramids & Nile Luxury Cruise</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-secondary border-opacity-10">
+                                <div>
+                                    <span class="text-muted small d-block">Starting from</span>
+                                    <span class="fs-4 fw-bold text-gold">$5,100</span>
+                                </div>
+                                <button class="btn btn-gold py-2 px-3 rounded-circle"><i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section (Swiper.js) -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="text-gold text-uppercase letter-spacing-1 fw-semibold d-block mb-2">Guest Impressions</span>
+            <h2 class="display-5 font-heading">What Our Guests Say</h2>
+        </div>
+        
+        <div class="swiper testimonialSwiper pb-5" data-aos="fade-up">
+            <div class="swiper-wrapper">
+                {% if testimonials %}
+                    {% for testimonial in testimonials %}
+                    <div class="swiper-slide p-3">
+                        <div class="glass-panel p-5 text-center h-100 d-flex flex-column align-items-center">
+                            <div class="mb-4">
+                                {% if testimonial.client_image %}
+                                    <img src="{{ testimonial.client_image.url }}" class="rounded-circle object-fit-cover border border-gold" style="width: 90px; height: 90px;" alt="{{ testimonial.client_name }}">
+                                {% else %}
+                                    <div class="rounded-circle bg-secondary bg-opacity-25 d-flex align-items-center justify-content-center text-gold border border-gold" style="width: 90px; height: 90px;">
+                                        <i class="bi bi-person-fill fs-1"></i>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="d-flex text-gold mb-3">
+                                {% for i in "12345"|make_list %}
+                                    {% if forloop.counter <= testimonial.rating %}
+                                        <i class="bi bi-star-fill"></i>
+                                    {% else %}
+                                        <i class="bi bi-star"></i>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <p class="fst-italic text-secondary mb-4 flex-grow-1">"{{ testimonial.testimonial_text }}"</p>
+                            <h5 class="fw-semibold mb-1">{{ testimonial.client_name }}</h5>
+                            <span class="text-gold small">{{ testimonial.client_designation }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <!-- Fallback slider content -->
+                    <div class="swiper-slide p-3">
+                        <div class="glass-panel p-5 text-center h-100 d-flex flex-column align-items-center">
+                            <div class="mb-4">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" class="rounded-circle object-fit-cover border border-gold" style="width: 90px; height: 90px;" alt="Client">
+                            </div>
+                            <div class="d-flex text-gold mb-3"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            <p class="fst-italic text-secondary mb-4">"The Maldives trip organized by Wanderlust was absolute perfection. Every transfer was smooth, the villa was magnificent, and the bespoke itinerary was spot-on. Truly a 5-star travel boutique!"</p>
+                            <h5 class="fw-semibold mb-1">Victoria Sterling</h5>
+                            <span class="text-gold small">Luxury Travel Vlogger</span>
+                        </div>
+                    </div>
+                    <div class="swiper-slide p-3">
+                        <div class="glass-panel p-5 text-center h-100 d-flex flex-column align-items-center">
+                            <div class="mb-4">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" class="rounded-circle object-fit-cover border border-gold" style="width: 90px; height: 90px;" alt="Client">
+                            </div>
+                            <div class="d-flex text-gold mb-3"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+                            <p class="fst-italic text-secondary mb-4">"We booked a private safari in Kenya. The local guides were incredibly knowledgeable, and the luxury tented camps exceeded all expectations. Exceptional customer service throughout!"</p>
+                            <h5 class="fw-semibold mb-1">Dr. Harrison Vance</h5>
+                            <span class="text-gold small">Wild Photo Specialist</span>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <!-- Swiper Controls -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQs Section -->
+<section class="py-5 bg-secondary-bg-styled" style="background: rgba(197, 160, 89, 0.01);">
+    <div class="container" style="max-width: 800px;">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="text-gold text-uppercase letter-spacing-1 fw-semibold d-block mb-2">Got Questions?</span>
+            <h2 class="display-5 font-heading">Frequently Asked Questions</h2>
+        </div>
+        
+        <div class="accordion accordion-flush" id="faqAccordion" data-aos="fade-up">
+            {% if faqs %}
+                {% for faq in faqs %}
+                <div class="accordion-item glass-panel border-0 mb-3 overflow-hidden">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed form-glass border-0 fw-semibold fs-5 text-primary-theme" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ faq.id }}" aria-expanded="false" aria-controls="collapse{{ faq.id }}">
+                            {{ faq.question }}
+                        </button>
+                    </h2>
+                    <div id="collapse{{ faq.id }}" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-secondary bg-transparent py-4 px-4 border-top border-secondary border-opacity-10">
+                            {{ faq.answer }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <!-- Mock Accordions -->
+                <div class="accordion-item glass-panel border-0 mb-3 overflow-hidden">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed form-glass border-0 fw-semibold fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMock1">
+                            How do I book a customized luxury itinerary?
+                        </button>
+                    </h2>
+                    <div id="collapseMock1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-secondary bg-transparent py-4 px-4 border-top border-secondary border-opacity-10">
+                            You can explore our curated packages and hit the "Book Tour" button to configure your dates, or write to us directly through the Contact Form. A dedicated travel designer will reach out to tailor every single detail.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item glass-panel border-0 mb-3 overflow-hidden">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed form-glass border-0 fw-semibold fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMock2">
+                            What is your booking cancellation policy?
+                        </button>
+                    </h2>
+                    <div id="collapseMock2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-secondary bg-transparent py-4 px-4 border-top border-secondary border-opacity-10">
+                            Cancellations made 30 days or more prior to the departure date receive a full refund minus a 10% administration charge. Cancellations within 15-30 days receive a 50% refund, while cancellations under 15 days are non-refundable due to pre-booked hotels and local charters.
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Initialize Swiper Slider -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const swiper = new Swiper('.testimonialSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                }
+            },
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            loop: true
+        });
+    });
+</script>
+{% endblock %}

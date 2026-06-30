@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Our Services | Wanderlust Premium Travel Management{% endblock %}
+
+{% block content %}
+<!-- Subpage Header -->
+<section class="py-5 text-center position-relative" style="background: linear-gradient(rgba(11, 19, 43, 0.5), rgba(11, 19, 43, 0.7)), url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover; padding-top: 120px !important; padding-bottom: 80px !important;">
+    <div class="container position-relative z-2" data-aos="fade-up">
+        <h1 class="display-4 text-white fw-bold mb-3 font-heading">Our Services</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center mb-0 bg-transparent">
+                <li class="breadcrumb-item"><a href="{% url 'core:home' %}" class="text-white-50 text-decoration-none">Home</a></li>
+                <li class="breadcrumb-item text-gold active" aria-current="page">Services</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- Services Details Grid -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up" style="max-width: 600px; margin: 0 auto;">
+            <span class="text-gold text-uppercase letter-spacing-1 fw-semibold d-block mb-2">Signature Experience</span>
+            <h2 class="display-5 font-heading mb-3">Elevating Your Journey</h2>
+            <p class="text-secondary mb-0">We handle all logistics so you can focus entirely on the transformation of travel. Discover how we tailor journeys to perfection.</p>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Service item 1 -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="glass-panel p-5 h-100 glass-panel-hover">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center text-gold mb-4" style="width: 60px; height: 60px; background: rgba(197, 160, 89, 0.1);">
+                        <i class="bi bi-compass fs-2"></i>
+                    </div>
+                    <h4 class="font-heading mb-3">Custom Itineraries</h4>
+                    <p class="text-secondary small">We craft days matching your exact speed, budget, and curiosity. Whether you want relaxation, high-octane adventure, or culinary immersion, your days are mapped out explicitly for you.</p>
+                </div>
+            </div>
+            
+            <!-- Service item 2 -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="glass-panel p-5 h-100 glass-panel-hover">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center text-gold mb-4" style="width: 60px; height: 60px; background: rgba(197, 160, 89, 0.1);">
+                        <i class="bi bi-headset fs-2"></i>
+                    </div>
+                    <h4 class="font-heading mb-3">24/7 VIP Concierge</h4>
+                    <p class="text-secondary small">From last-minute table reservations at Michelin-starred restaurants to re-booking local flights, your dedicated personal manager is available 24/7 via text or phone to assist instantly.</p>
+                </div>
+            </div>
+            
+            <!-- Service item 3 -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="glass-panel p-5 h-100 glass-panel-hover">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center text-gold mb-4" style="width: 60px; height: 60px; background: rgba(197, 160, 89, 0.1);">
+                        <i class="bi bi-bank fs-2"></i>
+                    </div>
+                    <h4 class="font-heading mb-3">Elite Lodgings</h4>
+                    <p class="text-secondary small">We collaborate with boutique eco-resorts, historic castles, private islands, and luxury villas. We secure exclusive VIP perks like free spa credits, room upgrades, and custom dining options.</p>
+                </div>
+            </div>
+            
+            <!-- Service item 4 -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="glass-panel p-5 h-100 glass-panel-hover">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center text-gold mb-4" style="width: 60px; height: 60px; background: rgba(197, 160, 89, 0.1);">
+                        <i class="bi bi-car-front fs-2"></i>
+                    </div>
+                    <h4 class="font-heading mb-3">Luxury Transfers</h4>
+                    <p class="text-secondary small">Move in luxury. Enjoy private chauffeured luxury SUVs, chartered fast catamarans, helicopter transfers, and VIP airport fast-track services that bypass standard customs lines entirely.</p>
+                </div>
+            </div>
+            
+            <!-- Service item 5 -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                <div class="glass-panel p-5 h-100 glass-panel-hover">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center text-gold mb-4" style="width: 60px; height: 60px; background: rgba(197, 160, 89, 0.1);">
+                        <i class="bi bi-journal-bookmark-fill fs-2"></i>
+                    </div>
+                    <h4 class="font-heading mb-3">Private Local Curators</h4>
+                    <p class="text-secondary small">Our guides are historians, marine biologists, and artists who reside in the destinations. They provide authentic cultural insight and introduce you to locals away from tourist crowds.</p>
+                </div>
+            </div>
+            
+            <!-- Service item 6 -->
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                <div class="glass-panel p-5 h-100 glass-panel-hover">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center text-gold mb-4" style="width: 60px; height: 60px; background: rgba(197, 160, 89, 0.1);">
+                        <i class="bi bi-heart-fill fs-2"></i>
+                    </div>
+                    <h4 class="font-heading mb-3">Sustainable Care</h4>
+                    <p class="text-secondary small">Every tour is audited for social and environmental impact. We fund local education and clean energy projects in our destinations, supporting communities while protecting nature.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

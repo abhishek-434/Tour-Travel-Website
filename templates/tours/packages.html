@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Bespoke Tour Packages | Wanderlust Luxury Catalog{% endblock %}
+
+{% block content %}
+<!-- Subpage Header -->
+<section class="py-5 text-center position-relative" style="background: linear-gradient(rgba(11, 19, 43, 0.5), rgba(11, 19, 43, 0.7)), url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover; padding-top: 120px !important; padding-bottom: 80px !important;">
+    <div class="container position-relative z-2" data-aos="fade-up">
+        <h1 class="display-4 text-white fw-bold mb-3 font-heading">Luxury Tour Packages</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center mb-0 bg-transparent">
+                <li class="breadcrumb-item"><a href="{% url 'core:home' %}" class="text-white-50 text-decoration-none">Home</a></li>
+                <li class="breadcrumb-item text-gold active" aria-current="page">Tour Packages</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- Filter & Packages Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            
+            <!-- Left Side: Filter Form Widget -->
+            <div class="col-lg-3" data-aos="fade-right">
+                <div class="glass-panel p-4 sticky-lg-top" style="top: 100px; z-index: 10;">
+                    <h4 class="font-heading mb-4 text-primary-theme"><i class="bi bi-funnel-fill text-gold me-2"></i>Filter Tours</h4>
+                    
+                    <form action="{% url 'tours:packages' %}" method="GET" id="filterForm">
+                        <!-- Search text -->
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold text-gold">Search keywords</label>
+                            <input type="text" name="search" class="form-control form-glass" placeholder="Title, location..." value="{{ filters.search }}">
+                        </div>
+
+                        <!-- Category select -->
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold text-gold">Tour Category</label>
+                            <select name="category" class="form-select form-glass">
+                                <option value="">All Categories</option>
+                                {% for category in categories %}
+                                    <option value="{{ category.slug }}" {% if filters.category == category.slug %}selected{% endif %}>{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Duration select -->
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold text-gold">Maximum Duration</label>
+                            <select name="duration" class="form-select form-glass">
+                                <option value="">Any Duration</option>
+                                <option value="5" {% if filters.duration == '5' %}selected{% endif %}>Up to 5 Days</option>
+                                <option value="10" {% if filters.duration == '10' %}selected{% endif %}>Up to 10 Days</option>
+                                <option value="15" {% if filters.duration == '15' %}selected{% endif %}>Up to 15 Days</option>
+                            </select>
+                        </div>
+
+                        <!-- Difficulty select -->
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold text-gold">Difficulty Level</label>
+                            <select name="difficulty" class="form-select form-glass">
+                                <option value="">Any Difficulty</option>
+                                <option value="easy" {% if filters.difficulty == 'easy' %}selected{% endif %}>Easy</option>
+                                <option value="moderate" {% if filters.difficulty == 'moderate' %}selected{% endif %}>Moderate</option>
+                                <option value="challenging" {% if filters.difficulty == 'challenging' %}selected{% endif %}>Challenging</option>
+                                <option value="extreme" {% if filters.difficulty == 'extreme' %}selected{% endif %}>Extreme</option>
+                            </select>
+                        </div>
+
+                        <!-- Price bounds inputs -->
+                        <div class="mb-4">
+                            <label class="form-label small fw-semibold text-gold">Price Range ($)</label>
+                            <div class="input-group">
+                                <input type="number" name="min_price" class="form-control form-glass" placeholder="Min" value="{{ filters.min_price }}" min="0">
+                                <span class="input-group-text bg-transparent border-secondary border-opacity-25 text-muted">-</span>
+                                <input type="number" name="max_price" class="form-control form-glass" placeholder="Max" value="{{ filters.max_price }}" min="0">
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column gap-2">
+                            <button type="submit" class="btn btn-gold w-100"><i class="bi bi-filter"></i> Apply Filters</button>
+                            <a href="{% url 'tours:packages' %}" class="btn btn-outline-secondary w-100 text-gold border-gold border-opacity-50">Reset Filters</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right Side: Packages Grid -->
+            <div class="col-lg-9" data-aos="fade-left">
+                
+                <!-- Sorting & count summary -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <span class="text-secondary small">{{ packages.paginator.count }} Luxury tour{{ packages.paginator.count|pluralize }} found</span>
+                </div>
+
+                <div class="row g-4">
+                    {% if packages %}
+                        {% for package in packages %}
+                        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter }}00">
+                            <div class="glass-panel glass-panel-hover overflow-hidden h-100 d-flex flex-column">
+                                <div class="position-relative overflow-hidden" style="height: 200px;">
+                                    <img src="{{ package.cover_image.url }}" class="w-100 h-100 object-fit-cover transition-transform duration-500 hover-scale" alt="{{ package.title }}">
+                                    
+                                    <!-- Discount label -->
+                                    {% if package.has_discount %}
+                                        <span class="position-absolute top-3 end-3 badge bg-danger py-2 px-3 rounded-pill">Special Offer</span>
+                                    {% endif %}
+                                    
+                                    <span class="position-absolute top-3 start-3 badge bg-glass-dark text-gold border border-gold border-opacity-25 py-2 px-3 rounded-pill">{{ package.duration_days }} Days</span>
+                                </div>
+                                <div class="p-4 d-flex flex-column flex-grow-1">
+                                    <span class="text-gold small fw-semibold text-uppercase mb-1"><i class="bi bi-geo-alt-fill me-1"></i>{{ package.destination.name }}</span>
+                                    <h5 class="fw-semibold mb-2 font-heading fs-5"><a href="{% url 'tours:package_detail' package.slug %}" class="text-decoration-none text-primary-theme">{{ package.title }}</a></h5>
+                                    
+                                    <!-- Difficulty Badge and Star Rating -->
+                                    <div class="d-flex align-items-center gap-2 mb-3">
+                                        <span class="badge bg-secondary bg-opacity-25 text-secondary-theme font-body py-1 px-2 rounded-2 small text-capitalize">{{ package.difficulty }}</span>
+                                        {% if package.average_rating > 0 %}
+                                            <span class="text-gold small"><i class="bi bi-star-fill me-1"></i>{{ package.average_rating|stringformat:".1f" }}</span>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-secondary border-opacity-10">
+                                        <div>
+                                            <span class="text-muted small d-block">Price per person</span>
+                                            {% if package.has_discount %}
+                                                <span class="text-decoration-line-through text-muted small">${{ package.price }}</span>
+                                                <span class="fs-4 fw-bold text-gold ms-1">${{ package.discount_price }}</span>
+                                            {% else %}
+                                                <span class="fs-4 fw-bold text-gold">${{ package.price }}</span>
+                                            {% endif %}
+                                        </div>
+                                        <a href="{% url 'tours:package_detail' package.slug %}" class="btn btn-gold rounded-circle py-2 px-3"><i class="bi bi-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="col-12 text-center py-5">
+                            <div class="glass-panel p-5 mx-auto" style="max-width: 500px;">
+                                <i class="bi bi-backpack2 text-gold display-3 mb-3"></i>
+                                <h4 class="font-heading">No Tour Packages Match</h4>
+                                <p class="text-secondary">We couldn't find any tour packages matching your filter selection. Try adjusting the parameters on the left sidebar.</p>
+                                <a href="{% url 'tours:packages' %}" class="btn btn-gold px-4 py-2">Clear Filters</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Pagination grid -->
+                {% if packages.has_other_pages %}
+                <nav aria-label="Page navigation" class="mt-5" data-aos="fade-up">
+                    <ul class="pagination justify-content-center gap-2">
+                        {% if packages.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link glass-panel text-gold border-0" href="?page={{ packages.previous_page_number }}{% if filters.search %}&search={{ filters.search }}{% endif %}{% if filters.category %}&category={{ filters.category }}{% endif %}{% if filters.duration %}&duration={{ filters.duration }}{% endif %}{% if filters.difficulty %}&difficulty={{ filters.difficulty }}{% endif %}{% if filters.min_price %}&min_price={{ filters.min_price }}{% endif %}{% if filters.max_price %}&max_price={{ filters.max_price }}{% endif %}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                        
+                        {% for num in packages.paginator.page_range %}
+                            {% if packages.number == num %}
+                                <li class="page-item"><span class="page-link btn-gold border-0 text-white rounded-circle active-pagination" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">{{ num }}</span></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link glass-panel text-gold border-0 rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;" href="?page={{ num }}{% if filters.search %}&search={{ filters.search }}{% endif %}{% if filters.category %}&category={{ filters.category }}{% endif %}{% if filters.duration %}&duration={{ filters.duration }}{% endif %}{% if filters.difficulty %}&difficulty={{ filters.difficulty }}{% endif %}{% if filters.min_price %}&min_price={{ filters.min_price }}{% endif %}{% if filters.max_price %}&max_price={{ filters.max_price }}{% endif %}">{{ num }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% if packages.has_next %}
+                            <li class="page-item">
+                                <a class="page-link glass-panel text-gold border-0" href="?page={{ packages.next_page_number }}{% if filters.search %}&search={{ filters.search }}{% endif %}{% if filters.category %}&category={{ filters.category }}{% endif %}{% if filters.duration %}&duration={{ filters.duration }}{% endif %}{% if filters.difficulty %}&difficulty={{ filters.difficulty }}{% endif %}{% if filters.min_price %}&min_price={{ filters.min_price }}{% endif %}{% if filters.max_price %}&max_price={{ filters.max_price }}{% endif %}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                {% endif %}
+
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

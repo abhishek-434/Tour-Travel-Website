@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Enter Traveler Details | Wanderlust Booking{% endblock %}
+
+{% block content %}
+<section class="py-5" style="margin-top: 20px;">
+    <div class="container" style="max-width: 800px;">
+        
+        <!-- Booking Progress Bar -->
+        <div class="glass-panel p-3 mb-5 d-flex justify-content-between text-center small text-secondary">
+            <span class="text-muted"><i class="bi bi-1-circle-fill me-1"></i> Options Selected</span>
+            <span class="text-gold fw-bold"><i class="bi bi-2-circle-fill text-gold me-1"></i> Traveler Details</span>
+            <span class="text-muted"><i class="bi bi-3-circle me-1"></i> Summary & Pay</span>
+        </div>
+
+        <div class="glass-panel p-5" data-aos="zoom-in">
+            <h2 class="font-heading mb-4 text-primary-theme"><i class="bi bi-people-fill text-gold me-2"></i>Traveler Information</h2>
+            <p class="text-secondary small mb-4">Please enter details for all guests. Names and age criteria must match passport documents for transport reservations.</p>
+            
+            <form method="POST">
+                {% csrf_token %}
+                
+                {% for i in range_travelers %}
+                <div class="border border-secondary border-opacity-10 rounded-3 p-4 mb-4" style="background: rgba(255, 255, 255, 0.02);">
+                    <h5 class="fw-semibold text-gold mb-3"><i class="bi bi-person-fill me-1"></i>Traveler #{{ i }} {% if i == 1 %}(Primary Guest){% endif %}</h5>
+                    
+                    <div class="row">
+                        <!-- Traveler Full Name -->
+                        <div class="col-md-5 mb-3">
+                            <label for="name_{{ i }}" class="form-label text-gold small fw-medium">Full Name (as in passport)</label>
+                            <input type="text" name="name_{{ i }}" id="name_{{ i }}" class="form-control form-glass" placeholder="Full Name" required>
+                        </div>
+                        
+                        <!-- Traveler Age -->
+                        <div class="col-md-3 mb-3">
+                            <label for="age_{{ i }}" class="form-label text-gold small fw-medium">Age</label>
+                            <input type="number" name="age_{{ i }}" id="age_{{ i }}" class="form-control form-glass" min="1" max="120" placeholder="Age" required>
+                        </div>
+                        
+                        <!-- Traveler Gender -->
+                        <div class="col-md-4 mb-3">
+                            <label for="gender_{{ i }}" class="form-label text-gold small fw-medium">Gender</label>
+                            <select name="gender_{{ i }}" id="gender_{{ i }}" class="form-select form-glass" required>
+                                <option value="" disabled selected>Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="d-flex gap-3 justify-content-end mt-4">
+                    <a href="{% url 'bookings:book_package' package.slug %}" class="btn btn-outline-gold px-4 py-2">Back</a>
+                    <button type="submit" class="btn btn-gold px-5 py-2">Proceed to Checkout <i class="bi bi-arrow-right-short"></i></button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

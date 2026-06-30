@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }} | Wanderlust Travel Stories{% endblock %}
+
+{% block content %}
+<!-- Subpage Header using cover image -->
+<section class="py-5 text-center position-relative" style="background: linear-gradient(rgba(11, 19, 43, 0.45), rgba(11, 19, 43, 0.65)), url('{{ post.cover_image.url }}') no-repeat center center/cover; padding-top: 130px !important; padding-bottom: 90px !important;">
+    <div class="container position-relative z-2" data-aos="fade-up">
+        {% if post.category %}
+            <span class="text-gold text-uppercase letter-spacing-2 fw-semibold d-block mb-3">{{ post.category.name }}</span>
+        {% endif %}
+        <h1 class="display-4 text-white fw-bold mb-4 font-heading" style="max-width: 800px; margin: 0 auto;">{{ post.title }}</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center mb-0 bg-transparent">
+                <li class="breadcrumb-item"><a href="{% url 'core:home' %}" class="text-white-50 text-decoration-none">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'blog:blog_home' %}" class="text-white-50 text-decoration-none">Blog</a></li>
+                <li class="breadcrumb-item text-gold active" aria-current="page">Story</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<!-- Blog Content Grid -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Left: Article Content -->
+            <div class="col-lg-8" data-aos="fade-right">
+                <div class="glass-panel p-5">
+                    <!-- Meta information -->
+                    <div class="d-flex flex-wrap gap-4 align-items-center text-muted small mb-4 pb-3 border-bottom border-secondary border-opacity-10">
+                        <span class="d-flex align-items-center gap-2">
+                            <i class="bi bi-person-circle text-gold"></i>
+                            By {{ post.author.get_full_name|default:post.author.username }}
+                        </span>
+                        <span class="d-flex align-items-center gap-2">
+                            <i class="bi bi-calendar2-event text-gold"></i>
+                            Published: {{ post.created_at|date:"M d, Y" }}
+                        </span>
+                        <span class="d-flex align-items-center gap-2">
+                            <i class="bi bi-eye text-gold"></i>
+                            {{ post.views_count }} views
+                        </span>
+                    </div>
+
+                    <!-- Rich Content -->
+                    <article class="text-secondary font-body mb-5" style="font-size: 1.1rem; line-height: 1.9;">
+                        {{ post.content|linebreaksbr }}
+                    </article>
+                    
+                    <!-- Share buttons -->
+                    <div class="d-flex align-items-center gap-3 pt-3 border-top border-secondary border-opacity-10">
+                        <span class="small fw-semibold text-gold text-uppercase">Share Story:</span>
+                        <a href="#" class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;"><i class="bi bi-facebook small"></i></a>
+                        <a href="#" class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;"><i class="bi bi-instagram small"></i></a>
+                        <a href="#" class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;"><i class="bi bi-twitter-x small"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Author Board & Related Stories -->
+            <div class="col-lg-4" data-aos="fade-left">
+                <div class="d-flex flex-column gap-4 sticky-lg-top" style="top: 100px; z-index: 10;">
+                    
+                    <!-- Author bio box -->
+                    <div class="glass-panel p-4 text-center">
+                        <div class="mb-3">
+                            {% if post.author.profile.profile_picture %}
+                                <img src="{{ post.author.profile.profile_picture.url }}" class="rounded-circle object-fit-cover border border-gold p-1" style="width: 80px; height: 80px;" alt="{{ post.author.username }}">
+                            {% else %}
+                                <div class="rounded-circle bg-secondary bg-opacity-25 border border-gold d-inline-flex align-items-center justify-content-center text-gold" style="width: 80px; height: 80px;">
+                                    <i class="bi bi-person-fill fs-2"></i>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <h5 class="font-heading mb-1 text-primary-theme">{{ post.author.get_full_name|default:post.author.username }}</h5>
+                        <span class="text-gold small d-block mb-3">Travel Writer & Editor</span>
+                        <p class="text-secondary small mb-0">Exploring the remote paths of the world, documenting hidden luxury escapes and cultural cuisines.</p>
+                    </div>
+
+                    <!-- Related posts widget -->
+                    <div class="glass-panel p-4">
+                        <h5 class="font-heading text-gold mb-3">Related Stories</h5>
+                        <div class="d-flex flex-column gap-3">
+                            {% for rel in related_posts %}
+                                <div class="d-flex gap-3 align-items-center">
+                                    <img src="{{ rel.cover_image.url }}" class="rounded object-fit-cover" style="width: 80px; height: 60px;" alt="{{ rel.title }}">
+                                    <div>
+                                        <h6 class="fw-semibold mb-1 text-primary-theme small"><a href="{% url 'blog:blog_detail' rel.slug %}" class="text-decoration-none">{{ rel.title|truncatewords:4 }}</a></h6>
+                                        <span class="text-muted small">{{ rel.created_at|date:"M d, Y" }}</span>
+                                    </div>
+                                </div>
+                            {% empty %}
+                                <span class="text-muted small">No other related stories found in this category.</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
