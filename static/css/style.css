@@ -30,27 +30,6 @@
     --font-body: 'Outfit', sans-serif;
 }
 
-[data-theme="dark"] {
-    --primary-bg: #070b19;
-    --secondary-bg: #0e162f;
-    --card-bg: rgba(14, 22, 47, 0.6);
-    --card-border: rgba(255, 255, 255, 0.08);
-    --text-primary: #F8FAFC;
-    --text-secondary: #CBD5E1;
-    --text-muted: #64748B;
-    --accent-gold: #E2C074;
-    --accent-gold-rgb: 226, 192, 116;
-    --accent-gold-hover: #f1d797;
-    --accent-teal: #14b8a6;
-    --accent-teal-hover: #2dd4bf;
-    --navbar-bg: rgba(7, 11, 25, 0.75);
-    --navbar-border: rgba(255, 255, 255, 0.06);
-    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
-    --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    --shadow-glow: 0 0 25px rgba(226, 192, 116, 0.12);
-}
-
 /* Base Body Styles */
 body {
     background-color: var(--primary-bg);
@@ -354,19 +333,7 @@ a.text-primary-theme:hover {
     color: var(--text-muted) !important;
 }
 
-/* Custom Overrides for Bootstrap Components under data-theme="dark" */
-[data-theme="dark"] .table {
-    --bs-table-color: var(--text-primary) !important;
-    --bs-table-hover-color: var(--text-primary) !important;
-    --bs-table-bg: transparent !important;
-    --bs-table-border-color: rgba(255, 255, 255, 0.1) !important;
-    color: var(--text-primary) !important;
-}
 
-[data-theme="dark"] .table-light {
-    --bs-table-color: var(--text-primary) !important;
-    --bs-table-bg: var(--secondary-bg) !important;
-}
 
 .dropdown-item {
     color: var(--text-primary) !important;
@@ -389,33 +356,14 @@ a.text-primary-theme:hover {
     color: var(--text-primary) !important;
 }
 
-[data-theme="dark"] .accordion-button::after {
-    filter: invert(1) cubic-bezier(0, 0, 0, 1);
-}
+
 
 .form-select option {
     background-color: var(--secondary-bg);
     color: var(--text-primary);
 }
 
-[data-theme="dark"] .form-select {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23CBD5E1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
-}
 
-[data-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-}
-
-[data-theme="dark"] .form-control {
-    background-color: rgba(255, 255, 255, 0.05) !important;
-    border-color: var(--card-border) !important;
-    color: var(--text-primary) !important;
-}
-
-[data-theme="dark"] .form-control:focus {
-    background-color: rgba(255, 255, 255, 0.08) !important;
-    color: var(--text-primary) !important;
-}
 
 /* Input autofill overrides for glassmorphism */
 input:-webkit-autofill,

@@ -69,13 +69,6 @@
                         <a class="nav-link {% if request.resolver_match.view_name == 'contact:contact' %}active{% endif %}" href="{% url 'contact:contact' %}">Contact</a>
                     </li>
                     
-                    <!-- Dark Mode Toggle -->
-                    <li class="nav-item mx-2 my-2 my-lg-0">
-                        <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Light/Dark Theme">
-                            <i class="bi bi-moon-stars-fill"></i>
-                        </button>
-                    </li>
-
                     <!-- User Account actions -->
                     {% if user.is_authenticated %}
                         <li class="nav-item dropdown ms-lg-3">
