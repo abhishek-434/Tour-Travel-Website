@@ -8,7 +8,7 @@ from .forms import ReviewForm
 
 def destinations(request):
     search_query = request.GET.get('search', '').strip()
-    destinations_list = Destination.objects.all()
+    destinations_list = Destination.objects.all().order_by('-featured', 'name')
     
     if search_query:
         destinations_list = destinations_list.filter(
