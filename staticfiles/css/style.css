@@ -931,3 +931,112 @@ a:hover {
 .main-content-wrap {
     min-height: 80vh;
 }
+
+/* --------------------------------------------------------------------------
+   11. Registration & Auth Enhancements
+   -------------------------------------------------------------------------- */
+.password-field-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-field-wrapper .form-control {
+    padding-right: 46px;
+}
+
+.password-field-wrapper .password-toggle-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 6px;
+    font-size: 1.15rem;
+    line-height: 1;
+    z-index: 5;
+    transition: color 0.2s ease, transform 0.15s ease;
+}
+
+.password-field-wrapper .password-toggle-btn:hover {
+    color: var(--accent-terracotta);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.password-field-wrapper .password-toggle-btn:focus {
+    outline: none;
+    color: var(--accent-terracotta);
+}
+
+ul.errorlist {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0.35rem;
+    margin-bottom: 0;
+    color: #dc3545;
+    font-size: 0.825rem;
+    font-weight: 500;
+}
+
+ul.errorlist li {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-bottom: 0.25rem;
+}
+
+.auth-split-card {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: var(--surface-card);
+    border: 1.5px solid var(--card-border);
+    box-shadow: var(--shadow-hover);
+}
+
+.auth-hero-banner {
+    position: relative;
+    min-height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2.5rem;
+    color: #ffffff;
+}
+
+.auth-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(35, 75, 61, 0.88) 0%, rgba(200, 109, 81, 0.78) 100%);
+    backdrop-filter: blur(2px);
+    z-index: 1;
+}
+
+.auth-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.auth-perk-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    margin-bottom: 1.1rem;
+    font-size: 0.925rem;
+}
+
+.auth-perk-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+}

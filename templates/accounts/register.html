@@ -1,98 +1,253 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Join the Boutique | Wanderlust Registration{% endblock %}
+{% block title %}Join the Atelier | Wanderlust Registration{% endblock %}
 
 {% block content %}
-<section class="py-5 d-flex align-items-center" style="min-height: 80vh;">
+<section class="py-5 d-flex align-items-center" style="min-height: 85vh;">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6" data-aos="zoom-in">
+            <div class="col-xl-11 col-xxl-10" data-aos="fade-up">
                 
-                <div class="organic-card p-4 p-md-5 shadow-md text-center" style="border: 1.5px solid rgba(200, 109, 81, 0.3);">
-                    <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-forest mb-3" style="width: 70px; height: 70px; background: rgba(35, 75, 61, 0.12);">
-                        <i class="bi bi-feather fs-1"></i>
-                    </div>
-                    <span class="badge bg-forest text-white mb-2 text-xs text-uppercase letter-spacing-1">Join the Circle</span>
-                    <h3 class="font-heading mb-2 fw-bold">Begin with Wanderlust</h3>
-                    <p class="text-secondary small mb-4">Create your account to unlock private booking options, saved itineraries, and direct concierge dispatches.</p>
+                <div class="auth-split-card row g-0">
                     
-                    <form method="POST" class="text-start">
-                        {% csrf_token %}
+                    <!-- Left Brand / Lifestyle Column (Visible on lg+) -->
+                    <div class="d-none d-lg-flex col-lg-5 auth-hero-banner" style="background-image: url('/media/gallery/amalfi_coast.jpg');">
+                        <div class="auth-hero-overlay"></div>
                         
-                        <div class="row g-3">
-                            <!-- Username -->
-                            <div class="col-12 mb-2">
-                                <label for="{{ form.username.id_for_label }}" class="form-label text-terracotta small fw-semibold">Choose Username</label>
-                                {{ form.username }}
-                                {% if form.username.errors %}
-                                    <div class="text-danger small mt-1">{{ form.username.errors }}</div>
-                                {% endif %}
-                                <div class="text-muted text-xs mt-1">{{ form.username.help_text }}</div>
-                            </div>
-
-                            <!-- First Name -->
-                            <div class="col-md-6 mb-2">
-                                <label for="{{ form.first_name.id_for_label }}" class="form-label text-terracotta small fw-semibold">First Name</label>
-                                {{ form.first_name }}
-                                {% if form.first_name.errors %}
-                                    <div class="text-danger small mt-1">{{ form.first_name.errors }}</div>
-                                {% endif %}
-                            </div>
+                        <!-- Top Header -->
+                        <div class="auth-hero-content">
+                            <span class="badge bg-white text-forest mb-3 px-3 py-2 text-xs text-uppercase letter-spacing-1 fw-bold rounded-pill shadow-sm">
+                                <i class="bi bi-feather me-1"></i> Patron Circle
+                            </span>
+                            <h2 class="font-heading display-6 fw-bold mb-2">Begin Your Journey Into the Sublime.</h2>
+                            <p class="text-white-50 small mb-4">Wanderlust curates rare, soul-stirring journeys for discerning patrons around the globe.</p>
                             
-                            <!-- Last Name -->
-                            <div class="col-md-6 mb-2">
-                                <label for="{{ form.last_name.id_for_label }}" class="form-label text-terracotta small fw-semibold">Last Name</label>
-                                {{ form.last_name }}
-                                {% if form.last_name.errors %}
-                                    <div class="text-danger small mt-1">{{ form.last_name.errors }}</div>
-                                {% endif %}
-                            </div>
-
-                            <!-- Email -->
-                            <div class="col-12 mb-2">
-                                <label for="{{ form.email.id_for_label }}" class="form-label text-terracotta small fw-semibold">Email Address</label>
-                                {{ form.email }}
-                                {% if form.email.errors %}
-                                    <div class="text-danger small mt-1">{{ form.email.errors }}</div>
-                                {% endif %}
-                            </div>
-
-                            <!-- Password 1 -->
-                            <div class="col-md-6 mb-2">
-                                <label for="{{ form.password1.id_for_label }}" class="form-label text-terracotta small fw-semibold">Password</label>
-                                {{ form.password1 }}
-                                {% if form.password1.errors %}
-                                    <div class="text-danger small mt-1">{{ form.password1.errors }}</div>
-                                {% endif %}
-                            </div>
-
-                            <!-- Password 2 -->
-                            <div class="col-md-6 mb-3">
-                                <label for="{{ form.password2.id_for_label }}" class="form-label text-terracotta small fw-semibold">Confirm Password</label>
-                                {{ form.password2 }}
-                                {% if form.password2.errors %}
-                                    <div class="text-danger small mt-1">{{ form.password2.errors }}</div>
-                                {% endif %}
+                            <!-- Perks List -->
+                            <div class="mt-4 pt-2">
+                                <div class="auth-perk-item">
+                                    <div class="auth-perk-icon">
+                                        <i class="bi bi-compass"></i>
+                                    </div>
+                                    <div>
+                                        <div class="fw-bold">Bespoke Private Journeys</div>
+                                        <div class="text-white-50 text-xs">Tailored day-by-day itineraries with private chauffeurs & boutique stays.</div>
+                                    </div>
+                                </div>
+                                <div class="auth-perk-item">
+                                    <div class="auth-perk-icon">
+                                        <i class="bi bi-headset"></i>
+                                    </div>
+                                    <div>
+                                        <div class="fw-bold">24/7 Dedicated Concierge</div>
+                                        <div class="text-white-50 text-xs">Direct WhatsApp & dispatch support before, during, and after your trip.</div>
+                                    </div>
+                                </div>
+                                <div class="auth-perk-item">
+                                    <div class="auth-perk-icon">
+                                        <i class="bi bi-gem"></i>
+                                    </div>
+                                    <div>
+                                        <div class="fw-bold">Patron-Only Privileges</div>
+                                        <div class="text-white-50 text-xs">Early access to seasonal expeditions and private tastings.</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
+                        <!-- Bottom Testimonial Note -->
+                        <div class="auth-hero-content mt-5 pt-3 border-top border-white border-opacity-25">
+                            <div class="d-flex align-items-center gap-3">
+                                <img src="/media/gallery/kyoto_temple.jpg" alt="Traveler" class="rounded-circle border border-2 border-white shadow-sm" style="width: 44px; height: 44px; object-fit: cover;">
+                                <div>
+                                    <div class="small fw-semibold text-white">"Every detail felt effortlessly crafted just for us."</div>
+                                    <div class="text-white-50 text-xs">— Sophia Chen, Verified Wanderlust Patron</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Form Column -->
+                    <div class="col-12 col-lg-7 p-4 p-md-5 d-flex flex-column justify-content-center">
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center gap-2 mb-2">
+                                <span class="badge bg-terracotta text-white text-xs text-uppercase letter-spacing-1">Patron Registration</span>
+                            </div>
+                            <h2 class="font-heading fw-bold mb-2">Create Your Account</h2>
+                            <p class="text-secondary small mb-0">Join our atelier to save private itineraries, reserve escapes, and manage bookings.</p>
+                        </div>
+
                         {% if form.non_field_errors %}
-                            <div class="alert alert-danger py-2 border-0 bg-danger bg-opacity-10 text-danger small mb-3">
-                                {{ form.non_field_errors }}
+                            <div class="alert alert-danger py-2 small mb-3 border-0 bg-danger bg-opacity-10 text-danger rounded-3">
+                                {% for error in form.non_field_errors %}
+                                    <div class="d-flex align-items-center gap-2">
+                                        <i class="bi bi-exclamation-triangle-fill"></i>
+                                        <span>{{ error }}</span>
+                                    </div>
+                                {% endfor %}
                             </div>
                         {% endif %}
 
-                        <button type="submit" class="btn btn-terracotta w-100 py-3 mt-2"><i class="bi bi-person-check me-1"></i> Register Account</button>
-                    </form>
-                    
-                    <div class="mt-4 pt-3 border-top border-organic">
-                        <span class="small text-secondary">Already have an account? <a href="{% url 'accounts:login' %}" class="text-terracotta text-decoration-none fw-bold">Sign In here</a></span>
+                        <form method="POST" class="text-start" novalidate>
+                            {% csrf_token %}
+                            
+                            <div class="row g-3">
+                                <!-- First Name -->
+                                <div class="col-sm-6">
+                                    <label for="{{ form.first_name.id_for_label }}" class="form-label text-terracotta small fw-semibold mb-1">
+                                        First Name <span class="text-danger">*</span>
+                                    </label>
+                                    {{ form.first_name }}
+                                    {% if form.first_name.errors %}
+                                        <div class="text-danger small mt-1">
+                                            {% for err in form.first_name.errors %}
+                                                <div><i class="bi bi-exclamation-circle me-1"></i>{{ err }}</div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <!-- Last Name -->
+                                <div class="col-sm-6">
+                                    <label for="{{ form.last_name.id_for_label }}" class="form-label text-terracotta small fw-semibold mb-1">
+                                        Last Name <span class="text-danger">*</span>
+                                    </label>
+                                    {{ form.last_name }}
+                                    {% if form.last_name.errors %}
+                                        <div class="text-danger small mt-1">
+                                            {% for err in form.last_name.errors %}
+                                                <div><i class="bi bi-exclamation-circle me-1"></i>{{ err }}</div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <!-- Username -->
+                                <div class="col-sm-6">
+                                    <label for="{{ form.username.id_for_label }}" class="form-label text-terracotta small fw-semibold mb-1">
+                                        Username <span class="text-danger">*</span>
+                                    </label>
+                                    {{ form.username }}
+                                    {% if form.username.errors %}
+                                        <div class="text-danger small mt-1">
+                                            {% for err in form.username.errors %}
+                                                <div><i class="bi bi-exclamation-circle me-1"></i>{{ err }}</div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <!-- Email -->
+                                <div class="col-sm-6">
+                                    <label for="{{ form.email.id_for_label }}" class="form-label text-terracotta small fw-semibold mb-1">
+                                        Email Address <span class="text-danger">*</span>
+                                    </label>
+                                    {{ form.email }}
+                                    {% if form.email.errors %}
+                                        <div class="text-danger small mt-1">
+                                            {% for err in form.email.errors %}
+                                                <div><i class="bi bi-exclamation-circle me-1"></i>{{ err }}</div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <!-- Password 1 -->
+                                <div class="col-sm-6">
+                                    <label for="{{ form.password1.id_for_label }}" class="form-label text-terracotta small fw-semibold mb-1">
+                                        Password <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="password-field-wrapper">
+                                        {{ form.password1 }}
+                                        <button type="button" class="password-toggle-btn" data-target="{{ form.password1.id_for_label }}" title="Toggle password visibility" tabindex="-1">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
+                                    {% if form.password1.errors %}
+                                        <div class="text-danger small mt-1">
+                                            {% for err in form.password1.errors %}
+                                                <div><i class="bi bi-exclamation-circle me-1"></i>{{ err }}</div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <!-- Password 2 -->
+                                <div class="col-sm-6">
+                                    <label for="{{ form.password2.id_for_label }}" class="form-label text-terracotta small fw-semibold mb-1">
+                                        Confirm Password <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="password-field-wrapper">
+                                        {{ form.password2 }}
+                                        <button type="button" class="password-toggle-btn" data-target="{{ form.password2.id_for_label }}" title="Toggle password visibility" tabindex="-1">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
+                                    {% if form.password2.errors %}
+                                        <div class="text-danger small mt-1">
+                                            {% for err in form.password2.errors %}
+                                                <div><i class="bi bi-exclamation-circle me-1"></i>{{ err }}</div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="mt-2 text-xs text-secondary d-flex align-items-center gap-1">
+                                <i class="bi bi-info-circle text-terracotta"></i>
+                                <span>Password must contain at least 8 characters with a mix of letters & numbers.</span>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-terracotta w-100 py-3 mt-4 fw-semibold shadow-sm">
+                                <i class="bi bi-feather me-2"></i> Register Account
+                            </button>
+                        </form>
+
+                        <!-- Bottom Link & Security Guarantee -->
+                        <div class="mt-4 pt-3 border-top border-organic text-center">
+                            <p class="small text-secondary mb-2">
+                                Already have an account? 
+                                <a href="{% url 'accounts:login' %}" class="text-terracotta text-decoration-none fw-bold">Sign In here</a>
+                            </p>
+                            <div class="text-muted text-xs d-flex align-items-center justify-content-center gap-2">
+                                <i class="bi bi-shield-lock-fill text-forest"></i>
+                                <span>End-to-End Encrypted • We never share your personal data</span>
+                            </div>
+                        </div>
+
                     </div>
+
                 </div>
 
             </div>
         </div>
     </div>
 </section>
+
+<!-- Password visibility toggle script -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleButtons = document.querySelectorAll('.password-toggle-btn');
+        toggleButtons.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('data-target');
+                const targetInput = document.getElementById(targetId);
+                const icon = this.querySelector('i');
+                if (targetInput) {
+                    if (targetInput.type === 'password') {
+                        targetInput.type = 'text';
+                        icon.classList.remove('bi-eye');
+                        icon.classList.add('bi-eye-slash');
+                    } else {
+                        targetInput.type = 'password';
+                        icon.classList.remove('bi-eye-slash');
+                        icon.classList.add('bi-eye');
+                    }
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}
