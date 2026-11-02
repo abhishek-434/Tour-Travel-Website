@@ -1,51 +1,51 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Dashboard | Wanderlust Guest Portal{% endblock %}
+{% block title %}Traveler Atelier & Dashboard | Wanderlust{% endblock %}
 
 {% block content %}
-<section class="py-5" style="margin-top: 20px;">
+<section class="py-5" style="margin-top: 10px;">
     <div class="container">
         <div class="row g-4">
             
             <!-- Sidebar Panel: Profile Bio & Navigation -->
             <div class="col-lg-4" data-aos="fade-right">
-                <div class="glass-panel p-4 text-center">
+                <div class="organic-card p-4 text-center">
                     <!-- Profile Picture -->
                     <div class="mb-4">
                         {% if profile.profile_picture %}
-                            <img src="{{ profile.profile_picture.url }}" class="rounded-circle object-fit-cover border border-gold p-1" style="width: 130px; height: 130px;" alt="{{ request.user.username }}">
+                            <img src="{{ profile.profile_picture.url }}" class="rounded-circle object-fit-cover border border-2 p-1" style="width: 120px; height: 120px; border-color: var(--accent-terracotta);" alt="{{ request.user.username }}">
                         {% else %}
-                            <div class="rounded-circle bg-secondary bg-opacity-25 border border-gold d-inline-flex align-items-center justify-content-center text-gold" style="width: 130px; height: 130px;">
-                                <i class="bi bi-person-fill display-3"></i>
+                            <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-white" style="width: 120px; height: 120px; background: linear-gradient(135deg, var(--accent-terracotta) 0%, var(--accent-forest) 100%);">
+                                <span class="display-4 font-heading fw-bold">{{ request.user.first_name|default:request.user.username|slice:":1"|upper }}</span>
                             </div>
                         {% endif %}
                     </div>
                     
-                    <h3 class="font-heading mb-1 text-primary-theme">{{ request.user.get_full_name|default:request.user.username }}</h3>
-                    <span class="text-gold small d-block mb-3">Traveler since {{ request.user.date_joined|date:"M Y" }}</span>
+                    <h4 class="font-heading mb-1 text-primary-theme">{{ request.user.get_full_name|default:request.user.username }}</h4>
+                    <span class="badge badge-terracotta mb-3">Patron since {{ request.user.date_joined|date:"M Y" }}</span>
                     
                     {% if profile.bio %}
                         <p class="text-secondary small fst-italic mb-4 px-2">"{{ profile.bio }}"</p>
                     {% endif %}
                     
-                    <div class="border-top border-secondary border-opacity-10 pt-3 mb-4 text-start">
+                    <div class="border-top border-organic pt-3 mb-4 text-start">
                         {% if profile.phone_number %}
-                            <span class="small text-secondary d-block mb-2"><i class="bi bi-telephone-fill text-gold me-2"></i>{{ profile.phone_number }}</span>
+                            <span class="small text-secondary d-block mb-2"><i class="bi bi-telephone text-terracotta me-2"></i>{{ profile.phone_number }}</span>
                         {% endif %}
-                        <span class="small text-secondary d-block mb-2"><i class="bi bi-envelope-fill text-gold me-2"></i>{{ request.user.email }}</span>
+                        <span class="small text-secondary d-block mb-2"><i class="bi bi-envelope text-terracotta me-2"></i>{{ request.user.email }}</span>
                         {% if profile.address %}
-                            <span class="small text-secondary d-block"><i class="bi bi-geo-alt-fill text-gold me-2"></i>{{ profile.address|linebreaksbr }}</span>
+                            <span class="small text-secondary d-block"><i class="bi bi-geo-alt text-terracotta me-2"></i>{{ profile.address|linebreaksbr }}</span>
                         {% endif %}
                     </div>
 
                     <!-- Dashboard Nav Menu -->
-                    <div class="list-group list-group-flush text-start border-top border-secondary border-opacity-10 pt-3">
-                        <a href="{% url 'dashboard:profile' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-gold fw-semibold py-2"><i class="bi bi-speedometer2 me-2"></i> Portal Overview</a>
-                        <a href="{% url 'dashboard:edit_profile' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-secondary py-2"><i class="bi bi-person-gear me-2 text-gold"></i> Edit Profile</a>
-                        <a href="{% url 'dashboard:booking_history' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-secondary py-2"><i class="bi bi-calendar2-check me-2 text-gold"></i> Booking History</a>
-                        <a href="{% url 'dashboard:saved_packages' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-secondary py-2"><i class="bi bi-heart me-2 text-gold"></i> Saved Journeys</a>
-                        <a href="{% url 'accounts:logout' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-danger py-2"><i class="bi bi-box-arrow-right me-2"></i> Log Out</a>
+                    <div class="list-group list-group-flush text-start border-top border-organic pt-2">
+                        <a href="{% url 'dashboard:profile' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-terracotta fw-semibold py-2 d-flex align-items-center gap-2"><i class="bi bi-compass"></i> Atelier Overview</a>
+                        <a href="{% url 'dashboard:edit_profile' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-secondary py-2 d-flex align-items-center gap-2"><i class="bi bi-person-gear"></i> Account Settings</a>
+                        <a href="{% url 'dashboard:booking_history' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-secondary py-2 d-flex align-items-center gap-2"><i class="bi bi-calendar2-check"></i> Reserved Passages</a>
+                        <a href="{% url 'dashboard:saved_packages' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-secondary py-2 d-flex align-items-center gap-2"><i class="bi bi-heart"></i> Saved Escapes</a>
+                        <a href="{% url 'accounts:logout' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-danger py-2 d-flex align-items-center gap-2"><i class="bi bi-box-arrow-right"></i> Sign Out</a>
                     </div>
                 </div>
             </div>
@@ -53,71 +53,72 @@
             <!-- Main Panel: Stats, Bookings, Favorites -->
             <div class="col-lg-8" data-aos="fade-left">
                 <!-- Welcome Banner -->
-                <div class="glass-panel p-5 mb-4 position-relative overflow-hidden" style="background: linear-gradient(135deg, rgba(197, 160, 89, 0.1) 0%, rgba(14, 22, 47, 0.2) 100%);">
-                    <h2 class="font-heading display-6 mb-2">Hello, {{ request.user.first_name }}!</h2>
-                    <p class="text-secondary mb-0">Welcome to your personal concierge room. Track your itineraries, manage custom tickets, and check your savings.</p>
+                <div class="organic-card p-4 p-md-5 mb-4 position-relative overflow-hidden" style="background: linear-gradient(135deg, rgba(200, 109, 81, 0.12) 0%, rgba(35, 75, 61, 0.16) 100%);">
+                    <span class="badge bg-forest text-white mb-2 text-xs text-uppercase letter-spacing-1">Guest Atelier</span>
+                    <h2 class="font-heading display-6 mb-2">Welcome back, {{ request.user.first_name|default:request.user.username }}</h2>
+                    <p class="text-secondary small mb-0" style="max-width: 580px;">Review your upcoming departures, download official vouchers, or explore new seasonal destinations tailored to your travel tastes.</p>
                 </div>
 
                 <!-- Stats Badges -->
                 <div class="row g-3 mb-4">
-                    <div class="col-md-4">
-                        <div class="glass-panel p-4 text-center">
-                            <h3 class="text-gold display-6 fw-bold mb-1">{{ total_bookings }}</h3>
-                            <p class="text-secondary mb-0 small">Total Bookings</p>
+                    <div class="col-4">
+                        <div class="organic-card p-3 text-center">
+                            <h3 class="text-terracotta font-heading fw-bold mb-0">{{ total_bookings }}</h3>
+                            <p class="text-muted text-xs mb-0">Total Journeys</p>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="glass-panel p-4 text-center">
-                            <h3 class="text-gold display-6 fw-bold mb-1">{{ active_bookings }}</h3>
-                            <p class="text-secondary mb-0 small">Active Journeys</p>
+                    <div class="col-4">
+                        <div class="organic-card p-3 text-center">
+                            <h3 class="text-forest font-heading fw-bold mb-0">{{ active_bookings }}</h3>
+                            <p class="text-muted text-xs mb-0">Active Passages</p>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="glass-panel p-4 text-center">
-                            <h3 class="text-gold display-6 fw-bold mb-1">{{ saved_packages.count }}</h3>
-                            <p class="text-secondary mb-0 small">Saved Journeys</p>
+                    <div class="col-4">
+                        <div class="organic-card p-3 text-center">
+                            <h3 class="text-terracotta font-heading fw-bold mb-0">{{ saved_packages.count }}</h3>
+                            <p class="text-muted text-xs mb-0">Wishlist</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Recent Bookings -->
-                <div class="glass-panel p-4 mb-4">
-                    <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom border-secondary border-opacity-10">
-                        <h4 class="font-heading mb-0 text-primary-theme"><i class="bi bi-calendar2-check-fill text-gold me-2"></i>Recent Journeys</h4>
-                        <a href="{% url 'dashboard:booking_history' %}" class="btn btn-outline-gold btn-sm">Full History</a>
+                <div class="organic-card p-4 mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom border-organic">
+                        <h5 class="font-heading mb-0 text-primary-theme"><i class="bi bi-calendar2-check text-terracotta me-2"></i>Recent Reserved Passages</h5>
+                        <a href="{% url 'dashboard:booking_history' %}" class="btn btn-outline-organic btn-sm py-1 px-3 text-xs">Full Ledger</a>
                     </div>
                     
                     {% if bookings %}
                         <div class="table-responsive">
-                            <table class="table table-hover align-middle">
+                            <table class="table align-middle mb-0">
                                 <thead>
-                                    <tr>
-                                        <th class="border-0 bg-transparent text-gold small text-uppercase">Reference</th>
-                                        <th class="border-0 bg-transparent text-gold small text-uppercase">Package</th>
-                                        <th class="border-0 bg-transparent text-gold small text-uppercase">Date</th>
-                                        <th class="border-0 bg-transparent text-gold small text-uppercase">Amount</th>
-                                        <th class="border-0 bg-transparent text-gold small text-uppercase">Status</th>
-                                        <th class="border-0 bg-transparent text-gold small text-uppercase text-end">Action</th>
+                                    <tr class="border-bottom border-organic">
+                                        <th class="border-0 bg-transparent text-secondary text-xs text-uppercase">Reference</th>
+                                        <th class="border-0 bg-transparent text-secondary text-xs text-uppercase">Passage</th>
+                                        <th class="border-0 bg-transparent text-secondary text-xs text-uppercase">Departure</th>
+                                        <th class="border-0 bg-transparent text-secondary text-xs text-uppercase">Honorarium</th>
+                                        <th class="border-0 bg-transparent text-secondary text-xs text-uppercase">Status</th>
+                                        <th class="border-0 bg-transparent text-secondary text-xs text-uppercase text-end">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {% for booking in bookings %}
-                                    <tr>
+                                    <tr class="border-bottom border-organic">
                                         <td class="bg-transparent fw-semibold text-primary-theme small">{{ booking.booking_reference }}</td>
                                         <td class="bg-transparent text-primary-theme small">{{ booking.package.title|truncatewords:3 }}</td>
-                                        <td class="bg-transparent text-secondary small">{{ booking.travel_date|date:"d M Y" }}</td>
-                                        <td class="bg-transparent text-gold fw-bold small">${{ booking.total_amount }}</td>
+                                        <td class="bg-transparent text-secondary text-xs">{{ booking.travel_date|date:"d M Y" }}</td>
+                                        <td class="bg-transparent text-terracotta fw-bold small">${{ booking.total_amount }}</td>
                                         <td class="bg-transparent">
                                             {% if booking.status == 'confirmed' %}
-                                                <span class="badge bg-success bg-opacity-20 text-success border border-success border-opacity-25 rounded-pill px-2 py-1 small">Confirmed</span>
+                                                <span class="badge badge-forest text-xs">Confirmed</span>
                                             {% elif booking.status == 'pending' %}
-                                                <span class="badge bg-warning bg-opacity-20 text-warning border border-warning border-opacity-25 rounded-pill px-2 py-1 small">Pending</span>
+                                                <span class="badge badge-terracotta text-xs">Pending</span>
                                             {% else %}
-                                                <span class="badge bg-secondary bg-opacity-20 text-secondary border border-secondary border-opacity-25 rounded-pill px-2 py-1 small text-capitalize">{{ booking.status }}</span>
+                                                <span class="badge badge-sand text-xs text-capitalize">{{ booking.status }}</span>
                                             {% endif %}
                                         </td>
                                         <td class="bg-transparent text-end">
-                                            <a href="{% url 'bookings:booking_detail' booking.booking_reference %}" class="btn btn-outline-gold btn-sm rounded-circle py-1 px-2"><i class="bi bi-eye"></i></a>
+                                            <a href="{% url 'bookings:booking_detail' booking.booking_reference %}" class="btn btn-outline-organic btn-sm py-1 px-2 rounded-circle" title="View Voucher"><i class="bi bi-arrow-right"></i></a>
                                         </td>
                                     </tr>
                                     {% endfor %}
@@ -126,36 +127,40 @@
                         </div>
                     {% else %}
                         <div class="text-center py-4">
-                            <p class="text-muted small mb-3">You haven't booked any journeys yet. Let's find your dream escape!</p>
-                            <a href="{% url 'tours:packages' %}" class="btn btn-gold btn-sm">Browse Tour Packages</a>
+                            <p class="text-muted small mb-3">You have no active passages booked yet. Let's find your sanctuary!</p>
+                            <a href="{% url 'tours:packages' %}" class="btn btn-terracotta btn-sm py-2 px-3">Browse Catalog</a>
                         </div>
                     {% endif %}
                 </div>
 
                 <!-- Saved Favorites -->
-                <div class="glass-panel p-4">
-                    <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom border-secondary border-opacity-10">
-                        <h4 class="font-heading mb-0 text-primary-theme"><i class="bi bi-heart-fill text-gold me-2"></i>Saved Journeys</h4>
-                        <a href="{% url 'dashboard:saved_packages' %}" class="btn btn-outline-gold btn-sm">Manage All</a>
+                <div class="organic-card p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom border-organic">
+                        <h5 class="font-heading mb-0 text-primary-theme"><i class="bi bi-heart text-terracotta me-2"></i>Wishlist Sanctuaries</h5>
+                        <a href="{% url 'dashboard:saved_packages' %}" class="btn btn-outline-organic btn-sm py-1 px-3 text-xs">Manage All</a>
                     </div>
                     
                     <div class="row g-3">
                         {% for package in saved_packages %}
                         <div class="col-md-6">
-                            <div class="glass-panel glass-panel-hover overflow-hidden h-100 d-flex flex-column border border-secondary border-opacity-10">
-                                <div class="position-relative" style="height: 120px;">
-                                    <img src="{{ package.cover_image.url }}" class="w-100 h-100 object-fit-cover" alt="{{ package.title }}">
+                            <div class="tour-card">
+                                <div class="tour-card-image-wrap" style="height: 140px;">
+                                    {% if package.cover_image %}
+                                        <img src="{{ package.cover_image.url }}" alt="{{ package.title }}">
+                                    {% else %}
+                                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="{{ package.title }}">
+                                    {% endif %}
                                 </div>
                                 <div class="p-3 d-flex flex-column flex-grow-1">
-                                    <h6 class="fw-semibold text-primary-theme mb-1 small"><a href="{% url 'tours:package_detail' package.slug %}" class="text-decoration-none">{{ package.title }}</a></h6>
-                                    <span class="text-gold fw-bold small mt-auto pt-2">${{ package.current_price }}</span>
+                                    <h6 class="font-heading text-primary-theme mb-1 small"><a href="{% url 'tours:package_detail' package.slug %}" class="text-decoration-none text-primary-theme">{{ package.title }}</a></h6>
+                                    <span class="text-terracotta fw-bold small mt-auto pt-2">${{ package.current_price }}</span>
                                 </div>
                             </div>
                         </div>
                         {% empty %}
                             <div class="col-12 text-center py-4">
-                                <p class="text-muted small">Your favorite tours lists is empty.</p>
-                                <a href="{% url 'tours:packages' %}" class="btn btn-outline-gold btn-sm">Find Tours to Save</a>
+                                <p class="text-muted small mb-2">Your wishlist is currently peaceful and empty.</p>
+                                <a href="{% url 'tours:packages' %}" class="btn btn-outline-organic btn-sm">Seek Escapes to Save</a>
                             </div>
                         {% endfor %}
                     </div>

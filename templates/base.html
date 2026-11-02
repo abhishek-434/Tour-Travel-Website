@@ -4,45 +4,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Wanderlust | Premium Tour & Travel Agency{% endblock %}</title>
+    <title>{% block title %}Wanderlust | Boutique & Earthy Luxury Travel{% endblock %}</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="{% block meta_description %}Experience world-class luxury tour packages and exotic travel destinations with Wanderlust. Book your dream vacation today.{% endblock %}">
-    <meta name="keywords" content="wanderlust, luxury travel, tours, bookings, packages, travel agency, destinations">
-    <meta name="author" content="Wanderlust Agency">
+    <meta name="description" content="{% block meta_description %}Experience boutique luxury journeys, slow travel, and artisanal itineraries across the globe with Wanderlust.{% endblock %}">
+    <meta name="keywords" content="wanderlust, boutique travel, earthy luxury, curated tours, sustainable journeys, bespoke escapes">
+    <meta name="author" content="Wanderlust Travel Boutique">
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Plus Jakarta Sans & Fraunces / Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..700;1,400&display=swap" rel="stylesheet">
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     
-    <!-- CSS Libraries -->
+    <!-- Icons & Animation Libraries -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     
-    <!-- Custom Style Sheet -->
+    <!-- Master Custom Style Sheet (Warm Boutique & Earthy Aesthetic) -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <!-- Immediate Theme Initialization Script (Prevents White/Dark Flash) -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('wanderlust_theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
     
     {% block extra_css %}{% endblock %}
 </head>
-<body>
+<body class="theme-transition">
 
+    <!-- Top Announcement / Boutique Bar -->
+    <div class="boutique-top-bar py-1 d-none d-md-block">
+        <div class="container d-flex justify-content-between align-items-center text-xs">
+            <div class="d-flex align-items-center gap-3">
+                <span><i class="bi bi-geo-alt-fill text-terracotta me-1"></i> Global Concierge: Zurich • Bali • Kyoto</span>
+                <span class="opacity-50">|</span>
+                <span><i class="bi bi-shield-check text-forest me-1"></i> Carbon-Balanced Journeys</span>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <a href="tel:+18005550199" class="text-inherit text-decoration-none"><i class="bi bi-telephone-fill text-terracotta me-1"></i> +1 (800) 555-0199</a>
+                <span class="opacity-50">|</span>
+                <a href="mailto:concierge@wanderlust.com" class="text-inherit text-decoration-none"><i class="bi bi-envelope-fill text-terracotta me-1"></i> concierge@wanderlust.com</a>
+            </div>
+        </div>
+    </div>
 
-    <!-- Transparent Glassmorphic Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    <!-- Organic Glassmorphic Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="{% url 'core:home' %}">
-                <i class="bi bi-compass-fill text-gold me-2 fs-3 animate__animated animate__pulse animate__infinite"></i>
-                <span class="navbar-brand-text">Wanderlust</span>
+            <a class="navbar-brand d-flex align-items-center gap-2" href="{% url 'core:home' %}">
+                <span class="brand-emblem">
+                    <i class="bi bi-compass-fill"></i>
+                </span>
+                <div class="d-flex flex-column">
+                    <span class="navbar-brand-text">Wanderlust</span>
+                    <span class="navbar-brand-sub">Travel Boutique</span>
+                </div>
             </a>
             
-            <button class="navbar-toggler border-0 text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="bi bi-list fs-1"></i>
-            </button>
+            <div class="d-flex align-items-center gap-2 d-lg-none">
+                <!-- Mobile Theme Toggle -->
+                <button class="theme-toggle-btn" id="mobileThemeToggle" title="Toggle light/dark theme" aria-label="Toggle light or dark theme">
+                    <i class="bi bi-moon-stars-fill theme-icon-dark"></i>
+                    <i class="bi bi-sun-fill theme-icon-light"></i>
+                </button>
+                
+                <button class="navbar-toggler border-0 p-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon-custom">
+                        <i class="bi bi-list fs-2 text-primary-theme"></i>
+                    </span>
+                </button>
+            </div>
             
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
@@ -53,57 +92,75 @@
                         <a class="nav-link {% if 'tours:destination' in request.resolver_match.view_name %}active{% endif %}" href="{% url 'tours:destinations' %}">Destinations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if 'tours:package' in request.resolver_match.view_name %}active{% endif %}" href="{% url 'tours:packages' %}">Tour Packages</a>
+                        <a class="nav-link {% if 'tours:package' in request.resolver_match.view_name %}active{% endif %}" href="{% url 'tours:packages' %}">Tours & Escapes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.view_name == 'core:about' %}active{% endif %}" href="{% url 'core:about' %}">About Us</a>
+                        <a class="nav-link {% if request.resolver_match.view_name == 'core:about' %}active{% endif %}" href="{% url 'core:about' %}">Our Story</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.resolver_match.view_name == 'blog:blog_home' or 'blog:' in request.resolver_match.view_name %}active{% endif %}" href="{% url 'blog:blog_home' %}">Travel Blog</a>
+                        <a class="nav-link {% if request.resolver_match.view_name == 'core:services' %}active{% endif %}" href="{% url 'core:services' %}">Bespoke Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.view_name == 'blog:blog_home' or 'blog:' in request.resolver_match.view_name %}active{% endif %}" href="{% url 'blog:blog_home' %}">Journal</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.resolver_match.view_name == 'contact:contact' %}active{% endif %}" href="{% url 'contact:contact' %}">Contact</a>
                     </li>
                     
+                    <!-- Theme Switcher Button (Desktop) -->
+                    <li class="nav-item ms-lg-2 d-none d-lg-block">
+                        <button class="theme-toggle-btn" id="desktopThemeToggle" title="Toggle light/dark theme" aria-label="Toggle theme">
+                            <i class="bi bi-moon-stars-fill theme-icon-dark"></i>
+                            <i class="bi bi-sun-fill theme-icon-light"></i>
+                        </button>
+                    </li>
+                    
                     <!-- User Account actions -->
                     {% if user.is_authenticated %}
-                        <li class="nav-item dropdown ms-lg-3">
-                            <a class="nav-link dropdown-toggle btn btn-outline-gold text-gold py-1 px-3 d-inline-flex align-items-center" href="#" id="navbarUserDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-user-circle me-1"></i> Hello, {{ user.first_name|default:user.username }}
+                        <li class="nav-item dropdown ms-lg-3 mt-2 mt-lg-0">
+                            <a class="nav-link dropdown-toggle user-pill-btn d-inline-flex align-items-center gap-2" href="#" id="navbarUserDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="user-avatar-badge">
+                                    {{ user.first_name|default:user.username|slice:":1"|upper }}
+                                </span>
+                                <span class="d-none d-xl-inline">{{ user.first_name|default:user.username }}</span>
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-end glass-panel border-0 shadow-lg mt-2 theme-transition" aria-labelledby="navbarUserDropdown">
+                            <ul class="dropdown-menu dropdown-menu-end organic-dropdown shadow-xl mt-2 animate__animated animate__fadeIn animate__faster" aria-labelledby="navbarUserDropdown">
+                                <li class="px-3 py-2 border-bottom border-light-subtle">
+                                    <div class="fw-semibold text-primary-theme">{{ user.get_full_name|default:user.username }}</div>
+                                    <div class="text-xs text-muted">{{ user.email }}</div>
+                                </li>
                                 <li>
-                                    <a class="dropdown-item py-2" href="{% url 'dashboard:profile' %}">
-                                        <i class="bi bi-speedometer2 me-2 text-gold"></i> Dashboard
+                                    <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{% url 'dashboard:profile' %}">
+                                        <i class="bi bi-speedometer2 text-terracotta"></i> Dashboard
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item py-2" href="{% url 'dashboard:edit_profile' %}">
-                                        <i class="bi bi-person-gear me-2 text-gold"></i> Edit Profile
+                                    <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{% url 'dashboard:booking_history' %}">
+                                        <i class="bi bi-calendar2-check text-terracotta"></i> My Journeys
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item py-2" href="{% url 'dashboard:booking_history' %}">
-                                        <i class="bi bi-calendar2-check me-2 text-gold"></i> Booking History
+                                    <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{% url 'dashboard:saved_packages' %}">
+                                        <i class="bi bi-heart text-terracotta"></i> Saved Escapes
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item py-2" href="{% url 'dashboard:saved_packages' %}">
-                                        <i class="bi bi-heart me-2 text-gold"></i> Favorite Tours
+                                    <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{% url 'dashboard:edit_profile' %}">
+                                        <i class="bi bi-person-gear text-terracotta"></i> Profile Settings
                                     </a>
                                 </li>
-                                <li><hr class="dropdown-divider bg-secondary opacity-25"></li>
+                                <li><hr class="dropdown-divider my-1"></li>
                                 <li>
-                                    <a class="dropdown-item text-danger py-2" href="{% url 'accounts:logout' %}">
-                                        <i class="bi bi-box-arrow-right me-2"></i> Logout
+                                    <a class="dropdown-item text-danger py-2 d-flex align-items-center gap-2" href="{% url 'accounts:logout' %}">
+                                        <i class="bi bi-box-arrow-right"></i> Sign Out
                                     </a>
                                 </li>
                             </ul>
                         </li>
                     {% else %}
-                        <li class="nav-item ms-lg-3 my-2 my-lg-0">
-                            <a href="{% url 'accounts:login' %}" class="btn btn-outline-gold py-2 px-3 me-2">Login</a>
-                            <a href="{% url 'accounts:register' %}" class="btn btn-gold py-2 px-3">Register</a>
+                        <li class="nav-item ms-lg-3 my-2 my-lg-0 d-flex gap-2 align-items-center">
+                            <a href="{% url 'accounts:login' %}" class="btn btn-outline-organic py-2 px-3">Sign In</a>
+                            <a href="{% url 'accounts:register' %}" class="btn btn-terracotta py-2 px-3">Join Boutique</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -112,12 +169,15 @@
     </nav>
 
     <!-- Main Content Section -->
-    <main class="theme-transition" style="min-height: 80vh; padding-top: 90px;">
+    <main class="theme-transition main-content-wrap">
         {% if messages %}
-            <div class="container mt-3">
+            <div class="container mt-4">
                 {% for message in messages %}
-                    <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show glass-panel shadow-sm border-0" role="alert">
-                        <strong>{{ message.tags|title }}!</strong> {{ message }}
+                    <div class="alert alert-{% if message.tags == 'error' %}danger{% elif message.tags == 'success' %}success{% else %}info{% endif %} alert-dismissible fade show organic-alert shadow-sm border-0 d-flex align-items-center gap-3" role="alert">
+                        <i class="bi {% if message.tags == 'error' %}bi-exclamation-octagon-fill text-danger{% elif message.tags == 'success' %}bi-check-circle-fill text-forest{% else %}bi-info-circle-fill text-terracotta{% endif %} fs-4"></i>
+                        <div class="flex-grow-1">
+                            <strong>{{ message.tags|title }}:</strong> {{ message }}
+                        </div>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 {% endfor %}
@@ -128,72 +188,94 @@
         {% endblock %}
     </main>
 
-    <!-- Footer -->
-    <footer class="footer-custom mt-5 theme-transition">
+    <!-- Boutique Warm & Earthy Footer -->
+    <footer class="footer-boutique mt-5 theme-transition">
         <div class="container">
             <div class="row g-4 mb-5">
                 <!-- Branding column -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <h5 class="footer-logo mb-3">Wanderlust</h5>
-                    <p class="mb-4">Wanderlust is a premier travel boutique designing bespoke journeys across the globe. We elevate travel experiences with curated destinations, luxury lodgings, and meticulous tour management.</p>
-                    <div class="d-flex gap-3">
-                        <a href="#" class="btn btn-outline-gold rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="btn btn-outline-gold rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;"><i class="bi bi-instagram"></i></a>
-                        <a href="#" class="btn btn-outline-gold rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;"><i class="bi bi-twitter-x"></i></a>
-                        <a href="#" class="btn btn-outline-gold rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;"><i class="bi bi-youtube"></i></a>
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="brand-emblem">
+                            <i class="bi bi-compass-fill"></i>
+                        </span>
+                        <div class="d-flex flex-column">
+                            <span class="footer-logo">Wanderlust</span>
+                            <span class="text-xs text-terracotta letter-spacing-1">ARTISANAL JOURNEYS</span>
+                        </div>
+                    </div>
+                    <p class="footer-bio mb-4">
+                        Wanderlust crafts soulful, immersive travel collections rooted in local culture, thoughtful luxury, and mindful exploration across the earth's most breathtaking sanctuaries.
+                    </p>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="social-circle-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-circle-btn" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+                        <a href="#" class="social-circle-btn" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                        <a href="#" class="social-circle-btn" aria-label="Spotify"><i class="bi bi-spotify"></i></a>
                     </div>
                 </div>
 
-                <!-- Navigation Links -->
-                <div class="col-lg-2 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <h5 class="mb-3 text-gold">Quick Links</h5>
-                    <ul class="list-unstyled d-flex flex-column gap-2">
-                        <li><a href="{% url 'core:home' %}" class="footer-link">Home</a></li>
-                        <li><a href="{% url 'core:about' %}" class="footer-link">About Us</a></li>
-                        <li><a href="{% url 'tours:packages' %}" class="footer-link">Tour Packages</a></li>
-                        <li><a href="{% url 'core:gallery' %}" class="footer-link">Tourist Gallery</a></li>
-                        <li><a href="{% url 'blog:blog_home' %}" class="footer-link">Travel Blog</a></li>
-                        <li><a href="{% url 'core:faqs' %}" class="footer-link">FAQs</a></li>
+                <!-- Curated Escapes Links -->
+                <div class="col-lg-2 col-md-6 col-6" data-aos="fade-up" data-aos-delay="200">
+                    <h6 class="footer-heading mb-3">Explore</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                        <li><a href="{% url 'core:home' %}" class="footer-link">Home Sanctuary</a></li>
+                        <li><a href="{% url 'tours:destinations' %}" class="footer-link">Destinations</a></li>
+                        <li><a href="{% url 'tours:packages' %}" class="footer-link">Curated Tours</a></li>
+                        <li><a href="{% url 'core:gallery' %}" class="footer-link">Visual Gallery</a></li>
+                        <li><a href="{% url 'blog:blog_home' %}" class="footer-link">The Journal</a></li>
                     </ul>
                 </div>
 
-                <!-- Legal Policy Links -->
-                <div class="col-lg-2 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <h5 class="mb-3 text-gold">Support & Legal</h5>
-                    <ul class="list-unstyled d-flex flex-column gap-2">
-                        <li><a href="{% url 'contact:contact' %}" class="footer-link">Contact Support</a></li>
-                        <li><a href="{% url 'core:services' %}" class="footer-link">Our Services</a></li>
-                        <li><a href="{% url 'core:privacy_policy' %}" class="footer-link">Privacy Policy</a></li>
-                        <li><a href="{% url 'core:terms_conditions' %}" class="footer-link">Terms & Conditions</a></li>
+                <!-- Philosophy & Support Links -->
+                <div class="col-lg-2 col-md-6 col-6" data-aos="fade-up" data-aos-delay="300">
+                    <h6 class="footer-heading mb-3">Philosophy</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                        <li><a href="{% url 'core:about' %}" class="footer-link">Our Story</a></li>
+                        <li><a href="{% url 'core:services' %}" class="footer-link">Bespoke Concierge</a></li>
+                        <li><a href="{% url 'core:faqs' %}" class="footer-link">Travel FAQs</a></li>
+                        <li><a href="{% url 'contact:contact' %}" class="footer-link">Inquire Directly</a></li>
+                        <li><a href="{% url 'core:privacy_policy' %}" class="footer-link">Privacy & Ethics</a></li>
                     </ul>
                 </div>
 
-                <!-- Newsletter subscriber form -->
+                <!-- Newsletter & Dispatch form -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                    <h5 class="mb-3 text-gold">Newsletter</h5>
-                    <p class="mb-3">Subscribe to receive curation alerts, hidden itineraries, and exclusive travel incentives directly to your inbox.</p>
-                    <form id="newsletter-form" class="position-relative">
-                        {% csrf_token %}
-                        <div class="input-group">
-                            <input type="email" name="email" class="form-control form-glass py-2" placeholder="Your Email Address" required>
-                            <button type="submit" class="btn btn-gold px-3"><i class="bi bi-send-fill"></i></button>
-                        </div>
-                    </form>
+                    <div class="newsletter-card p-4 rounded-4">
+                        <span class="badge bg-terracotta text-white mb-2 text-xs text-uppercase letter-spacing-1">Weekly Dispatch</span>
+                        <h5 class="font-heading mb-2">The Wanderer's Journal</h5>
+                        <p class="text-sm text-secondary mb-3">Stories of remote sanctuaries, seasonal culinary journeys, and secret destinations delivered softly to your inbox.</p>
+                        <form id="newsletter-form" class="position-relative">
+                            {% csrf_token %}
+                            <div class="input-group newsletter-input-group">
+                                <input type="email" name="email" class="form-control form-organic" placeholder="Your personal email..." required>
+                                <button type="submit" class="btn btn-terracotta px-3" aria-label="Subscribe to newsletter"><i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
 
-            <!-- Bottom Copyright block -->
-            <div class="row pt-4 border-top border-secondary border-opacity-25 text-center">
-                <div class="col-12">
-                    <p class="mb-0 text-muted small">&copy; {% now "Y" %} Wanderlust Private Limited. All rights reserved. Designed for Luxury Travel Enthusiasts.</p>
+            <!-- Bottom Copyright & Ethos block -->
+            <div class="row pt-4 border-top border-organic text-center text-md-between align-items-center">
+                <div class="col-md-6 text-md-start mb-2 mb-md-0">
+                    <p class="mb-0 text-muted small">&copy; {% now "Y" %} Wanderlust Boutique Journeys. Slow travel, deep discovery.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <ul class="list-inline mb-0 small text-muted">
+                        <li class="list-inline-item"><a href="{% url 'core:terms_conditions' %}" class="footer-sublink">Terms of Service</a></li>
+                        <li class="list-inline-item">•</li>
+                        <li class="list-inline-item"><a href="{% url 'core:privacy_policy' %}" class="footer-sublink">Privacy Policy</a></li>
+                        <li class="list-inline-item">•</li>
+                        <li class="list-inline-item"><span>Certified B-Corp Aspirant</span></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Back to top button -->
-    <button id="back-to-top" title="Go to top">
-        <i class="bi bi-chevron-up fs-5"></i>
+    <!-- Floating Back to Top Button -->
+    <button id="back-to-top" title="Return to top" aria-label="Return to top">
+        <i class="bi bi-arrow-up fs-5"></i>
     </button>
 
     <!-- Bootstrap 5 JS Bundle (with Popper) -->
@@ -207,58 +289,55 @@
     <!-- Custom JS Script -->
     <script src="{% static 'js/main.js' %}"></script>
     
-    <!-- Initialize AOS -->
+    <!-- Initialize AOS & Newsletter Handling -->
     <script>
         AOS.init({
             duration: 800,
             once: true,
-            offset: 100
+            offset: 80,
+            easing: 'ease-out-cubic'
         });
 
         // AJAX Newsletter Form Submission
-        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const form = this;
-            const csrfToken = form.querySelector('[name=csrfmiddlewaretoken]').value;
-            const emailInput = form.querySelector('[name=email]');
-            const email = emailInput.value;
+        const newsletterForm = document.getElementById('newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const form = this;
+                const csrfToken = form.querySelector('[name=csrfmiddlewaretoken]').value;
+                const emailInput = form.querySelector('[name=email]');
+                const email = emailInput.value;
 
-            fetch('{% url "contact:newsletter_signup" %}', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': csrfToken
-                },
-                body: JSON.stringify({ email: email })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
+                fetch('{% url "contact:newsletter_signup" %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken
+                    },
+                    body: JSON.stringify({ email: email })
+                })
+                .then(response => response.json())
+                .then(data => {
                     Swal.fire({
-                        icon: 'success',
-                        title: 'Thank You!',
+                        icon: data.success ? 'success' : 'info',
+                        title: data.success ? 'Welcome to Wanderlust' : 'Note',
                         text: data.message,
-                        confirmButtonColor: '#c5a059'
+                        confirmButtonColor: '#C86D51'
                     });
-                    emailInput.value = '';
-                } else {
+                    if (data.success) {
+                        emailInput.value = '';
+                    }
+                })
+                .catch(error => {
                     Swal.fire({
-                        icon: 'info',
+                        icon: 'error',
                         title: 'Notice',
-                        text: data.message,
-                        confirmButtonColor: '#c5a059'
+                        text: 'Unable to subscribe right now. Please try again soon.',
+                        confirmButtonColor: '#C86D51'
                     });
-                }
-            })
-            .catch(error => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Something went wrong! Please try again later.',
-                    confirmButtonColor: '#c5a059'
                 });
             });
-        });
+        }
     </script>
     
     {% block extra_js %}{% endblock %}

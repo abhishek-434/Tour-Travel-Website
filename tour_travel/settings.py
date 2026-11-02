@@ -30,6 +30,7 @@ ALLOWED_HOSTS = [
     "wanderlusttravel-khh4.onrender.com",
     "localhost",
     "127.0.0.1",
+    "testserver",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -144,6 +145,9 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },

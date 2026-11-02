@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Bespoke Tour Packages | Wanderlust Luxury Catalog{% endblock %}
+{% block title %}Curated Tour Escapes & Journeys | Wanderlust Boutique{% endblock %}
 
 {% block content %}
 <!-- Subpage Header -->
-<section class="py-5 text-center position-relative" style="background: linear-gradient(rgba(11, 19, 43, 0.5), rgba(11, 19, 43, 0.7)), url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover; padding-top: 120px !important; padding-bottom: 80px !important;">
+<section class="py-5 text-center position-relative" style="background: linear-gradient(180deg, rgba(19, 26, 22, 0.5) 0%, rgba(19, 26, 22, 0.78) 100%), url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover; padding-top: 100px !important; padding-bottom: 70px !important;">
     <div class="container position-relative z-2" data-aos="fade-up">
-        <h1 class="display-4 text-white fw-bold mb-3 font-heading">Luxury Tour Packages</h1>
+        <span class="badge bg-terracotta text-white mb-2 text-xs text-uppercase letter-spacing-2">Curated Journeys</span>
+        <h1 class="display-4 text-white fw-bold mb-3 font-heading">Handcrafted Tour Escapes</h1>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb justify-content-center mb-0 bg-transparent">
                 <li class="breadcrumb-item"><a href="{% url 'core:home' %}" class="text-white-50 text-decoration-none">Home</a></li>
-                <li class="breadcrumb-item text-gold active" aria-current="page">Tour Packages</li>
+                <li class="breadcrumb-item text-terracotta active" aria-current="page">Tour Escapes</li>
             </ol>
         </nav>
     </div>
@@ -24,21 +25,24 @@
             
             <!-- Left Side: Filter Form Widget -->
             <div class="col-lg-3" data-aos="fade-right">
-                <div class="glass-panel p-4 sticky-lg-top" style="top: 100px; z-index: 10;">
-                    <h4 class="font-heading mb-4 text-primary-theme"><i class="bi bi-funnel-fill text-gold me-2"></i>Filter Tours</h4>
+                <div class="organic-card p-4 sticky-lg-top" style="top: 100px; z-index: 10;">
+                    <div class="d-flex align-items-center justify-content-between mb-4 pb-2 border-bottom border-organic">
+                        <h5 class="font-heading mb-0 text-primary-theme"><i class="bi bi-sliders text-terracotta me-2"></i>Filter Journeys</h5>
+                        <a href="{% url 'tours:packages' %}" class="text-xs text-muted text-decoration-none hover-terracotta">Reset</a>
+                    </div>
                     
                     <form action="{% url 'tours:packages' %}" method="GET" id="filterForm">
                         <!-- Search text -->
                         <div class="mb-3">
-                            <label class="form-label small fw-semibold text-gold">Search keywords</label>
-                            <input type="text" name="search" class="form-control form-glass" placeholder="Title, location..." value="{{ filters.search }}">
+                            <label class="form-label small fw-semibold text-terracotta">Search Keywords</label>
+                            <input type="text" name="search" class="form-control form-organic" placeholder="Location, keywords..." value="{{ filters.search }}">
                         </div>
 
                         <!-- Category select -->
                         <div class="mb-3">
-                            <label class="form-label small fw-semibold text-gold">Tour Category</label>
-                            <select name="category" class="form-select form-glass">
-                                <option value="">All Categories</option>
+                            <label class="form-label small fw-semibold text-terracotta">Journey Ethos</label>
+                            <select name="category" class="form-select form-organic">
+                                <option value="">All Collections</option>
                                 {% for category in categories %}
                                     <option value="{{ category.slug }}" {% if filters.category == category.slug %}selected{% endif %}>{{ category.name }}</option>
                                 {% endfor %}
@@ -47,8 +51,8 @@
 
                         <!-- Duration select -->
                         <div class="mb-3">
-                            <label class="form-label small fw-semibold text-gold">Maximum Duration</label>
-                            <select name="duration" class="form-select form-glass">
+                            <label class="form-label small fw-semibold text-terracotta">Desired Duration</label>
+                            <select name="duration" class="form-select form-organic">
                                 <option value="">Any Duration</option>
                                 <option value="5" {% if filters.duration == '5' %}selected{% endif %}>Up to 5 Days</option>
                                 <option value="10" {% if filters.duration == '10' %}selected{% endif %}>Up to 10 Days</option>
@@ -58,29 +62,29 @@
 
                         <!-- Difficulty select -->
                         <div class="mb-3">
-                            <label class="form-label small fw-semibold text-gold">Difficulty Level</label>
-                            <select name="difficulty" class="form-select form-glass">
-                                <option value="">Any Difficulty</option>
-                                <option value="easy" {% if filters.difficulty == 'easy' %}selected{% endif %}>Easy</option>
-                                <option value="moderate" {% if filters.difficulty == 'moderate' %}selected{% endif %}>Moderate</option>
-                                <option value="challenging" {% if filters.difficulty == 'challenging' %}selected{% endif %}>Challenging</option>
-                                <option value="extreme" {% if filters.difficulty == 'extreme' %}selected{% endif %}>Extreme</option>
+                            <label class="form-label small fw-semibold text-terracotta">Activity Intensity</label>
+                            <select name="difficulty" class="form-select form-organic">
+                                <option value="">Any Intensity</option>
+                                <option value="easy" {% if filters.difficulty == 'easy' %}selected{% endif %}>Gentle / Relaxed</option>
+                                <option value="moderate" {% if filters.difficulty == 'moderate' %}selected{% endif %}>Moderate Exploration</option>
+                                <option value="challenging" {% if filters.difficulty == 'challenging' %}selected{% endif %}>Active Trekking</option>
+                                <option value="extreme" {% if filters.difficulty == 'extreme' %}selected{% endif %}>High Altitude / Expedition</option>
                             </select>
                         </div>
 
                         <!-- Price bounds inputs -->
                         <div class="mb-4">
-                            <label class="form-label small fw-semibold text-gold">Price Range ($)</label>
+                            <label class="form-label small fw-semibold text-terracotta">Budget Per Person ($)</label>
                             <div class="input-group">
-                                <input type="number" name="min_price" class="form-control form-glass" placeholder="Min" value="{{ filters.min_price }}" min="0">
-                                <span class="input-group-text bg-transparent border-secondary border-opacity-25 text-muted">-</span>
-                                <input type="number" name="max_price" class="form-control form-glass" placeholder="Max" value="{{ filters.max_price }}" min="0">
+                                <input type="number" name="min_price" class="form-control form-organic" placeholder="Min" value="{{ filters.min_price }}" min="0">
+                                <span class="input-group-text bg-transparent border-organic text-muted">-</span>
+                                <input type="number" name="max_price" class="form-control form-organic" placeholder="Max" value="{{ filters.max_price }}" min="0">
                             </div>
                         </div>
 
                         <div class="d-flex flex-column gap-2">
-                            <button type="submit" class="btn btn-gold w-100"><i class="bi bi-filter"></i> Apply Filters</button>
-                            <a href="{% url 'tours:packages' %}" class="btn btn-outline-secondary w-100 text-gold border-gold border-opacity-50">Reset Filters</a>
+                            <button type="submit" class="btn btn-terracotta w-100"><i class="bi bi-search"></i> Apply Filters</button>
+                            <a href="{% url 'tours:packages' %}" class="btn btn-outline-organic w-100">Clear All</a>
                         </div>
                     </form>
                 </div>
@@ -91,47 +95,51 @@
                 
                 <!-- Sorting & count summary -->
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <span class="text-secondary small">{{ packages.paginator.count }} Luxury tour{{ packages.paginator.count|pluralize }} found</span>
+                    <span class="text-secondary small fw-medium">Showing {{ packages.paginator.count }} artisanal journey{{ packages.paginator.count|pluralize }}</span>
                 </div>
 
                 <div class="row g-4">
                     {% if packages %}
                         {% for package in packages %}
                         <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter }}00">
-                            <div class="glass-panel glass-panel-hover overflow-hidden h-100 d-flex flex-column">
-                                <div class="position-relative overflow-hidden" style="height: 200px;">
-                                    <img src="{{ package.cover_image.url }}" class="w-100 h-100 object-fit-cover transition-transform duration-500 hover-scale" alt="{{ package.title }}">
+                            <div class="tour-card">
+                                <div class="tour-card-image-wrap">
+                                    {% if package.cover_image %}
+                                        <img src="{{ package.cover_image.url }}" alt="{{ package.title }}">
+                                    {% else %}
+                                        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" alt="{{ package.title }}">
+                                    {% endif %}
                                     
                                     <!-- Discount label -->
                                     {% if package.has_discount %}
-                                        <span class="position-absolute top-3 end-3 badge bg-danger py-2 px-3 rounded-pill">Special Offer</span>
+                                        <span class="position-absolute top-3 end-3 badge bg-terracotta text-white py-1 px-2 rounded-pill text-xs">Special Honorarium</span>
                                     {% endif %}
                                     
-                                    <span class="position-absolute top-3 start-3 badge bg-glass-dark text-gold border border-gold border-opacity-25 py-2 px-3 rounded-pill">{{ package.duration_days }} Days</span>
+                                    <span class="tour-card-badge">{{ package.duration_days }}D / {{ package.duration_nights }}N</span>
                                 </div>
                                 <div class="p-4 d-flex flex-column flex-grow-1">
-                                    <span class="text-gold small fw-semibold text-uppercase mb-1"><i class="bi bi-geo-alt-fill me-1"></i>{{ package.destination.name }}</span>
-                                    <h5 class="fw-semibold mb-2 font-heading fs-5"><a href="{% url 'tours:package_detail' package.slug %}" class="text-decoration-none text-primary-theme">{{ package.title }}</a></h5>
+                                    <span class="text-terracotta text-xs fw-bold text-uppercase mb-1"><i class="bi bi-geo-alt-fill me-1"></i>{{ package.destination.name }}</span>
+                                    <h5 class="font-heading mb-2 fs-5"><a href="{% url 'tours:package_detail' package.slug %}" class="text-decoration-none text-primary-theme">{{ package.title }}</a></h5>
                                     
                                     <!-- Difficulty Badge and Star Rating -->
                                     <div class="d-flex align-items-center gap-2 mb-3">
-                                        <span class="badge bg-secondary bg-opacity-25 text-secondary-theme font-body py-1 px-2 rounded-2 small text-capitalize">{{ package.difficulty }}</span>
+                                        <span class="badge badge-forest text-capitalize">{{ package.difficulty }}</span>
                                         {% if package.average_rating > 0 %}
-                                            <span class="text-gold small"><i class="bi bi-star-fill me-1"></i>{{ package.average_rating|stringformat:".1f" }}</span>
+                                            <span class="text-terracotta text-xs fw-semibold"><i class="bi bi-star-fill me-1"></i>{{ package.average_rating|stringformat:".1f" }}</span>
                                         {% endif %}
                                     </div>
                                     
-                                    <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-secondary border-opacity-10">
+                                    <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-organic">
                                         <div>
-                                            <span class="text-muted small d-block">Price per person</span>
+                                            <span class="text-muted text-xs d-block">Starting per person</span>
                                             {% if package.has_discount %}
                                                 <span class="text-decoration-line-through text-muted small">${{ package.price }}</span>
-                                                <span class="fs-4 fw-bold text-gold ms-1">${{ package.discount_price }}</span>
+                                                <span class="fs-5 fw-bold text-terracotta ms-1">${{ package.discount_price }}</span>
                                             {% else %}
-                                                <span class="fs-4 fw-bold text-gold">${{ package.price }}</span>
+                                                <span class="fs-5 fw-bold text-terracotta">${{ package.price }}</span>
                                             {% endif %}
                                         </div>
-                                        <a href="{% url 'tours:package_detail' package.slug %}" class="btn btn-gold rounded-circle py-2 px-3"><i class="bi bi-arrow-right"></i></a>
+                                        <a href="{% url 'tours:package_detail' package.slug %}" class="btn btn-terracotta py-2 px-3" aria-label="View {{ package.title }}"><i class="bi bi-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -139,11 +147,13 @@
                         {% endfor %}
                     {% else %}
                         <div class="col-12 text-center py-5">
-                            <div class="glass-panel p-5 mx-auto" style="max-width: 500px;">
-                                <i class="bi bi-backpack2 text-gold display-3 mb-3"></i>
-                                <h4 class="font-heading">No Tour Packages Match</h4>
-                                <p class="text-secondary">We couldn't find any tour packages matching your filter selection. Try adjusting the parameters on the left sidebar.</p>
-                                <a href="{% url 'tours:packages' %}" class="btn btn-gold px-4 py-2">Clear Filters</a>
+                            <div class="organic-card p-5 mx-auto" style="max-width: 520px;">
+                                <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-terracotta mb-4" style="width: 70px; height: 70px; background: var(--accent-terracotta-light);">
+                                    <i class="bi bi-compass fs-1"></i>
+                                </div>
+                                <h4 class="font-heading mb-2">No Journeys Match Your Search</h4>
+                                <p class="text-secondary text-sm mb-4">We could not find any itineraries matching this exact filter combination. Try clearing parameters or contact our private concierge to custom-build this path.</p>
+                                <a href="{% url 'tours:packages' %}" class="btn btn-terracotta px-4 py-2">Clear Filters</a>
                             </div>
                         </div>
                     {% endif %}
@@ -155,24 +165,24 @@
                     <ul class="pagination justify-content-center gap-2">
                         {% if packages.has_previous %}
                             <li class="page-item">
-                                <a class="page-link glass-panel text-gold border-0" href="?page={{ packages.previous_page_number }}{% if filters.search %}&search={{ filters.search }}{% endif %}{% if filters.category %}&category={{ filters.category }}{% endif %}{% if filters.duration %}&duration={{ filters.duration }}{% endif %}{% if filters.difficulty %}&difficulty={{ filters.difficulty }}{% endif %}{% if filters.min_price %}&min_price={{ filters.min_price }}{% endif %}{% if filters.max_price %}&max_price={{ filters.max_price }}{% endif %}" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
+                                <a class="page-link organic-card text-terracotta border-0 py-2 px-3" href="?page={{ packages.previous_page_number }}{% if filters.search %}&search={{ filters.search }}{% endif %}{% if filters.category %}&category={{ filters.category }}{% endif %}{% if filters.duration %}&duration={{ filters.duration }}{% endif %}{% if filters.difficulty %}&difficulty={{ filters.difficulty }}{% endif %}{% if filters.min_price %}&min_price={{ filters.min_price }}{% endif %}{% if filters.max_price %}&max_price={{ filters.max_price }}{% endif %}" aria-label="Previous">
+                                    &laquo; Previous
                                 </a>
                             </li>
                         {% endif %}
                         
                         {% for num in packages.paginator.page_range %}
                             {% if packages.number == num %}
-                                <li class="page-item"><span class="page-link btn-gold border-0 text-white rounded-circle active-pagination" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">{{ num }}</span></li>
+                                <li class="page-item"><span class="page-link btn-terracotta border-0 text-white rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">{{ num }}</span></li>
                             {% else %}
-                                <li class="page-item"><a class="page-link glass-panel text-gold border-0 rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;" href="?page={{ num }}{% if filters.search %}&search={{ filters.search }}{% endif %}{% if filters.category %}&category={{ filters.category }}{% endif %}{% if filters.duration %}&duration={{ filters.duration }}{% endif %}{% if filters.difficulty %}&difficulty={{ filters.difficulty }}{% endif %}{% if filters.min_price %}&min_price={{ filters.min_price }}{% endif %}{% if filters.max_price %}&max_price={{ filters.max_price }}{% endif %}">{{ num }}</a></li>
+                                <li class="page-item"><a class="page-link organic-card text-primary-theme border-0 rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;" href="?page={{ num }}{% if filters.search %}&search={{ filters.search }}{% endif %}{% if filters.category %}&category={{ filters.category }}{% endif %}{% if filters.duration %}&duration={{ filters.duration }}{% endif %}{% if filters.difficulty %}&difficulty={{ filters.difficulty }}{% endif %}{% if filters.min_price %}&min_price={{ filters.min_price }}{% endif %}{% if filters.max_price %}&max_price={{ filters.max_price }}{% endif %}">{{ num }}</a></li>
                             {% endif %}
                         {% endfor %}
                         
                         {% if packages.has_next %}
                             <li class="page-item">
-                                <a class="page-link glass-panel text-gold border-0" href="?page={{ packages.next_page_number }}{% if filters.search %}&search={{ filters.search }}{% endif %}{% if filters.category %}&category={{ filters.category }}{% endif %}{% if filters.duration %}&duration={{ filters.duration }}{% endif %}{% if filters.difficulty %}&difficulty={{ filters.difficulty }}{% endif %}{% if filters.min_price %}&min_price={{ filters.min_price }}{% endif %}{% if filters.max_price %}&max_price={{ filters.max_price }}{% endif %}" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
+                                <a class="page-link organic-card text-terracotta border-0 py-2 px-3" href="?page={{ packages.next_page_number }}{% if filters.search %}&search={{ filters.search }}{% endif %}{% if filters.category %}&category={{ filters.category }}{% endif %}{% if filters.duration %}&duration={{ filters.duration }}{% endif %}{% if filters.difficulty %}&difficulty={{ filters.difficulty }}{% endif %}{% if filters.min_price %}&min_price={{ filters.min_price }}{% endif %}{% if filters.max_price %}&max_price={{ filters.max_price }}{% endif %}" aria-label="Next">
+                                    Next &raquo;
                                 </a>
                             </li>
                         {% endif %}

@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 
-{% block title %}Page Not Found | Wanderlust 404{% endblock %}
+{% block title %}Uncharted Territory | Wanderlust 404{% endblock %}
 
 {% block content %}
-<section class="d-flex align-items-center justify-content-center text-center" style="min-height: 70vh; margin-top: 40px;">
+<section class="d-flex align-items-center justify-content-center text-center py-5" style="min-height: 75vh;">
     <div class="container" data-aos="zoom-in">
-        <div class="glass-panel p-5 mx-auto" style="max-width: 550px;">
-            <div class="display-1 fw-bold text-gold mb-3 animate__animated animate__bounceInDown" style="font-family: var(--font-heading);">404</div>
-            <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-gold mb-4" style="width: 80px; height: 80px; background: rgba(197, 160, 89, 0.1);">
-                <i class="bi bi-compass-fill fs-1 animate__animated animate__shakeY animate__infinite" style="animation-duration: 3s;"></i>
+        <div class="organic-card p-5 mx-auto shadow-md" style="max-width: 580px;">
+            <div class="display-1 fw-bold text-terracotta mb-2 font-heading">404</div>
+            <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-terracotta mb-4" style="width: 80px; height: 80px; background: var(--accent-terracotta-light);">
+                <i class="bi bi-compass fs-1"></i>
             </div>
-            <h2 class="font-heading fw-bold mb-3">Lost in Transit?</h2>
-            <p class="text-secondary mb-4">The itinerary you are looking for has either changed course, been archived, or never existed in our flight log. Let's redirect you back to safety.</p>
-            <div class="d-flex justify-content-center gap-3">
-                <a href="{% url 'core:home' %}" class="btn btn-gold px-4 py-2"><i class="bi bi-house-door-fill me-1"></i> Return Home</a>
-                <a href="{% url 'tours:packages' %}" class="btn btn-outline-gold px-4 py-2"><i class="bi bi-search me-1"></i> Search Tours</a>
+            <h2 class="font-heading fw-bold mb-3 text-primary-theme">Off the Mapped Path</h2>
+            <p class="text-secondary small mb-4" style="line-height: 1.8;">The sanctuary or passage you were seeking has moved, or does not exist on our current cartography. Allow us to guide you back home.</p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="{% url 'core:home' %}" class="btn btn-terracotta px-4 py-2"><i class="bi bi-house-door me-1"></i> Return Home</a>
+                <a href="{% url 'tours:packages' %}" class="btn btn-outline-organic px-4 py-2"><i class="bi bi-compass me-1"></i> Browse Tours</a>
             </div>
         </div>
     </div>

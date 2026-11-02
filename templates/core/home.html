@@ -1,83 +1,80 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Wanderlust | Luxury Bespoke Tour & Travel{% endblock %}
+{% block title %}Wanderlust | Warm Boutique & Earthy Luxury Travel{% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<section class="hero-section position-relative overflow-hidden d-flex align-items-center justify-content-center text-center" style="min-height: 90vh; margin-top: -90px; background: linear-gradient(rgba(11, 19, 43, 0.45), rgba(11, 19, 43, 0.65)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;">
-    <div class="container position-relative z-2" data-aos="fade-up">
-        <span class="text-gold text-uppercase letter-spacing-2 fw-semibold animate__animated animate__fadeInDown d-block mb-3 fs-5">Premium Travel Boutique</span>
-        <h1 class="display-3 text-white fw-bold mb-4 font-heading animate__animated animate__zoomIn">Discover the Art of Bespoke Travel</h1>
-        <p class="lead text-white-50 fs-4 mb-5 mx-auto animate__animated animate__fadeInUp" style="max-width: 700px;">Crafting unforgettable journeys and luxury escapes designed around your unique wanderlust.</p>
+<!-- Hero Section (Warm Boutique Sanctuary) -->
+<section class="hero-boutique text-center" style="background: linear-gradient(180deg, rgba(19, 26, 22, 0.42) 0%, rgba(19, 26, 22, 0.72) 100%), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=85') no-repeat center center/cover;">
+    <div class="container hero-content position-relative py-5" data-aos="fade-up">
+        <span class="badge bg-terracotta text-white py-2 px-3 mb-3 text-uppercase letter-spacing-2 fw-semibold animate__animated animate__fadeInDown">Artisanal Travel Boutique</span>
+        <h1 class="display-3 text-white fw-bold mb-4 font-heading animate__animated animate__zoomIn" style="max-width: 900px; margin: 0 auto; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">Journeys Rooted in Stillness, Culture & Wonder</h1>
+        <p class="lead text-white-50 fs-5 mb-5 mx-auto animate__animated animate__fadeInUp" style="max-width: 680px;">We curate slow, thoughtful escapes and secluded sanctuaries tailored to the art of meaningful discovery.</p>
         
-        <!-- Search Widget -->
+        <!-- Organic Search Widget -->
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                <form action="{% url 'tours:packages' %}" method="GET" class="glass-panel p-4 shadow-lg animate__animated animate__fadeInUp" style="animation-delay: 0.5s;">
+                <form action="{% url 'tours:packages' %}" method="GET" class="organic-search-box shadow-lg animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
                     <div class="row g-3 align-items-center">
                         <div class="col-md-4 text-start">
-                            <label class="form-label text-gold small fw-medium mb-1"><i class="bi bi-geo-alt-fill me-1"></i> Destination</label>
-                            <input type="text" name="search" class="form-control form-glass" placeholder="Where do you want to go?">
+                            <label class="form-label text-terracotta small fw-bold mb-1"><i class="bi bi-geo-alt-fill me-1"></i> Sanctuary or Country</label>
+                            <input type="text" name="search" class="form-control form-organic" placeholder="Where calls your soul?">
                         </div>
                         <div class="col-md-3 text-start">
-                            <label class="form-label text-gold small fw-medium mb-1"><i class="bi bi-tag-fill me-1"></i> Travel Type</label>
-                            <select name="category" class="form-select form-glass">
-                                <option value="">All Categories</option>
-                                <option value="adventure">Adventure</option>
-                                <option value="luxury">Luxury Escapes</option>
-                                <option value="nature">Nature & Wildlife</option>
-                                <option value="cultural">Cultural Tours</option>
+                            <label class="form-label text-terracotta small fw-bold mb-1"><i class="bi bi-compass-fill me-1"></i> Travel Ethos</label>
+                            <select name="category" class="form-select form-organic">
+                                <option value="">All Collections</option>
+                                <option value="adventure">Wilderness & Hiking</option>
+                                <option value="luxury">Boutique Escapes</option>
+                                <option value="nature">Regenerative & Flora</option>
+                                <option value="cultural">Heritage & Culinary</option>
                             </select>
                         </div>
                         <div class="col-md-3 text-start">
-                            <label class="form-label text-gold small fw-medium mb-1"><i class="bi bi-clock-fill me-1"></i> Max Duration</label>
-                            <select name="duration" class="form-select form-glass">
-                                <option value="">Any Duration</option>
+                            <label class="form-label text-terracotta small fw-bold mb-1"><i class="bi bi-clock-fill me-1"></i> Desired Duration</label>
+                            <select name="duration" class="form-select form-organic">
+                                <option value="">Flexible Days</option>
                                 <option value="5">Up to 5 Days</option>
-                                <option value="10">Up to 10 Days</option>
-                                <option value="15">Up to 15 Days</option>
+                                <option value="10">6 to 10 Days</option>
+                                <option value="15">11 to 15 Days</option>
                             </select>
                         </div>
                         <div class="col-md-2 d-grid mt-4">
-                            <button type="submit" class="btn btn-gold py-2"><i class="bi bi-search me-1"></i> Search</button>
+                            <button type="submit" class="btn btn-terracotta py-2"><i class="bi bi-search"></i> Seek</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    
-    <!-- Smooth Transition Bottom Overlay -->
-    <div class="position-absolute bottom-0 start-0 w-100" style="height: 100px; background: linear-gradient(to top, var(--primary-bg), transparent);"></div>
 </section>
 
-<!-- Stats Badge Section -->
+<!-- Stats & Ethos Counter Section -->
 <section class="py-5">
     <div class="container">
         <div class="row g-4 text-center">
             <div class="col-6 col-lg-3" data-aos="zoom-in" data-aos-delay="100">
-                <div class="glass-panel p-4">
-                    <h2 class="text-gold display-5 fw-bold mb-1">50+</h2>
-                    <p class="text-secondary mb-0 fw-medium">Elite Destinations</p>
+                <div class="organic-card p-4">
+                    <h2 class="text-terracotta display-5 fw-bold mb-1">48+</h2>
+                    <p class="text-secondary mb-0 fw-medium">Handcrafted Sanctuaries</p>
                 </div>
             </div>
             <div class="col-6 col-lg-3" data-aos="zoom-in" data-aos-delay="200">
-                <div class="glass-panel p-4">
-                    <h2 class="text-gold display-5 fw-bold mb-1">250+</h2>
-                    <p class="text-secondary mb-0 fw-medium">Bespoke Packages</p>
+                <div class="organic-card p-4">
+                    <h2 class="text-forest display-5 fw-bold mb-1">100%</h2>
+                    <p class="text-secondary mb-0 fw-medium">Carbon-Balanced Paths</p>
                 </div>
             </div>
             <div class="col-6 col-lg-3" data-aos="zoom-in" data-aos-delay="300">
-                <div class="glass-panel p-4">
-                    <h2 class="text-gold display-5 fw-bold mb-1">12K+</h2>
-                    <p class="text-secondary mb-0 fw-medium">Satisfied Explorers</p>
+                <div class="organic-card p-4">
+                    <h2 class="text-terracotta display-5 fw-bold mb-1">9.8</h2>
+                    <p class="text-secondary mb-0 fw-medium">Traveler Satisfaction</p>
                 </div>
             </div>
             <div class="col-6 col-lg-3" data-aos="zoom-in" data-aos-delay="400">
-                <div class="glass-panel p-4">
-                    <h2 class="text-gold display-5 fw-bold mb-1">99%</h2>
-                    <p class="text-secondary mb-0 fw-medium">Luxury Ratings</p>
+                <div class="organic-card p-4">
+                    <h2 class="text-forest display-5 fw-bold mb-1">&lt;8</h2>
+                    <p class="text-secondary mb-0 fw-medium">Intimate Group Size</p>
                 </div>
             </div>
         </div>
@@ -85,24 +82,23 @@
 </section>
 
 <!-- Brand Trust Marquee Section -->
-<section class="py-4 bg-transparent border-top border-bottom border-secondary border-opacity-10">
+<section class="py-3 bg-transparent border-top border-bottom border-organic">
     <div class="container">
         <div class="partners-marquee-container">
             <div class="partners-marquee-track">
-                <!-- Set 1 -->
-                <div class="partners-marquee-item"><i class="bi bi-water"></i> Ritz-Carlton Resorts</div>
-                <div class="partners-marquee-item"><i class="bi bi-airplane"></i> Emirates Airlines</div>
-                <div class="partners-marquee-item"><i class="bi bi-compass"></i> National Geographic</div>
-                <div class="partners-marquee-item"><i class="bi bi-star"></i> Four Seasons Hotels</div>
-                <div class="partners-marquee-item"><i class="bi bi-globe"></i> Abercrombie & Kent</div>
-                <div class="partners-marquee-item"><i class="bi bi-shield-check"></i> Allianz Travel</div>
-                <!-- Set 2 (duplicates for infinite wrap loop) -->
-                <div class="partners-marquee-item"><i class="bi bi-water"></i> Ritz-Carlton Resorts</div>
-                <div class="partners-marquee-item"><i class="bi bi-airplane"></i> Emirates Airlines</div>
-                <div class="partners-marquee-item"><i class="bi bi-compass"></i> National Geographic</div>
-                <div class="partners-marquee-item"><i class="bi bi-star"></i> Four Seasons Hotels</div>
-                <div class="partners-marquee-item"><i class="bi bi-globe"></i> Abercrombie & Kent</div>
-                <div class="partners-marquee-item"><i class="bi bi-shield-check"></i> Allianz Travel</div>
+                <div class="partners-marquee-item"><i class="bi bi-tree"></i> Aman Resorts</div>
+                <div class="partners-marquee-item"><i class="bi bi-flower1"></i> Singita Lodges</div>
+                <div class="partners-marquee-item"><i class="bi bi-shield-check"></i> Relais & Châteaux</div>
+                <div class="partners-marquee-item"><i class="bi bi-compass"></i> National Geographic Expeditions</div>
+                <div class="partners-marquee-item"><i class="bi bi-stars"></i> Belmond Heritage</div>
+                <div class="partners-marquee-item"><i class="bi bi-water"></i> Four Seasons Tented Camps</div>
+                <!-- Duplicate for seamless continuous marquee loop -->
+                <div class="partners-marquee-item"><i class="bi bi-tree"></i> Aman Resorts</div>
+                <div class="partners-marquee-item"><i class="bi bi-flower1"></i> Singita Lodges</div>
+                <div class="partners-marquee-item"><i class="bi bi-shield-check"></i> Relais & Châteaux</div>
+                <div class="partners-marquee-item"><i class="bi bi-compass"></i> National Geographic Expeditions</div>
+                <div class="partners-marquee-item"><i class="bi bi-stars"></i> Belmond Heritage</div>
+                <div class="partners-marquee-item"><i class="bi bi-water"></i> Four Seasons Tented Camps</div>
             </div>
         </div>
     </div>
@@ -111,54 +107,87 @@
 <!-- Featured Destinations Section -->
 <section class="py-5">
     <div class="container">
-        <div class="d-flex justify-content-between align-items-end mb-5" data-aos="fade-up">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end mb-5 gap-3" data-aos="fade-up">
             <div>
-                <span class="text-gold text-uppercase letter-spacing-1 fw-semibold d-block mb-2">Curated Escapes</span>
-                <h2 class="display-5 font-heading mb-0">Popular Destinations</h2>
+                <span class="badge bg-terracotta text-white mb-2 text-xs text-uppercase letter-spacing-1">Curated Sanctuaries</span>
+                <h2 class="display-5 font-heading mb-0">Secluded Lands & Destinations</h2>
             </div>
-            <a href="{% url 'tours:destinations' %}" class="btn btn-outline-gold">View All <i class="bi bi-arrow-right ms-1"></i></a>
+            <a href="{% url 'tours:destinations' %}" class="btn btn-outline-organic">All Destinations <i class="bi bi-arrow-right"></i></a>
         </div>
         
         <div class="row g-4">
             {% if featured_destinations %}
                 {% for destination in featured_destinations %}
                 <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter }}00">
-                    <div class="glass-panel glass-panel-hover overflow-hidden position-relative ratio ratio-4x3 card-destination">
-                        <img src="{{ destination.hero_image.url }}" class="img-fluid w-100 h-100 object-fit-cover" alt="{{ destination.name }}">
-                        <div class="position-absolute bottom-0 start-0 w-100 p-4 bg-gradient-dark text-white d-flex flex-column justify-content-end" style="background: linear-gradient(transparent, rgba(7, 11, 25, 0.95)); height: 60%;">
-                            <h4 class="font-heading mb-1 text-white">{{ destination.name }}</h4>
-                            <p class="text-white-50 small mb-2"><i class="bi bi-sun-fill text-gold me-1"></i> Best time: {{ destination.best_time_to_visit }}</p>
-                            <a href="{% url 'tours:destination_detail' destination.slug %}" class="text-gold text-decoration-none fw-medium mt-2 small">Explore Tours <i class="bi bi-arrow-right ms-1"></i></a>
+                    <div class="tour-card">
+                        <div class="tour-card-image-wrap">
+                            {% if destination.hero_image %}
+                                <img src="{{ destination.hero_image.url }}" alt="{{ destination.name }}">
+                            {% else %}
+                                <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80" alt="{{ destination.name }}">
+                            {% endif %}
+                            <span class="tour-card-badge"><i class="bi bi-calendar-event me-1"></i> Best: {{ destination.best_time_to_visit }}</span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <h4 class="font-heading mb-2"><a href="{% url 'tours:destination_detail' destination.slug %}" class="text-primary-theme text-decoration-none">{{ destination.name }}</a></h4>
+                            <p class="text-secondary text-sm mb-4 line-clamp-2">{{ destination.description|truncatewords:20 }}</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center pt-3 border-top border-organic">
+                                <span class="text-xs text-muted"><i class="bi bi-thermometer-sun me-1 text-terracotta"></i>{{ destination.weather_info|default:"Ideal Climate" }}</span>
+                                <a href="{% url 'tours:destination_detail' destination.slug %}" class="text-terracotta fw-semibold text-sm d-flex align-items-center gap-1">
+                                    Discover <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
             {% else %}
-                <!-- Luxury fallback mock display if DB empty -->
+                <!-- Fallback Luxury Cards -->
                 <div class="col-md-6 col-lg-4" data-aos="fade-up">
-                    <div class="glass-panel glass-panel-hover overflow-hidden position-relative ratio ratio-4x3">
-                        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80" class="w-100 h-100 object-fit-cover" alt="Bali">
-                        <div class="position-absolute bottom-0 start-0 w-100 p-4" style="background: linear-gradient(transparent, rgba(7, 11, 25, 0.9));">
-                            <h4 class="font-heading text-white mb-1">Bali, Indonesia</h4>
-                            <p class="text-white-50 small mb-0"><i class="bi bi-sun-fill text-gold me-1"></i> Best Season: Apr - Oct</p>
+                    <div class="tour-card">
+                        <div class="tour-card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80" alt="Ubud, Bali">
+                            <span class="tour-card-badge">Best: Apr - Oct</span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <h4 class="font-heading mb-2">Ubud & Northern Bali</h4>
+                            <p class="text-secondary text-sm mb-4">Lush emerald rice terraces, traditional herbal healing sanctuaries, and quiet jungle villas.</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center pt-3 border-top border-organic">
+                                <span class="text-xs text-muted"><i class="bi bi-thermometer-sun me-1 text-terracotta"></i>24°C - 29°C</span>
+                                <a href="{% url 'tours:destinations' %}" class="text-terracotta fw-semibold text-sm">Discover <i class="bi bi-arrow-right"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="glass-panel glass-panel-hover overflow-hidden position-relative ratio ratio-4x3">
-                        <img src="https://images.unsplash.com/photo-1486916856992-e4db22c8df33?auto=format&fit=crop&w=800&q=80" class="w-100 h-100 object-fit-cover" alt="Swiss Alps">
-                        <div class="position-absolute bottom-0 start-0 w-100 p-4" style="background: linear-gradient(transparent, rgba(7, 11, 25, 0.9));">
-                            <h4 class="font-heading text-white mb-1">Swiss Alps, Switzerland</h4>
-                            <p class="text-white-50 small mb-0"><i class="bi bi-sun-fill text-gold me-1"></i> Best Season: Dec - Apr</p>
+                    <div class="tour-card">
+                        <div class="tour-card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1486916856992-e4db22c8df33?auto=format&fit=crop&w=800&q=80" alt="Swiss Alps">
+                            <span class="tour-card-badge">Best: Dec - Apr</span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <h4 class="font-heading mb-2">Engadin Valley, Switzerland</h4>
+                            <p class="text-secondary text-sm mb-4">Alpine silence, private timber chalets, and crisp pine forests under snow-capped peaks.</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center pt-3 border-top border-organic">
+                                <span class="text-xs text-muted"><i class="bi bi-thermometer-sun me-1 text-terracotta"></i>-4°C - 12°C</span>
+                                <a href="{% url 'tours:destinations' %}" class="text-terracotta fw-semibold text-sm">Discover <i class="bi bi-arrow-right"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="glass-panel glass-panel-hover overflow-hidden position-relative ratio ratio-4x3">
-                        <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=800&q=80" class="w-100 h-100 object-fit-cover" alt="Kenya Safari">
-                        <div class="position-absolute bottom-0 start-0 w-100 p-4" style="background: linear-gradient(transparent, rgba(7, 11, 25, 0.9));">
-                            <h4 class="font-heading text-white mb-1">Masai Mara, Kenya</h4>
-                            <p class="text-white-50 small mb-0"><i class="bi bi-sun-fill text-gold me-1"></i> Best Season: Jul - Oct</p>
+                    <div class="tour-card">
+                        <div class="tour-card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=800&q=80" alt="Masai Mara">
+                            <span class="tour-card-badge">Best: Jul - Oct</span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <h4 class="font-heading mb-2">Masai Mara Wilderness, Kenya</h4>
+                            <p class="text-secondary text-sm mb-4">Solar-powered luxury tents, sunset safaris, and indigenous conservation tracking.</p>
+                            <div class="mt-auto d-flex justify-content-between align-items-center pt-3 border-top border-organic">
+                                <span class="text-xs text-muted"><i class="bi bi-thermometer-sun me-1 text-terracotta"></i>18°C - 28°C</span>
+                                <a href="{% url 'tours:destinations' %}" class="text-terracotta fw-semibold text-sm">Discover <i class="bi bi-arrow-right"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -167,114 +196,118 @@
     </div>
 </section>
 
-<!-- Featured Packages Section -->
-<section class="py-5 bg-secondary-bg-styled" style="background: rgba(197, 160, 89, 0.03);">
+<!-- Featured Tours & Escapes Section -->
+<section class="py-5" style="background: rgba(200, 109, 81, 0.03);">
     <div class="container">
-        <div class="d-flex justify-content-between align-items-end mb-5" data-aos="fade-up">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-end mb-5 gap-3" data-aos="fade-up">
             <div>
-                <span class="text-gold text-uppercase letter-spacing-1 fw-semibold d-block mb-2">Unparalleled Journeys</span>
-                <h2 class="display-5 font-heading mb-0">Featured Packages</h2>
+                <span class="badge bg-forest text-white mb-2 text-xs text-uppercase letter-spacing-1">Handcrafted Escapes</span>
+                <h2 class="display-5 font-heading mb-0">Signature Tour Itineraries</h2>
             </div>
-            <a href="{% url 'tours:packages' %}" class="btn btn-outline-gold">View All Packages <i class="bi bi-arrow-right ms-1"></i></a>
+            <a href="{% url 'tours:packages' %}" class="btn btn-outline-organic">Explore All Tours <i class="bi bi-arrow-right"></i></a>
         </div>
         
         <div class="row g-4">
             {% if featured_packages %}
                 {% for package in featured_packages %}
                 <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="{{ forloop.counter }}00">
-                    <div class="glass-panel glass-panel-hover overflow-hidden h-100 d-flex flex-column">
-                        <div class="position-relative overflow-hidden" style="height: 200px;">
-                            <img src="{{ package.cover_image.url }}" class="w-100 h-100 object-fit-cover transition-transform duration-500 hover-scale" alt="{{ package.title }}">
-                            <span class="position-absolute top-3 start-3 badge bg-glass-dark text-gold border border-gold border-opacity-25 py-2 px-3 rounded-pill">{{ package.duration_days }} Days</span>
+                    <div class="tour-card">
+                        <div class="tour-card-image-wrap">
+                            {% if package.cover_image %}
+                                <img src="{{ package.cover_image.url }}" alt="{{ package.title }}">
+                            {% else %}
+                                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=500&q=80" alt="{{ package.title }}">
+                            {% endif %}
+                            <span class="tour-card-badge">{{ package.duration_days }} Days / {{ package.duration_nights }} Nights</span>
                         </div>
                         <div class="p-4 d-flex flex-column flex-grow-1">
-                            <span class="text-gold small fw-semibold text-uppercase mb-1"><i class="bi bi-geo-alt-fill me-1"></i>{{ package.destination.name }}</span>
-                            <h5 class="fw-semibold mb-3"><a href="{% url 'tours:package_detail' package.slug %}" class="text-decoration-none text-primary-theme">{{ package.title }}</a></h5>
-                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-secondary border-opacity-10">
+                            <span class="text-terracotta small fw-bold text-uppercase mb-1"><i class="bi bi-geo-alt-fill me-1"></i>{{ package.destination.name }}</span>
+                            <h5 class="font-heading mb-3"><a href="{% url 'tours:package_detail' package.slug %}" class="text-decoration-none text-primary-theme">{{ package.title }}</a></h5>
+                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-organic">
                                 <div>
-                                    <span class="text-muted small d-block">Starting from</span>
-                                    <span class="fs-4 fw-bold text-gold">${{ package.price }}</span>
+                                    <span class="text-muted text-xs d-block">From</span>
+                                    <span class="fs-5 fw-bold text-terracotta">${{ package.price }}</span>
                                 </div>
-                                <a href="{% url 'tours:package_detail' package.slug %}" class="btn btn-gold py-2 px-3 rounded-circle"><i class="bi bi-arrow-right"></i></a>
+                                <a href="{% url 'tours:package_detail' package.slug %}" class="btn btn-terracotta py-2 px-3" aria-label="View {{ package.title }}"><i class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
             {% else %}
-                <!-- Mock display -->
+                <!-- Fallback Tour Cards -->
                 <div class="col-md-6 col-lg-3" data-aos="fade-up">
-                    <div class="glass-panel glass-panel-hover overflow-hidden h-100 d-flex flex-column">
-                        <div class="position-relative overflow-hidden" style="height: 200px;">
-                            <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=500&q=80" class="w-100 h-100 object-fit-cover" alt="Swiss">
-                            <span class="position-absolute top-3 start-3 badge bg-dark py-2 px-3 rounded-pill bg-opacity-70">8 Days</span>
+                    <div class="tour-card">
+                        <div class="tour-card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=500&q=80" alt="Maldives">
+                            <span class="tour-card-badge">7 Days / 6 Nights</span>
                         </div>
                         <div class="p-4 d-flex flex-column flex-grow-1">
-                            <span class="text-gold small fw-semibold text-uppercase mb-1"><i class="bi bi-geo-alt-fill me-1"></i>Maldives</span>
-                            <h5 class="fw-semibold mb-3">Maldives Luxury Lagoon Retreat</h5>
-                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-secondary border-opacity-10">
+                            <span class="text-terracotta small fw-bold text-uppercase mb-1"><i class="bi bi-geo-alt-fill me-1"></i>Maldives</span>
+                            <h5 class="font-heading mb-3">Quiet Waters & Coral Sanctuary</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-organic">
                                 <div>
-                                    <span class="text-muted small d-block">Starting from</span>
-                                    <span class="fs-4 fw-bold text-gold">$4,850</span>
+                                    <span class="text-muted text-xs d-block">From</span>
+                                    <span class="fs-5 fw-bold text-terracotta">$4,850</span>
                                 </div>
-                                <button class="btn btn-gold py-2 px-3 rounded-circle"><i class="bi bi-arrow-right"></i></button>
+                                <a href="{% url 'tours:packages' %}" class="btn btn-terracotta py-2 px-3"><i class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-                    <div class="glass-panel glass-panel-hover overflow-hidden h-100 d-flex flex-column">
-                        <div class="position-relative overflow-hidden" style="height: 200px;">
-                            <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=500&q=80" class="w-100 h-100 object-fit-cover" alt="Amalfi">
-                            <span class="position-absolute top-3 start-3 badge bg-dark py-2 px-3 rounded-pill bg-opacity-70">10 Days</span>
+                    <div class="tour-card">
+                        <div class="tour-card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=500&q=80" alt="Amalfi">
+                            <span class="tour-card-badge">9 Days / 8 Nights</span>
                         </div>
                         <div class="p-4 d-flex flex-column flex-grow-1">
-                            <span class="text-gold small fw-semibold text-uppercase mb-1"><i class="bi bi-geo-alt-fill me-1"></i>Amalfi, Italy</span>
-                            <h5 class="fw-semibold mb-3">Amalfi Coast Luxury Getaway</h5>
-                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-secondary border-opacity-10">
+                            <span class="text-terracotta small fw-bold text-uppercase mb-1"><i class="bi bi-geo-alt-fill me-1"></i>Amalfi Coast</span>
+                            <h5 class="font-heading mb-3">Terra-Cotta Cliffs & Lemon Groves</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-organic">
                                 <div>
-                                    <span class="text-muted small d-block">Starting from</span>
-                                    <span class="fs-4 fw-bold text-gold">$6,200</span>
+                                    <span class="text-muted text-xs d-block">From</span>
+                                    <span class="fs-5 fw-bold text-terracotta">$5,400</span>
                                 </div>
-                                <button class="btn btn-gold py-2 px-3 rounded-circle"><i class="bi bi-arrow-right"></i></button>
+                                <a href="{% url 'tours:packages' %}" class="btn btn-terracotta py-2 px-3"><i class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-                    <div class="glass-panel glass-panel-hover overflow-hidden h-100 d-flex flex-column">
-                        <div class="position-relative overflow-hidden" style="height: 200px;">
-                            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=500&q=80" class="w-100 h-100 object-fit-cover" alt="Kyoto">
-                            <span class="position-absolute top-3 start-3 badge bg-dark py-2 px-3 rounded-pill bg-opacity-70">7 Days</span>
+                    <div class="tour-card">
+                        <div class="tour-card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=500&q=80" alt="Kyoto">
+                            <span class="tour-card-badge">8 Days / 7 Nights</span>
                         </div>
                         <div class="p-4 d-flex flex-column flex-grow-1">
-                            <span class="text-gold small fw-semibold text-uppercase mb-1"><i class="bi bi-geo-alt-fill me-1"></i>Kyoto, Japan</span>
-                            <h5 class="fw-semibold mb-3">Imperial Kyoto & Tea Ceremonies</h5>
-                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-secondary border-opacity-10">
+                            <span class="text-terracotta small fw-bold text-uppercase mb-1"><i class="bi bi-geo-alt-fill me-1"></i>Kyoto & Nara</span>
+                            <h5 class="font-heading mb-3">Artisanal Zen Ryokans & Forest Temples</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-organic">
                                 <div>
-                                    <span class="text-muted small d-block">Starting from</span>
-                                    <span class="fs-4 fw-bold text-gold">$3,900</span>
+                                    <span class="text-muted text-xs d-block">From</span>
+                                    <span class="fs-5 fw-bold text-terracotta">$4,200</span>
                                 </div>
-                                <button class="btn btn-gold py-2 px-3 rounded-circle"><i class="bi bi-arrow-right"></i></button>
+                                <a href="{% url 'tours:packages' %}" class="btn btn-terracotta py-2 px-3"><i class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-                    <div class="glass-panel glass-panel-hover overflow-hidden h-100 d-flex flex-column">
-                        <div class="position-relative overflow-hidden" style="height: 200px;">
-                            <img src="https://images.unsplash.com/photo-1542401886-65d6c61db217?auto=format&fit=crop&w=500&q=80" class="w-100 h-100 object-fit-cover" alt="Cairo">
-                            <span class="position-absolute top-3 start-3 badge bg-dark py-2 px-3 rounded-pill bg-opacity-70">12 Days</span>
+                    <div class="tour-card">
+                        <div class="tour-card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1542401886-65d6c61db217?auto=format&fit=crop&w=500&q=80" alt="Cairo">
+                            <span class="tour-card-badge">11 Days / 10 Nights</span>
                         </div>
                         <div class="p-4 d-flex flex-column flex-grow-1">
-                            <span class="text-gold small fw-semibold text-uppercase mb-1"><i class="bi bi-geo-alt-fill me-1"></i>Cairo, Egypt</span>
-                            <h5 class="fw-semibold mb-3">Mysterious Pyramids & Nile Luxury Cruise</h5>
-                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-secondary border-opacity-10">
+                            <span class="text-terracotta small fw-bold text-uppercase mb-1"><i class="bi bi-geo-alt-fill me-1"></i>Nile Valley</span>
+                            <h5 class="font-heading mb-3">Sailing Dahabiya & Antiquities</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-organic">
                                 <div>
-                                    <span class="text-muted small d-block">Starting from</span>
-                                    <span class="fs-4 fw-bold text-gold">$5,100</span>
+                                    <span class="text-muted text-xs d-block">From</span>
+                                    <span class="fs-5 fw-bold text-terracotta">$5,100</span>
                                 </div>
-                                <button class="btn btn-gold py-2 px-3 rounded-circle"><i class="bi bi-arrow-right"></i></button>
+                                <a href="{% url 'tours:packages' %}" class="btn btn-terracotta py-2 px-3"><i class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -284,51 +317,51 @@
     </div>
 </section>
 
-<!-- The Wanderlust Distinction (Why Choose Us) -->
+<!-- The Boutique Ethos (Why Wanderlust) -->
 <section class="py-5 bg-transparent">
     <div class="container">
         <div class="text-center mb-5" data-aos="fade-up">
-            <span class="text-gold text-uppercase letter-spacing-1 fw-semibold d-block mb-2">The Wanderlust Difference</span>
-            <h2 class="display-5 font-heading">Why Discerning Travelers Choose Us</h2>
+            <span class="badge bg-terracotta text-white mb-2 text-xs text-uppercase letter-spacing-1">Our Ethos</span>
+            <h2 class="display-5 font-heading">The Boutique Philosophy</h2>
         </div>
         <div class="row g-4">
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="glass-panel p-5 h-100 glass-panel-hover text-center">
-                    <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-gold mb-4" style="width: 70px; height: 70px; background: rgba(197, 160, 89, 0.1);">
-                        <i class="bi bi-shield-fill-check fs-1"></i>
+                <div class="organic-card p-5 h-100 text-center">
+                    <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-terracotta mb-4" style="width: 72px; height: 72px; background: var(--accent-terracotta-light);">
+                        <i class="bi bi-feather fs-1"></i>
                     </div>
-                    <h4 class="font-heading mb-3">100% Customized Journeys</h4>
-                    <p class="text-secondary small mb-0">Every detail is tailored to your exact pace and style. We design personal tours that match your specific interests, budgets, and travel desires.</p>
+                    <h4 class="font-heading mb-3">Paced for Stillness</h4>
+                    <p class="text-secondary text-sm mb-0">We reject hurried checklists. Our itineraries leave generous room for lingering lunches, spontaneous conversations, and quiet golden hours.</p>
                 </div>
             </div>
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="glass-panel p-5 h-100 glass-panel-hover text-center">
-                    <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-gold mb-4" style="width: 70px; height: 70px; background: rgba(197, 160, 89, 0.1);">
-                        <i class="bi bi-gem fs-1"></i>
+                <div class="organic-card p-5 h-100 text-center">
+                    <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-forest mb-4" style="width: 72px; height: 72px; background: rgba(35, 75, 61, 0.12);">
+                        <i class="bi bi-tree fs-1"></i>
                     </div>
-                    <h4 class="font-heading mb-3">Exclusive VIP Partnerships</h4>
-                    <p class="text-secondary small mb-0">Through our direct networks with five-star resorts and native operators, our travelers receive complimentary upgrades, dining credits, and private passages.</p>
+                    <h4 class="font-heading mb-3">Deep Native Roots</h4>
+                    <p class="text-secondary text-sm mb-0">We collaborate directly with local family vineyards, conservation wardens, and historians to offer intimate, respectful access to heritage sites.</p>
                 </div>
             </div>
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="glass-panel p-5 h-100 glass-panel-hover text-center">
-                    <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-gold mb-4" style="width: 70px; height: 70px; background: rgba(197, 160, 89, 0.1);">
-                        <i class="bi bi-people-fill fs-1"></i>
+                <div class="organic-card p-5 h-100 text-center">
+                    <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-terracotta mb-4" style="width: 72px; height: 72px; background: var(--accent-terracotta-light);">
+                        <i class="bi bi-heart-pulse fs-1"></i>
                     </div>
-                    <h4 class="font-heading mb-3">Local Elite Guide Network</h4>
-                    <p class="text-secondary small mb-0">Learn from local archeologists, historians, and native guides. Bypass tourist trap routes to explore hidden, authentic local culture.</p>
+                    <h4 class="font-heading mb-3">Holistic Concierge</h4>
+                    <p class="text-secondary text-sm mb-0">From pre-arrival culinary preferences to private airstrip transfers, our personal travel concierge looks after your family with genuine warmth.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Testimonials Section (Swiper.js) -->
-<section class="py-5">
+<!-- Testimonials Slider (Swiper.js) -->
+<section class="py-5" style="background: rgba(35, 75, 61, 0.04);">
     <div class="container">
         <div class="text-center mb-5" data-aos="fade-up">
-            <span class="text-gold text-uppercase letter-spacing-1 fw-semibold d-block mb-2">Guest Impressions</span>
-            <h2 class="display-5 font-heading">What Our Guests Say</h2>
+            <span class="badge bg-forest text-white mb-2 text-xs text-uppercase letter-spacing-1">Reflections</span>
+            <h2 class="display-5 font-heading">Words from Fellow Wanderers</h2>
         </div>
         
         <div class="swiper testimonialSwiper pb-5" data-aos="fade-up">
@@ -336,110 +369,112 @@
                 {% if testimonials %}
                     {% for testimonial in testimonials %}
                     <div class="swiper-slide p-3">
-                        <div class="glass-panel p-5 text-center h-100 d-flex flex-column align-items-center">
+                        <div class="organic-card p-5 text-center h-100 d-flex flex-column align-items-center">
                             <div class="mb-4">
                                 {% if testimonial.client_image %}
-                                    <img src="{{ testimonial.client_image.url }}" class="rounded-circle object-fit-cover border border-gold" style="width: 90px; height: 90px;" alt="{{ testimonial.client_name }}">
+                                    <img src="{{ testimonial.client_image.url }}" class="rounded-circle object-fit-cover border border-2" style="width: 80px; height: 80px; border-color: var(--accent-terracotta);" alt="{{ testimonial.client_name }}">
                                 {% else %}
-                                    <div class="rounded-circle bg-secondary bg-opacity-25 d-flex align-items-center justify-content-center text-gold border border-gold" style="width: 90px; height: 90px;">
-                                        <i class="bi bi-person-fill fs-1"></i>
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center text-terracotta border border-2" style="width: 80px; height: 80px; border-color: var(--accent-terracotta); background: var(--accent-terracotta-light);">
+                                        <i class="bi bi-person fs-1"></i>
                                     </div>
                                 {% endif %}
                             </div>
-                            <div class="d-flex text-gold mb-3">
+                            <div class="d-flex text-terracotta mb-3">
                                 {% for i in "12345"|make_list %}
                                     {% if forloop.counter <= testimonial.rating %}
-                                        <i class="bi bi-star-fill"></i>
+                                        <i class="bi bi-star-fill mx-0.5"></i>
                                     {% else %}
-                                        <i class="bi bi-star"></i>
+                                        <i class="bi bi-star mx-0.5"></i>
                                     {% endif %}
                                 {% endfor %}
                             </div>
                             <p class="fst-italic text-secondary mb-4 flex-grow-1">"{{ testimonial.testimonial_text }}"</p>
-                            <h5 class="fw-semibold mb-1">{{ testimonial.client_name }}</h5>
-                            <span class="text-gold small">{{ testimonial.client_designation }}</span>
+                            <h5 class="font-heading mb-1">{{ testimonial.client_name }}</h5>
+                            <span class="text-terracotta text-xs letter-spacing-1 fw-semibold text-uppercase">{{ testimonial.client_designation }}</span>
                         </div>
                     </div>
                     {% endfor %}
                 {% else %}
-                    <!-- Fallback slider content -->
+                    <!-- Fallback Testimonial Cards -->
                     <div class="swiper-slide p-3">
-                        <div class="glass-panel p-5 text-center h-100 d-flex flex-column align-items-center">
+                        <div class="organic-card p-5 text-center h-100 d-flex flex-column align-items-center">
                             <div class="mb-4">
-                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" class="rounded-circle object-fit-cover border border-gold" style="width: 90px; height: 90px;" alt="Client">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" class="rounded-circle object-fit-cover border border-2" style="width: 80px; height: 80px; border-color: var(--accent-terracotta);" alt="Camille S.">
                             </div>
-                            <div class="d-flex text-gold mb-3"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                            <p class="fst-italic text-secondary mb-4">"The Maldives trip organized by Wanderlust was absolute perfection. Every transfer was smooth, the villa was magnificent, and the bespoke itinerary was spot-on. Truly a 5-star travel boutique!"</p>
-                            <h5 class="fw-semibold mb-1">Victoria Sterling</h5>
-                            <span class="text-gold small">Luxury Travel Vlogger</span>
+                            <div class="d-flex text-terracotta mb-3">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                            <p class="fst-italic text-secondary mb-4">"Wanderlust designed a private journey through the Amalfi hills and secret coves. We stayed in a converted 16th-century monastery and tasted wines with the third-generation vintner. Unforgettable and deeply grounding."</p>
+                            <h5 class="font-heading mb-1">Camille Laurent</h5>
+                            <span class="text-terracotta text-xs letter-spacing-1 fw-semibold text-uppercase">Architect, Paris</span>
                         </div>
                     </div>
                     <div class="swiper-slide p-3">
-                        <div class="glass-panel p-5 text-center h-100 d-flex flex-column align-items-center">
+                        <div class="organic-card p-5 text-center h-100 d-flex flex-column align-items-center">
                             <div class="mb-4">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" class="rounded-circle object-fit-cover border border-gold" style="width: 90px; height: 90px;" alt="Client">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" class="rounded-circle object-fit-cover border border-2" style="width: 80px; height: 80px; border-color: var(--accent-terracotta);" alt="Marcus W.">
                             </div>
-                            <div class="d-flex text-gold mb-3"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-                            <p class="fst-italic text-secondary mb-4">"We booked a private safari in Kenya. The local guides were incredibly knowledgeable, and the luxury tented camps exceeded all expectations. Exceptional customer service throughout!"</p>
-                            <h5 class="fw-semibold mb-1">Dr. Harrison Vance</h5>
-                            <span class="text-gold small">Wild Photo Specialist</span>
+                            <div class="d-flex text-terracotta mb-3">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                            <p class="fst-italic text-secondary mb-4">"Our Kyoto Ryokan experience was handled with such exquisite delicacy. Every tea master, every garden, every silent morning was curated with immense care. This is how travel should feel."</p>
+                            <h5 class="font-heading mb-1">Marcus Thorne</h5>
+                            <span class="text-terracotta text-xs letter-spacing-1 fw-semibold text-uppercase">Author, London</span>
                         </div>
                     </div>
                 {% endif %}
             </div>
-            <!-- Swiper Controls -->
             <div class="swiper-pagination"></div>
         </div>
     </div>
 </section>
 
 <!-- FAQs Section -->
-<section class="py-5 bg-secondary-bg-styled" style="background: rgba(197, 160, 89, 0.01);">
-    <div class="container" style="max-width: 800px;">
+<section class="py-5">
+    <div class="container" style="max-width: 860px;">
         <div class="text-center mb-5" data-aos="fade-up">
-            <span class="text-gold text-uppercase letter-spacing-1 fw-semibold d-block mb-2">Got Questions?</span>
-            <h2 class="display-5 font-heading">Frequently Asked Questions</h2>
+            <span class="badge bg-terracotta text-white mb-2 text-xs text-uppercase letter-spacing-1">Guidance</span>
+            <h2 class="display-5 font-heading">Frequently Inquired</h2>
         </div>
         
         <div class="accordion accordion-flush" id="faqAccordion" data-aos="fade-up">
             {% if faqs %}
                 {% for faq in faqs %}
-                <div class="accordion-item glass-panel border-0 mb-3 overflow-hidden">
+                <div class="accordion-item organic-card border-0 mb-3 overflow-hidden">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed form-glass border-0 fw-semibold fs-5 text-primary-theme" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ faq.id }}" aria-expanded="false" aria-controls="collapse{{ faq.id }}">
+                        <button class="accordion-button collapsed py-3 px-4 fw-semibold fs-5 text-primary-theme" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ faq.id }}" aria-expanded="false" aria-controls="collapse{{ faq.id }}">
                             {{ faq.question }}
                         </button>
                     </h2>
                     <div id="collapse{{ faq.id }}" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body text-secondary bg-transparent py-4 px-4 border-top border-secondary border-opacity-10">
+                        <div class="accordion-body text-secondary py-4 px-4 border-top border-organic">
                             {{ faq.answer }}
                         </div>
                     </div>
                 </div>
                 {% endfor %}
             {% else %}
-                <!-- Mock Accordions -->
-                <div class="accordion-item glass-panel border-0 mb-3 overflow-hidden">
+                <div class="accordion-item organic-card border-0 mb-3 overflow-hidden">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed form-glass border-0 fw-semibold fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMock1">
-                            How do I book a customized luxury itinerary?
+                        <button class="accordion-button collapsed py-3 px-4 fw-semibold fs-5 text-primary-theme" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMock1">
+                            How are your boutique journeys personalized?
                         </button>
                     </h2>
                     <div id="collapseMock1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body text-secondary bg-transparent py-4 px-4 border-top border-secondary border-opacity-10">
-                            You can explore our curated packages and hit the "Book Tour" button to configure your dates, or write to us directly through the Contact Form. A dedicated travel designer will reach out to tailor every single detail.
+                        <div class="accordion-body text-secondary py-4 px-4 border-top border-organic">
+                            Each itinerary begins with a one-on-one conversation with our Travel Designers. We consider your preferred pace, architectural preferences, wellness routines, and passions to shape a custom schedule.
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item glass-panel border-0 mb-3 overflow-hidden">
+                <div class="accordion-item organic-card border-0 mb-3 overflow-hidden">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed form-glass border-0 fw-semibold fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMock2">
-                            What is your booking cancellation policy?
+                        <button class="accordion-button collapsed py-3 px-4 fw-semibold fs-5 text-primary-theme" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMock2">
+                            What is your approach to sustainable and regenerative travel?
                         </button>
                     </h2>
                     <div id="collapseMock2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body text-secondary bg-transparent py-4 px-4 border-top border-secondary border-opacity-10">
-                            Cancellations made 30 days or more prior to the departure date receive a full refund minus a 10% administration charge. Cancellations within 15-30 days receive a 50% refund, while cancellations under 15 days are non-refundable due to pre-booked hotels and local charters.
+                        <div class="accordion-body text-secondary py-4 px-4 border-top border-organic">
+                            We calculate and offset 100% of transport emissions on all journeys, patronize locally owned boutique properties, and direct 5% of proceeds to local reforestation and wildlife corridors.
                         </div>
                     </div>
                 </div>
@@ -447,31 +482,47 @@
         </div>
     </div>
 </section>
+
+<!-- Inspiring Bespoke Inquire Banner -->
+<section class="py-5">
+    <div class="container" data-aos="zoom-in">
+        <div class="organic-card p-5 text-center position-relative overflow-hidden" style="background: linear-gradient(135deg, rgba(200, 109, 81, 0.12) 0%, rgba(35, 75, 61, 0.18) 100%);">
+            <span class="badge bg-forest text-white mb-3 text-xs text-uppercase letter-spacing-2">Private Consultations</span>
+            <h2 class="display-5 font-heading mb-3">Begin Designing Your Bespoke Journey</h2>
+            <p class="text-secondary mx-auto mb-4" style="max-width: 620px;">Whether it is an intimate family reunion in Tuscany or a solitary retreat in Patagonia, our travel artisans are ready to craft your passage.</p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="{% url 'contact:contact' %}" class="btn btn-terracotta py-3 px-4"><i class="bi bi-chat-heart me-1"></i> Speak with a Concierge</a>
+                <a href="{% url 'tours:packages' %}" class="btn btn-outline-organic py-3 px-4"><i class="bi bi-compass me-1"></i> Browse Catalog</a>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
 
 {% block extra_js %}
-<!-- Initialize Swiper Slider -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const swiper = new Swiper('.testimonialSwiper', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-                dynamicBullets: true,
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                }
-            },
-            autoplay: {
-                delay: 4000,
-                disableOnInteraction: false,
-            },
-            loop: true
-        });
+        if (typeof Swiper !== 'undefined') {
+            new Swiper('.testimonialSwiper', {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                    dynamicBullets: true,
+                },
+                breakpoints: {
+                    768: {
+                        slidesPerView: 2,
+                    }
+                },
+                autoplay: {
+                    delay: 4500,
+                    disableOnInteraction: false,
+                },
+                loop: true
+            });
+        }
     });
 </script>
 {% endblock %}

@@ -1,30 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Booking Successful | Wanderlust Journey{% endblock %}
+{% block title %}Reservation Confirmed | Wanderlust Atelier{% endblock %}
 
 {% block content %}
-<section class="py-5 d-flex align-items-center" style="min-height: 75vh; margin-top: 20px;">
+<section class="py-5 d-flex align-items-center" style="min-height: 75vh;">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-7 col-lg-6" data-aos="zoom-in">
+            <div class="col-md-8 col-lg-6" data-aos="zoom-in">
                 
-                <div class="glass-panel p-5 shadow-lg border border-gold border-opacity-35 text-center">
-                    <i class="bi bi-shield-check text-gold display-1 mb-3 d-block animate__animated animate__bounceIn"></i>
+                <div class="organic-card p-5 shadow-lg text-center" style="border: 2px solid rgba(200, 109, 81, 0.35);">
+                    <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-forest mb-4" style="width: 85px; height: 85px; background: rgba(35, 75, 61, 0.12);">
+                        <i class="bi bi-shield-check display-3"></i>
+                    </div>
                     
-                    <span class="text-gold text-uppercase letter-spacing-1 small fw-semibold d-block mb-1">Booking Confirmed</span>
-                    <h2 class="font-heading mb-4 fw-bold">Journey Reserved Successfully!</h2>
+                    <span class="badge bg-terracotta text-white mb-2 text-xs text-uppercase letter-spacing-2">Passage Confirmed</span>
+                    <h2 class="font-heading mb-3 fw-bold">Your Sanctuary Awaits</h2>
                     
-                    <div class="bg-glass-dark p-4 rounded-3 border border-secondary border-opacity-10 mb-4">
-                        <span class="text-muted small d-block mb-1">Your Booking Reference Code</span>
-                        <h4 class="font-heading text-gold mb-0 fw-semibold">{{ booking.booking_reference }}</h4>
+                    <div class="p-3 rounded-4 border border-organic mb-4" style="background: rgba(35, 75, 61, 0.04);">
+                        <span class="text-muted text-xs d-block mb-1">Official Booking Token</span>
+                        <h4 class="font-heading text-terracotta mb-0 fw-bold">{{ booking.booking_reference }}</h4>
                     </div>
 
-                    <p class="text-secondary small mb-5" style="line-height: 1.7;">Your payment details have been verified, and seat reservations are officially registered. The itinerary and flight vouchers have been sent to your email. You can manage tickets or cancel bookings directly inside your portal.</p>
+                    <p class="text-secondary small mb-4" style="line-height: 1.8;">Your reservation has been confirmed and registered with our private lodge hosts. Full itinerary documentation and arrival dispatches have been transmitted to your email.</p>
                     
                     <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-                        <a href="{% url 'dashboard:profile' %}" class="btn btn-outline-gold px-4 py-3"><i class="bi bi-speedometer2 me-1"></i> Go to Dashboard</a>
-                        <a href="{% url 'bookings:booking_detail' booking.booking_reference %}" class="btn btn-gold px-4 py-3"><i class="bi bi-file-earmark-pdf-fill me-1"></i> View Receipt / Invoice</a>
+                        <a href="{% url 'dashboard:profile' %}" class="btn btn-outline-organic px-4 py-2"><i class="bi bi-speedometer2 me-1"></i> Dashboard</a>
+                        <a href="{% url 'bookings:booking_detail' booking.booking_reference %}" class="btn btn-terracotta px-4 py-2"><i class="bi bi-file-earmark-text me-1"></i> View Receipt</a>
                     </div>
                 </div>
 

@@ -1,70 +1,70 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Checkout Summary | Wanderlust Payment Gateway{% endblock %}
+{% block title %}Review & Settle Passage | Wanderlust Atelier{% endblock %}
 
 {% block content %}
-<section class="py-5" style="margin-top: 20px;">
+<section class="py-5" style="margin-top: 10px;">
     <div class="container">
         
-        <!-- Booking Progress Bar -->
-        <div class="glass-panel p-3 mb-5 d-flex justify-content-between text-center small text-secondary" data-aos="fade-up">
-            <span class="text-muted"><i class="bi bi-1-circle-fill me-1"></i> Options Selected</span>
-            <span class="text-muted"><i class="bi bi-2-circle-fill me-1"></i> Traveler Details</span>
-            <span class="text-gold fw-bold"><i class="bi bi-3-circle-fill text-gold me-1"></i> Summary & Pay</span>
+        <!-- Booking Progress Indicator -->
+        <div class="organic-card p-3 mb-5 d-flex justify-content-around text-center small text-secondary" data-aos="fade-up">
+            <span class="text-muted"><i class="bi bi-1-circle-fill text-forest me-1"></i> 1. Passage Options</span>
+            <span class="text-muted"><i class="bi bi-2-circle-fill text-forest me-1"></i> 2. Guest Information</span>
+            <span class="text-terracotta fw-bold"><i class="bi bi-3-circle-fill text-terracotta me-1"></i> 3. Review & Settle</span>
         </div>
 
         <div class="row g-5">
             <!-- Left Column: Booking details & invoice summary -->
             <div class="col-lg-7" data-aos="fade-right">
-                <div class="glass-panel p-5 h-100">
-                    <h3 class="font-heading mb-4 text-primary-theme"><i class="bi bi-file-earmark-text-fill text-gold me-2"></i>Booking Summary</h3>
+                <div class="organic-card p-5 h-100">
+                    <h3 class="font-heading mb-4 text-primary-theme"><i class="bi bi-journal-text text-terracotta me-2"></i>Passage Overview</h3>
                     
                     <div class="mb-4">
-                        <h5 class="fw-semibold mb-1">{{ package.title }}</h5>
-                        <span class="text-gold small"><i class="bi bi-geo-alt-fill me-1"></i>{{ package.destination.name }}</span>
+                        <span class="badge bg-terracotta text-white mb-2 text-xs text-uppercase letter-spacing-1">{{ package.destination.name }}</span>
+                        <h4 class="font-heading mb-1">{{ package.title }}</h4>
                     </div>
 
-                    <div class="row mb-4 bg-glass-dark rounded p-3 border border-secondary border-opacity-10 g-3">
+                    <div class="row mb-4 rounded-4 p-3 border border-organic g-3" style="background: rgba(35, 75, 61, 0.04);">
                         <div class="col-6 col-md-4">
-                            <span class="text-muted small d-block">Travel Date</span>
+                            <span class="text-muted text-xs d-block">Requested Departure</span>
                             <strong class="text-primary-theme small">{{ travel_date }}</strong>
                         </div>
                         <div class="col-6 col-md-4">
-                            <span class="text-muted small d-block">Travelers</span>
-                            <strong class="text-primary-theme small">{{ num_travelers }} Traveler{{ num_travelers|pluralize }}</strong>
+                            <span class="text-muted text-xs d-block">Intimate Party</span>
+                            <strong class="text-primary-theme small">{{ num_travelers }} Guest{{ num_travelers|pluralize }}</strong>
                         </div>
                         <div class="col-12 col-md-4">
-                            <span class="text-muted small d-block">Base Price per Guest</span>
-                            <strong class="text-gold small">${{ unit_price }}</strong>
+                            <span class="text-muted text-xs d-block">Honorarium per Guest</span>
+                            <strong class="text-terracotta small">${{ unit_price }}</strong>
                         </div>
                     </div>
 
                     <!-- Traveler names list -->
-                    <h5 class="fw-semibold text-gold mb-3">Passenger List</h5>
+                    <h5 class="font-heading text-terracotta mb-3">Manifest</h5>
                     <div class="d-flex flex-column gap-2 mb-4">
                         {% for traveler in travelers %}
-                        <div class="d-flex justify-content-between align-items-center bg-transparent border-bottom border-secondary border-opacity-10 pb-2">
-                            <span class="small text-primary-theme"><i class="bi bi-person-fill text-gold me-2"></i>{{ traveler.full_name }}</span>
-                            <span class="small text-muted text-capitalize">{{ traveler.gender }} ({{ traveler.age }} yrs)</span>
+                        <div class="d-flex justify-content-between align-items-center border-bottom border-organic pb-2">
+                            <span class="small text-primary-theme"><i class="bi bi-person text-terracotta me-2"></i>{{ traveler.full_name }}</span>
+                            <span class="small text-muted text-capitalize">{{ traveler.gender }} • {{ traveler.age }} yrs</span>
                         </div>
                         {% endfor %}
                     </div>
 
                     <!-- Invoice Cost Breakdown -->
-                    <h5 class="fw-semibold text-gold mb-3">Invoice Details</h5>
+                    <h5 class="font-heading text-terracotta mb-3">Investment Breakdown</h5>
                     <div class="d-flex flex-column gap-2">
                         <div class="d-flex justify-content-between text-secondary small">
-                            <span>Subtotal ({{ num_travelers }} x ${{ unit_price }})</span>
+                            <span>Base Itinerary ({{ num_travelers }} x ${{ unit_price }})</span>
                             <span>${{ subtotal }}</span>
                         </div>
-                        <div class="d-flex justify-content-between text-secondary small pb-2 border-bottom border-secondary border-opacity-10">
-                            <span>Local service fee & VAT (10%)</span>
+                        <div class="d-flex justify-content-between text-secondary small pb-2 border-bottom border-organic">
+                            <span>Carbon Offset & Sanctuary Care (10%)</span>
                             <span>${{ tax_amount|stringformat:".2f" }}</span>
                         </div>
-                        <div class="d-flex justify-content-between fw-bold text-primary-theme fs-5 pt-2">
-                            <span>Grand Total Cost</span>
-                            <span class="text-gold">${{ total_amount|stringformat:".2f" }}</span>
+                        <div class="d-flex justify-content-between fw-bold text-primary-theme fs-4 pt-2">
+                            <span>Total Passage Investment</span>
+                            <span class="text-terracotta font-heading">${{ total_amount|stringformat:".2f" }}</span>
                         </div>
                     </div>
                 </div>
@@ -72,50 +72,48 @@
 
             <!-- Right Column: Card payment terminal widget -->
             <div class="col-lg-5" data-aos="fade-left">
-                <div class="glass-panel p-5 h-100 border border-gold border-opacity-25 shadow-lg d-flex flex-column justify-content-center">
+                <div class="organic-card p-5 h-100 shadow-lg d-flex flex-column justify-content-center" style="border: 1.5px solid rgba(200, 109, 81, 0.35);">
                     <div class="text-center mb-4">
-                        <i class="bi bi-credit-card-2-front text-gold display-4 mb-2 d-block animate__animated animate__pulse animate__infinite"></i>
-                        <h3 class="font-heading mb-1">Payment Terminal</h3>
-                        <p class="text-secondary small mb-0">Simulated credit card gateway checkout</p>
+                        <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-terracotta mb-3" style="width: 65px; height: 65px; background: var(--accent-terracotta-light);">
+                            <i class="bi bi-shield-lock fs-2"></i>
+                        </div>
+                        <h4 class="font-heading mb-1">Encrypted Payment</h4>
+                        <p class="text-secondary text-xs mb-0">Simulated 256-Bit TLS boutique settlement</p>
                     </div>
 
                     <form method="POST">
                         {% csrf_token %}
                         
                         <div class="mb-3">
-                            <label for="card_name" class="form-label text-gold small fw-medium">Cardholder Name</label>
-                            <input type="text" name="card_name" id="card_name" class="form-control form-glass" placeholder="Marcus Sterling" required>
+                            <label for="card_name" class="form-label text-terracotta small fw-semibold">Cardholder Full Name</label>
+                            <input type="text" name="card_name" id="card_name" class="form-control form-organic" placeholder="Marcus Sterling" required>
                         </div>
 
                         <div class="mb-3">
-                            <label for="card_number" class="form-label text-gold small fw-medium">Credit Card Number</label>
+                            <label for="card_number" class="form-label text-terracotta small fw-semibold">Card Number</label>
                             <div class="input-group">
-                                <span class="input-group-text bg-transparent border-secondary border-opacity-25 text-gold"><i class="bi bi-credit-card"></i></span>
-                                <input type="text" name="card_number" id="card_number" class="form-control form-glass border-start-0" placeholder="4111 2222 3333 4444" pattern="[0-9\s]{13,19}" required>
+                                <span class="input-group-text bg-transparent border-organic text-terracotta"><i class="bi bi-credit-card"></i></span>
+                                <input type="text" name="card_number" id="card_number" class="form-control form-organic border-start-0" placeholder="•••• •••• •••• ••••" pattern="[0-9\s]{13,19}" required>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-6 mb-4">
-                                <label for="card_expiry" class="form-label text-gold small fw-medium">Expiry Month/Yr</label>
-                                <input type="text" name="card_expiry" id="card_expiry" class="form-control form-glass" placeholder="MM/YY" required>
+                        <div class="row g-3 mb-4">
+                            <div class="col-6">
+                                <label for="card_expiry" class="form-label text-terracotta small fw-semibold">Expiry (MM/YY)</label>
+                                <input type="text" name="card_expiry" id="card_expiry" class="form-control form-organic" placeholder="12/28" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" required>
                             </div>
-                            <div class="col-6 mb-4">
-                                <label for="card_cvv" class="form-label text-gold small fw-medium">CVV / Code</label>
-                                <input type="password" name="card_cvv" id="card_cvv" class="form-control form-glass" placeholder="123" maxlength="3" required>
+                            <div class="col-6">
+                                <label for="card_cvv" class="form-label text-terracotta small fw-semibold">Security CVC</label>
+                                <input type="password" name="card_cvv" id="card_cvv" class="form-control form-organic" placeholder="•••" maxlength="4" pattern="[0-9]{3,4}" required>
                             </div>
                         </div>
 
-                        <div class="bg-glass-dark p-3 rounded text-center small text-secondary mb-4 border border-secondary border-opacity-10">
-                            <i class="bi bi-shield-fill-check text-gold me-1"></i> SSL encrypted transaction sandbox
-                        </div>
-
-                        <button type="submit" class="btn btn-gold w-100 py-3 fs-5"><i class="bi bi-lock-fill me-1"></i> Pay ${{ total_amount|stringformat:".2f" }}</button>
+                        <button type="submit" class="btn btn-terracotta w-100 py-3 fs-5"><i class="bi bi-lock-fill me-2"></i> Confirm Reservation</button>
                     </form>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
 </section>
 {% endblock %}

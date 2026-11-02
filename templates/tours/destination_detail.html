@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{{ destination.name }} Tours | Wanderlust Curated Escapes{% endblock %}
+{% block title %}{{ destination.name }} Sanctuary | Wanderlust Curated Escapes{% endblock %}
 
 {% block content %}
-<!-- Luxury Hero Section -->
-<section class="py-5 text-center position-relative d-flex align-items-center" style="background: linear-gradient(rgba(11, 19, 43, 0.4), rgba(11, 19, 43, 0.65)), url('{{ destination.hero_image.url }}') no-repeat center center/cover; min-height: 55vh; padding-top: 120px !important;">
+<!-- Boutique Hero Section -->
+<section class="py-5 text-center position-relative d-flex align-items-center" style="background: linear-gradient(180deg, rgba(19, 26, 22, 0.42) 0%, rgba(19, 26, 22, 0.75) 100%), url('{{ destination.hero_image.url }}') no-repeat center center/cover; min-height: 52vh; padding-top: 100px !important;">
     <div class="container position-relative z-2" data-aos="fade-up">
-        <span class="text-gold text-uppercase letter-spacing-2 fw-semibold mb-2 d-block">Exclusive Destination</span>
-        <h1 class="display-3 text-white fw-bold mb-4 font-heading">{{ destination.name }}</h1>
+        <span class="badge bg-terracotta text-white mb-2 text-xs text-uppercase letter-spacing-2">Sanctuary Profile</span>
+        <h1 class="display-3 text-white fw-bold mb-3 font-heading">{{ destination.name }}</h1>
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb justify-content-center mb-0 bg-transparent">
+            <ol class="breadcrumb justify-content-center mb-0 bg-transparent small">
                 <li class="breadcrumb-item"><a href="{% url 'core:home' %}" class="text-white-50 text-decoration-none">Home</a></li>
                 <li class="breadcrumb-item"><a href="{% url 'tours:destinations' %}" class="text-white-50 text-decoration-none">Destinations</a></li>
-                <li class="breadcrumb-item text-gold active" aria-current="page">{{ destination.name }}</li>
+                <li class="breadcrumb-item text-terracotta active" aria-current="page">{{ destination.name }}</li>
             </ol>
         </nav>
     </div>
@@ -26,14 +26,14 @@
             
             <!-- Details Panel (Left) -->
             <div class="col-lg-7" data-aos="fade-right">
-                <div class="glass-panel p-5 h-100">
-                    <h2 class="font-heading mb-4 text-primary-theme">About {{ destination.name }}</h2>
-                    <p class="text-secondary mb-4" style="line-height: 1.8;">{{ destination.description|linebreaksbr }}</p>
+                <div class="organic-card p-5 h-100">
+                    <h2 class="font-heading mb-4 text-primary-theme">The Spirit of {{ destination.name }}</h2>
+                    <p class="text-secondary mb-4" style="line-height: 1.85;">{{ destination.description|linebreaksbr }}</p>
                     
-                    <h4 class="font-heading mb-3 text-gold"><i class="bi bi-compass-fill me-2"></i>Key Attractions</h4>
+                    <h5 class="font-heading mb-3 text-terracotta"><i class="bi bi-compass me-2"></i>Notable Encounters & Attractions</h5>
                     <div class="d-flex flex-wrap gap-2 mb-4">
                         {% for attraction in attractions_list %}
-                            <span class="badge bg-glass-dark text-gold border border-gold border-opacity-25 py-2 px-3 rounded-pill">{{ attraction }}</span>
+                            <span class="badge badge-terracotta py-2 px-3">{{ attraction }}</span>
                         {% endfor %}
                     </div>
                 </div>
@@ -41,35 +41,35 @@
 
             <!-- Meteorological & Season Widget (Right) -->
             <div class="col-lg-5" data-aos="fade-left">
-                <div class="glass-panel p-5 h-100 d-flex flex-column justify-content-center">
-                    <h3 class="font-heading text-center text-gold mb-4">Destination Insights</h3>
+                <div class="organic-card p-5 h-100 d-flex flex-column justify-content-center">
+                    <h4 class="font-heading text-center text-terracotta mb-4">Sanctuary Notes</h4>
                     
-                    <div class="d-flex align-items-center gap-4 mb-4 pb-3 border-bottom border-secondary border-opacity-10">
-                        <div class="rounded-circle d-flex align-items-center justify-content-center text-gold bg-dark bg-opacity-25" style="width: 60px; height: 60px; flex-shrink: 0;">
-                            <i class="bi bi-calendar2-week fs-2"></i>
+                    <div class="d-flex align-items-center gap-4 mb-4 pb-3 border-bottom border-organic">
+                        <div class="rounded-circle d-flex align-items-center justify-content-center text-terracotta" style="width: 55px; height: 55px; background: var(--accent-terracotta-light); flex-shrink: 0;">
+                            <i class="bi bi-calendar4-week fs-3"></i>
                         </div>
                         <div>
-                            <h6 class="fw-semibold mb-1">Best Season to Visit</h6>
-                            <p class="text-secondary mb-0">{{ destination.best_time_to_visit }}</p>
+                            <h6 class="fw-bold mb-1 text-primary-theme">Best Season to Visit</h6>
+                            <p class="text-secondary small mb-0">{{ destination.best_time_to_visit }}</p>
                         </div>
                     </div>
                     
-                    <div class="d-flex align-items-center gap-4 mb-4 pb-3 border-bottom border-secondary border-opacity-10">
-                        <div class="rounded-circle d-flex align-items-center justify-content-center text-gold bg-dark bg-opacity-25" style="width: 60px; height: 60px; flex-shrink: 0;">
-                            <i class="bi bi-thermometer-sun fs-2"></i>
+                    <div class="d-flex align-items-center gap-4 mb-4 pb-3 border-bottom border-organic">
+                        <div class="rounded-circle d-flex align-items-center justify-content-center text-forest" style="width: 55px; height: 55px; background: rgba(35, 75, 61, 0.12); flex-shrink: 0;">
+                            <i class="bi bi-thermometer-sun fs-3"></i>
                         </div>
                         <div>
-                            <h6 class="fw-semibold mb-1">Average Weather</h6>
-                            <p class="text-secondary mb-0">{{ destination.weather_info }}</p>
+                            <h6 class="fw-bold mb-1 text-primary-theme">Atmospheric Climate</h6>
+                            <p class="text-secondary small mb-0">{{ destination.weather_info }}</p>
                         </div>
                     </div>
 
                     {% if destination.nearby_destinations.all %}
                         <div>
-                            <h6 class="fw-semibold mb-2"><i class="bi bi-geo-alt-fill text-gold me-1"></i>Nearby Destinations</h6>
+                            <h6 class="fw-bold mb-2 text-primary-theme"><i class="bi bi-signpost-2 text-terracotta me-1"></i>Adjacent Sanctuaries</h6>
                             <div class="d-flex flex-wrap gap-2">
                                 {% for nearby in destination.nearby_destinations.all %}
-                                    <a href="{% url 'tours:destination_detail' nearby.slug %}" class="btn btn-outline-gold btn-sm rounded-pill py-1 px-3">{{ nearby.name }}</a>
+                                    <a href="{% url 'tours:destination_detail' nearby.slug %}" class="btn btn-outline-organic btn-sm rounded-pill py-1 px-3">{{ nearby.name }}</a>
                                 {% endfor %}
                             </div>
                         </div>
@@ -81,33 +81,36 @@
 </section>
 
 <!-- Available packages mapping -->
-<section class="py-5" style="background: rgba(197, 160, 89, 0.02);">
+<section class="py-5" style="background: rgba(200, 109, 81, 0.03);">
     <div class="container">
         <div class="text-center mb-5" data-aos="fade-up">
-            <span class="text-gold text-uppercase letter-spacing-1 fw-semibold d-block mb-2">Adventure Awaits</span>
-            <h2 class="display-5 font-heading">Luxury Packages in {{ destination.name }}</h2>
+            <span class="badge bg-forest text-white mb-2 text-xs text-uppercase letter-spacing-1">Itineraries in this Region</span>
+            <h2 class="display-5 font-heading">Passages Across {{ destination.name }}</h2>
         </div>
 
         <div class="row g-4">
             {% if packages %}
                 {% for package in packages %}
                 <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter }}00">
-                    <div class="glass-panel glass-panel-hover overflow-hidden h-100 d-flex flex-column">
-                        <div class="position-relative overflow-hidden" style="height: 220px;">
-                            <img src="{{ package.cover_image.url }}" class="w-100 h-100 object-fit-cover transition-transform duration-500 hover-scale" alt="{{ package.title }}">
-                            <span class="position-absolute top-3 start-3 badge bg-glass-dark text-gold border border-gold border-opacity-25 py-2 px-3 rounded-pill">{{ package.duration_days }} Days / {{ package.duration_nights }} Nights</span>
-                            <span class="position-absolute top-3 end-3 badge bg-glass-dark text-gold border border-gold border-opacity-25 py-1 px-2 rounded-pill small">{{ package.get_difficulty_display }}</span>
+                    <div class="tour-card">
+                        <div class="tour-card-image-wrap">
+                            {% if package.cover_image %}
+                                <img src="{{ package.cover_image.url }}" alt="{{ package.title }}">
+                            {% else %}
+                                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="{{ package.title }}">
+                            {% endif %}
+                            <span class="tour-card-badge">{{ package.duration_days }}D / {{ package.duration_nights }}N</span>
                         </div>
                         <div class="p-4 d-flex flex-column flex-grow-1">
-                            <span class="text-gold small fw-semibold text-uppercase mb-1"><i class="bi bi-tag-fill me-1"></i>{{ package.category.name|default:"Tour Package" }}</span>
-                            <h4 class="fw-semibold mb-3 font-heading fs-5"><a href="{% url 'tours:package_detail' package.slug %}" class="text-decoration-none text-primary-theme">{{ package.title }}</a></h4>
+                            <span class="text-terracotta text-xs fw-bold text-uppercase mb-1">{{ package.category.name|default:"Curated Escape" }}</span>
+                            <h4 class="font-heading fs-5 mb-3"><a href="{% url 'tours:package_detail' package.slug %}" class="text-decoration-none text-primary-theme">{{ package.title }}</a></h4>
                             
-                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-secondary border-opacity-10">
+                            <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top border-organic">
                                 <div>
-                                    <span class="text-muted small d-block">Starting from</span>
-                                    <span class="fs-4 fw-bold text-gold">${{ package.price }}</span>
+                                    <span class="text-muted text-xs d-block">Starting from</span>
+                                    <span class="fs-5 fw-bold text-terracotta">${{ package.price }}</span>
                                 </div>
-                                <a href="{% url 'tours:package_detail' package.slug %}" class="btn btn-gold py-2 px-4 rounded-pill">View Details</a>
+                                <a href="{% url 'tours:package_detail' package.slug %}" class="btn btn-terracotta py-2 px-3">View Passage</a>
                             </div>
                         </div>
                     </div>
@@ -115,11 +118,11 @@
                 {% endfor %}
             {% else %}
                 <div class="col-12 text-center py-5">
-                    <div class="glass-panel p-5 mx-auto" style="max-width: 500px;">
-                        <i class="bi bi-backpack-fill text-gold display-3 mb-3"></i>
-                        <h4 class="font-heading">No Packages Available Yet</h4>
-                        <p class="text-secondary">We are currently curating bespoke itineraries for {{ destination.name }}. Check back soon or contact our concierge to build a custom journey!</p>
-                        <a href="{% url 'contact:contact' %}" class="btn btn-gold px-4 py-2">Consult a Travel Specialist</a>
+                    <div class="organic-card p-5 mx-auto" style="max-width: 520px;">
+                        <i class="bi bi-compass text-terracotta display-4 mb-3"></i>
+                        <h4 class="font-heading">Curating Private Passages</h4>
+                        <p class="text-secondary text-sm">We are currently crafting new season itineraries for {{ destination.name }}. You can also connect directly with our concierge to formulate a private route.</p>
+                        <a href="{% url 'contact:contact' %}" class="btn btn-terracotta px-4 py-2">Consult a Designer</a>
                     </div>
                 </div>
             {% endif %}

@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Our Services | Wanderlust Premium Travel Management{% endblock %}
+{% block title %}Bespoke Services & Concierge | Wanderlust{% endblock %}
 
 {% block content %}
 <!-- Subpage Header -->
-<section class="py-5 text-center position-relative" style="background: linear-gradient(rgba(11, 19, 43, 0.5), rgba(11, 19, 43, 0.7)), url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover; padding-top: 120px !important; padding-bottom: 80px !important;">
+<section class="py-5 text-center position-relative" style="background: linear-gradient(180deg, rgba(19, 26, 22, 0.48) 0%, rgba(19, 26, 22, 0.8) 100%), url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover; padding-top: 100px !important; padding-bottom: 70px !important;">
     <div class="container position-relative z-2" data-aos="fade-up">
-        <h1 class="display-4 text-white fw-bold mb-3 font-heading">Our Services</h1>
+        <span class="badge bg-terracotta text-white mb-2 text-xs text-uppercase letter-spacing-2">Private Travel Management</span>
+        <h1 class="display-4 text-white fw-bold mb-3 font-heading">Artisanal Travel Concierge</h1>
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb justify-content-center mb-0 bg-transparent">
+            <ol class="breadcrumb justify-content-center mb-0 bg-transparent small">
                 <li class="breadcrumb-item"><a href="{% url 'core:home' %}" class="text-white-50 text-decoration-none">Home</a></li>
-                <li class="breadcrumb-item text-gold active" aria-current="page">Services</li>
+                <li class="breadcrumb-item text-terracotta active" aria-current="page">Services</li>
             </ol>
         </nav>
     </div>
@@ -20,76 +21,76 @@
 <!-- Services Details Grid -->
 <section class="py-5">
     <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up" style="max-width: 600px; margin: 0 auto;">
-            <span class="text-gold text-uppercase letter-spacing-1 fw-semibold d-block mb-2">Signature Experience</span>
-            <h2 class="display-5 font-heading mb-3">Elevating Your Journey</h2>
-            <p class="text-secondary mb-0">We handle all logistics so you can focus entirely on the transformation of travel. Discover how we tailor journeys to perfection.</p>
+        <div class="text-center mb-5" data-aos="fade-up" style="max-width: 680px; margin: 0 auto;">
+            <span class="badge bg-terracotta text-white mb-2 text-xs text-uppercase letter-spacing-1">Signature Craft</span>
+            <h2 class="display-5 font-heading mb-3">Elevating Mindful Exploration</h2>
+            <p class="text-secondary mb-0">We dissolve logistical friction so your energy can rest entirely on the beauty of arrival, culture, and connection.</p>
         </div>
         
         <div class="row g-4">
-            <!-- Service item 1 -->
+            <!-- Service 1 -->
             <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="glass-panel p-5 h-100 glass-panel-hover">
-                    <div class="rounded-circle d-flex align-items-center justify-content-center text-gold mb-4" style="width: 60px; height: 60px; background: rgba(197, 160, 89, 0.1);">
+                <div class="organic-card p-4 h-100">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center text-terracotta mb-4" style="width: 58px; height: 58px; background: var(--accent-terracotta-light);">
                         <i class="bi bi-compass fs-2"></i>
                     </div>
-                    <h4 class="font-heading mb-3">Custom Itineraries</h4>
-                    <p class="text-secondary small">We craft days matching your exact speed, budget, and curiosity. Whether you want relaxation, high-octane adventure, or culinary immersion, your days are mapped out explicitly for you.</p>
+                    <h4 class="font-heading mb-3 text-primary-theme">Hand-Drafted Itineraries</h4>
+                    <p class="text-secondary small mb-0">We curate days matching your rhythm, dietary desires, and architectural tastes. No predetermined templates—every detail is custom-built around your pace.</p>
                 </div>
             </div>
             
-            <!-- Service item 2 -->
+            <!-- Service 2 -->
             <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="glass-panel p-5 h-100 glass-panel-hover">
-                    <div class="rounded-circle d-flex align-items-center justify-content-center text-gold mb-4" style="width: 60px; height: 60px; background: rgba(197, 160, 89, 0.1);">
+                <div class="organic-card p-4 h-100">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center text-forest mb-4" style="width: 58px; height: 58px; background: rgba(35, 75, 61, 0.12);">
                         <i class="bi bi-headset fs-2"></i>
                     </div>
-                    <h4 class="font-heading mb-3">24/7 VIP Concierge</h4>
-                    <p class="text-secondary small">From last-minute table reservations at Michelin-starred restaurants to re-booking local flights, your dedicated personal manager is available 24/7 via text or phone to assist instantly.</p>
+                    <h4 class="font-heading mb-3 text-primary-theme">Dedicated 24/7 Concierge</h4>
+                    <p class="text-secondary small mb-0">From secret restaurant bookings to spontaneous private sailing charter arrangements, your dedicated boutique liaison is always one direct text away.</p>
                 </div>
             </div>
             
-            <!-- Service item 3 -->
+            <!-- Service 3 -->
             <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="glass-panel p-5 h-100 glass-panel-hover">
-                    <div class="rounded-circle d-flex align-items-center justify-content-center text-gold mb-4" style="width: 60px; height: 60px; background: rgba(197, 160, 89, 0.1);">
-                        <i class="bi bi-bank fs-2"></i>
+                <div class="organic-card p-4 h-100">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center text-terracotta mb-4" style="width: 58px; height: 58px; background: var(--accent-terracotta-light);">
+                        <i class="bi bi-house-heart fs-2"></i>
                     </div>
-                    <h4 class="font-heading mb-3">Elite Lodgings</h4>
-                    <p class="text-secondary small">We collaborate with boutique eco-resorts, historic castles, private islands, and luxury villas. We secure exclusive VIP perks like free spa credits, room upgrades, and custom dining options.</p>
+                    <h4 class="font-heading mb-3 text-primary-theme">Boutique & Heritage Stays</h4>
+                    <p class="text-secondary small mb-0">We partner with family-owned timber retreats, restored stone monasteries, and sustainable wilderness camps, unlocking room upgrades and private chef dinners.</p>
                 </div>
             </div>
             
-            <!-- Service item 4 -->
+            <!-- Service 4 -->
             <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
-                <div class="glass-panel p-5 h-100 glass-panel-hover">
-                    <div class="rounded-circle d-flex align-items-center justify-content-center text-gold mb-4" style="width: 60px; height: 60px; background: rgba(197, 160, 89, 0.1);">
-                        <i class="bi bi-car-front fs-2"></i>
+                <div class="organic-card p-4 h-100">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center text-forest mb-4" style="width: 58px; height: 58px; background: rgba(35, 75, 61, 0.12);">
+                        <i class="bi bi-airplane-engines fs-2"></i>
                     </div>
-                    <h4 class="font-heading mb-3">Luxury Transfers</h4>
-                    <p class="text-secondary small">Move in luxury. Enjoy private chauffeured luxury SUVs, chartered fast catamarans, helicopter transfers, and VIP airport fast-track services that bypass standard customs lines entirely.</p>
+                    <h4 class="font-heading mb-3 text-primary-theme">Seamless Private Transfers</h4>
+                    <p class="text-secondary small mb-0">Travel with calm and quiet. Enjoy chauffeured electric vehicles, chartered wooden catamarans, and expedited private customs clearances.</p>
                 </div>
             </div>
             
-            <!-- Service item 5 -->
+            <!-- Service 5 -->
             <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
-                <div class="glass-panel p-5 h-100 glass-panel-hover">
-                    <div class="rounded-circle d-flex align-items-center justify-content-center text-gold mb-4" style="width: 60px; height: 60px; background: rgba(197, 160, 89, 0.1);">
-                        <i class="bi bi-journal-bookmark-fill fs-2"></i>
+                <div class="organic-card p-4 h-100">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center text-terracotta mb-4" style="width: 58px; height: 58px; background: var(--accent-terracotta-light);">
+                        <i class="bi bi-mortarboard fs-2"></i>
                     </div>
-                    <h4 class="font-heading mb-3">Private Local Curators</h4>
-                    <p class="text-secondary small">Our guides are historians, marine biologists, and artists who reside in the destinations. They provide authentic cultural insight and introduce you to locals away from tourist crowds.</p>
+                    <h4 class="font-heading mb-3 text-primary-theme">Native Cultural Curators</h4>
+                    <p class="text-secondary small mb-0">Meet ethnographers, master potters, and native forest rangers who welcome you into living traditions beyond tourist circuits.</p>
                 </div>
             </div>
             
-            <!-- Service item 6 -->
+            <!-- Service 6 -->
             <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
-                <div class="glass-panel p-5 h-100 glass-panel-hover">
-                    <div class="rounded-circle d-flex align-items-center justify-content-center text-gold mb-4" style="width: 60px; height: 60px; background: rgba(197, 160, 89, 0.1);">
-                        <i class="bi bi-heart-fill fs-2"></i>
+                <div class="organic-card p-4 h-100">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center text-forest mb-4" style="width: 58px; height: 58px; background: rgba(35, 75, 61, 0.12);">
+                        <i class="bi bi-flower1 fs-2"></i>
                     </div>
-                    <h4 class="font-heading mb-3">Sustainable Care</h4>
-                    <p class="text-secondary small">Every tour is audited for social and environmental impact. We fund local education and clean energy projects in our destinations, supporting communities while protecting nature.</p>
+                    <h4 class="font-heading mb-3 text-primary-theme">Regenerative Stewardship</h4>
+                    <p class="text-secondary small mb-0">We evaluate the environmental and cultural footprint of each journey. Every tour helps plant native trees and protect endangered sanctuaries.</p>
                 </div>
             </div>
         </div>
@@ -97,58 +98,51 @@
 </section>
 
 <!-- Design Lifecycle Section -->
-<section class="py-5 bg-secondary-bg-styled" style="background: rgba(197, 160, 89, 0.03);">
+<section class="py-5" style="background: rgba(35, 75, 61, 0.03);">
     <div class="container">
         <div class="text-center mb-5" data-aos="fade-up">
-            <span class="text-gold text-uppercase letter-spacing-1 fw-semibold d-block mb-2">Our Method</span>
-            <h2 class="display-5 font-heading">The Bespoke Design Lifecycle</h2>
+            <span class="badge bg-forest text-white mb-2 text-xs text-uppercase letter-spacing-1">Our Process</span>
+            <h2 class="display-5 font-heading">The Four Steps to Your Sanctuary</h2>
         </div>
         
         <div class="row g-4 justify-content-center">
-            <!-- Step 1 -->
             <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-                <div class="lifecycle-step">
-                    <div class="lifecycle-icon-wrap">
-                        <i class="bi bi-chat-text"></i>
+                <div class="lifecycle-step organic-card p-4 h-100">
+                    <div class="lifecycle-icon-wrap" style="color: var(--accent-terracotta); background: var(--accent-terracotta-light);">
+                        <i class="bi bi-chat-heart"></i>
                     </div>
-                    <div class="lifecycle-arrow"></div>
-                    <h4 class="font-heading fs-5 mb-2">1. Consult</h4>
-                    <p class="text-secondary small">We schedule a private call or text thread to listen to your dreams, preferences, and pace.</p>
+                    <h5 class="font-heading mb-2">1. The Listening Call</h5>
+                    <p class="text-secondary text-xs mb-0">A calm introductory conversation to explore your dream pace, preferred climate, and inspirations.</p>
                 </div>
             </div>
             
-            <!-- Step 2 -->
             <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-                <div class="lifecycle-step">
-                    <div class="lifecycle-icon-wrap">
-                        <i class="bi bi-sliders2"></i>
+                <div class="lifecycle-step organic-card p-4 h-100">
+                    <div class="lifecycle-icon-wrap" style="color: var(--accent-forest); background: rgba(35, 75, 61, 0.12);">
+                        <i class="bi bi-brush"></i>
                     </div>
-                    <div class="lifecycle-arrow"></div>
-                    <h4 class="font-heading fs-5 mb-2">2. Curate</h4>
-                    <p class="text-secondary small">Our designers map out a personalized day-by-day itinerary with verified elite partners.</p>
+                    <h5 class="font-heading mb-2">2. Hand-Crafting</h5>
+                    <p class="text-secondary text-xs mb-0">Our designers formulate a day-by-day storybook itinerary with verified properties and local masters.</p>
                 </div>
             </div>
             
-            <!-- Step 3 -->
             <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-                <div class="lifecycle-step">
-                    <div class="lifecycle-icon-wrap">
-                        <i class="bi bi-ticket-perforated"></i>
+                <div class="lifecycle-step organic-card p-4 h-100">
+                    <div class="lifecycle-icon-wrap" style="color: var(--accent-terracotta); background: var(--accent-terracotta-light);">
+                        <i class="bi bi-journal-check"></i>
                     </div>
-                    <div class="lifecycle-arrow"></div>
-                    <h4 class="font-heading fs-5 mb-2">3. Secure</h4>
-                    <p class="text-secondary small">We book all hotel vouchers, native private guides, and fast-track transit passes securely.</p>
+                    <h5 class="font-heading mb-2">3. Flawless Booking</h5>
+                    <p class="text-secondary text-xs mb-0">We secure private rooms, bespoke permits, transfers, and personal dietary arrangements.</p>
                 </div>
             </div>
             
-            <!-- Step 4 -->
             <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
-                <div class="lifecycle-step">
-                    <div class="lifecycle-icon-wrap">
-                        <i class="bi bi-balloon-heart"></i>
+                <div class="lifecycle-step organic-card p-4 h-100">
+                    <div class="lifecycle-icon-wrap" style="color: var(--accent-forest); background: rgba(35, 75, 61, 0.12);">
+                        <i class="bi bi-sun"></i>
                     </div>
-                    <h4 class="font-heading fs-5 mb-2">4. Experience</h4>
-                    <p class="text-secondary small">Enjoy your journey with the reassurance of a 24/7 personal manager supporting you.</p>
+                    <h5 class="font-heading mb-2">4. Stillness in Travel</h5>
+                    <p class="text-secondary text-xs mb-0">Depart with complete confidence. Your personal concierge is quietly present in the background 24/7.</p>
                 </div>
             </div>
         </div>
@@ -160,14 +154,14 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 text-center" data-aos="zoom-in">
-                <div class="glass-panel p-5 border border-gold border-opacity-25 shadow-lg position-relative overflow-hidden">
-                    <i class="bi bi-quote text-gold display-1 position-absolute opacity-10" style="top: -10px; left: 20px;"></i>
-                    <h3 class="font-heading mb-4 text-gold">"Unparalleled, Meticulous Detail"</h3>
-                    <p class="lead text-secondary mb-4" style="line-height: 1.8; font-style: italic;">
-                        "Wanderlust turned what could have been a logistical nightmare in remote Patagonia into a completely seamless, luxurious dream. From the private helicopter shuttle to our native guide's intimate historical knowledge, every moment felt curated specifically for us."
+                <div class="organic-card p-5 position-relative overflow-hidden" style="background: linear-gradient(135deg, rgba(200, 109, 81, 0.08) 0%, rgba(35, 75, 61, 0.12) 100%);">
+                    <i class="bi bi-quote text-terracotta display-1 position-absolute opacity-10" style="top: -10px; left: 20px;"></i>
+                    <h3 class="font-heading mb-4 text-terracotta">"Meticulous, Unrushed Perfection"</h3>
+                    <p class="lead text-secondary mb-4" style="line-height: 1.85; font-style: italic;">
+                        "Wanderlust turned what could have been an overwhelming multi-country journey into a serene, unforgettable retreat. Every riad in Morocco and timber cabin in the Atlas mountains felt chosen with intimate love."
                     </p>
-                    <div class="fw-semibold text-primary-theme">- Sophia & Julien Montgomery</div>
-                    <div class="text-gold small text-uppercase letter-spacing-1 mt-1">Travelers from New York City</div>
+                    <div class="fw-bold text-primary-theme">Sophia & Julien Montgomery</div>
+                    <div class="text-terracotta small text-uppercase letter-spacing-1 mt-1">Travelers from Zurich & New York</div>
                 </div>
             </div>
         </div>

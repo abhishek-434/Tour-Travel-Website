@@ -1,110 +1,107 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Edit Profile | Wanderlust Portal{% endblock %}
+{% block title %}Account Settings | Wanderlust Portal{% endblock %}
 
 {% block content %}
-<section class="py-5" style="margin-top: 20px;">
+<section class="py-5" style="margin-top: 10px;">
     <div class="container">
         <div class="row g-4">
             
             <!-- Sidebar Panel Navigation -->
             <div class="col-lg-4" data-aos="fade-right">
-                <div class="glass-panel p-4 text-center">
+                <div class="organic-card p-4 text-center">
                     <div class="mb-4">
                         {% if user.profile.profile_picture %}
-                            <img src="{{ user.profile.profile_picture.url }}" class="rounded-circle object-fit-cover border border-gold p-1" style="width: 130px; height: 130px;" alt="{{ user.username }}">
+                            <img src="{{ user.profile.profile_picture.url }}" class="rounded-circle object-fit-cover border border-2 p-1" style="width: 110px; height: 110px; border-color: var(--accent-terracotta);" alt="{{ user.username }}">
                         {% else %}
-                            <div class="rounded-circle bg-secondary bg-opacity-25 border border-gold d-inline-flex align-items-center justify-content-center text-gold" style="width: 130px; height: 130px;">
-                                <i class="bi bi-person-fill display-3"></i>
+                            <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-white" style="width: 110px; height: 110px; background: linear-gradient(135deg, var(--accent-terracotta) 0%, var(--accent-forest) 100%);">
+                                <span class="display-5 font-heading fw-bold">{{ user.first_name|default:user.username|slice:":1"|upper }}</span>
                             </div>
                         {% endif %}
                     </div>
                     
-                    <h3 class="font-heading mb-1 text-primary-theme">{{ user.get_full_name|default:user.username }}</h3>
-                    <span class="text-gold small d-block mb-4">Editing Profile Room</span>
+                    <h4 class="font-heading mb-1 text-primary-theme">{{ user.get_full_name|default:user.username }}</h4>
+                    <span class="text-terracotta small d-block mb-4 fw-semibold">Settings Atelier</span>
 
-                    <div class="list-group list-group-flush text-start border-top border-secondary border-opacity-10 pt-3">
-                        <a href="{% url 'dashboard:profile' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-secondary py-2"><i class="bi bi-speedometer2 me-2 text-gold"></i> Portal Overview</a>
-                        <a href="{% url 'dashboard:edit_profile' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-gold fw-semibold py-2"><i class="bi bi-person-gear me-2"></i> Edit Profile</a>
-                        <a href="{% url 'dashboard:booking_history' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-secondary py-2"><i class="bi bi-calendar2-check me-2 text-gold"></i> Booking History</a>
-                        <a href="{% url 'dashboard:saved_packages' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-secondary py-2"><i class="bi bi-heart me-2 text-gold"></i> Saved Journeys</a>
-                        <a href="{% url 'accounts:logout' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-danger py-2"><i class="bi bi-box-arrow-right me-2"></i> Log Out</a>
+                    <div class="list-group list-group-flush text-start border-top border-organic pt-2">
+                        <a href="{% url 'dashboard:profile' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-secondary py-2 d-flex align-items-center gap-2"><i class="bi bi-compass"></i> Atelier Overview</a>
+                        <a href="{% url 'dashboard:edit_profile' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-terracotta fw-semibold py-2 d-flex align-items-center gap-2"><i class="bi bi-person-gear"></i> Account Settings</a>
+                        <a href="{% url 'dashboard:booking_history' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-secondary py-2 d-flex align-items-center gap-2"><i class="bi bi-calendar2-check"></i> Reserved Passages</a>
+                        <a href="{% url 'dashboard:saved_packages' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-secondary py-2 d-flex align-items-center gap-2"><i class="bi bi-heart"></i> Saved Escapes</a>
+                        <a href="{% url 'accounts:logout' %}" class="list-group-item list-group-item-action bg-transparent border-0 text-danger py-2 d-flex align-items-center gap-2"><i class="bi bi-box-arrow-right"></i> Sign Out</a>
                     </div>
                 </div>
             </div>
 
             <!-- Profile Edit Form Panel -->
             <div class="col-lg-8" data-aos="fade-left">
-                <div class="glass-panel p-5">
-                    <h2 class="font-heading mb-4 text-primary-theme"><i class="bi bi-person-gear text-gold me-2"></i>Edit Profile Details</h2>
+                <div class="organic-card p-4 p-md-5">
+                    <h3 class="font-heading mb-4 text-primary-theme"><i class="bi bi-person-gear text-terracotta me-2"></i>Account & Concierge Profile</h3>
                     
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         
-                        <h5 class="fw-semibold text-gold mb-3 border-bottom border-secondary border-opacity-10 pb-2">Account Info</h5>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="{{ user_form.first_name.id_for_label }}" class="form-label text-gold small fw-medium">First Name</label>
+                        <h6 class="text-terracotta text-uppercase letter-spacing-1 text-xs fw-bold mb-3 border-bottom border-organic pb-2">Patron Identity</h6>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label for="{{ user_form.first_name.id_for_label }}" class="form-label text-terracotta small fw-semibold">First Name</label>
                                 {{ user_form.first_name }}
                                 {% if user_form.first_name.errors %}
                                     <div class="text-danger small mt-1">{{ user_form.first_name.errors }}</div>
                                 {% endif %}
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="{{ user_form.last_name.id_for_label }}" class="form-label text-gold small fw-medium">Last Name</label>
+                            <div class="col-md-6">
+                                <label for="{{ user_form.last_name.id_for_label }}" class="form-label text-terracotta small fw-semibold">Last Name</label>
                                 {{ user_form.last_name }}
                                 {% if user_form.last_name.errors %}
                                     <div class="text-danger small mt-1">{{ user_form.last_name.errors }}</div>
                                 {% endif %}
                             </div>
+                            <div class="col-12">
+                                <label for="{{ user_form.email.id_for_label }}" class="form-label text-terracotta small fw-semibold">Primary Email Address</label>
+                                {{ user_form.email }}
+                                {% if user_form.email.errors %}
+                                    <div class="text-danger small mt-1">{{ user_form.email.errors }}</div>
+                                {% endif %}
+                            </div>
                         </div>
 
-                        <div class="mb-4">
-                            <label for="{{ user_form.email.id_for_label }}" class="form-label text-gold small fw-medium">Email Address</label>
-                            {{ user_form.email }}
-                            {% if user_form.email.errors %}
-                                <div class="text-danger small mt-1">{{ user_form.email.errors }}</div>
-                            {% endif %}
-                        </div>
-
-                        <h5 class="fw-semibold text-gold mb-3 mt-4 border-bottom border-secondary border-opacity-10 pb-2">Profile Details</h5>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="{{ profile_form.phone_number.id_for_label }}" class="form-label text-gold small fw-medium">Phone Number</label>
+                        <h6 class="text-terracotta text-uppercase letter-spacing-1 text-xs fw-bold mb-3 border-bottom border-organic pb-2">Concierge Profile Particulars</h6>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label for="{{ profile_form.phone_number.id_for_label }}" class="form-label text-terracotta small fw-semibold">Mobile / WhatsApp</label>
                                 {{ profile_form.phone_number }}
                                 {% if profile_form.phone_number.errors %}
                                     <div class="text-danger small mt-1">{{ profile_form.phone_number.errors }}</div>
                                 {% endif %}
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="{{ profile_form.profile_picture.id_for_label }}" class="form-label text-gold small fw-medium">Profile Picture</label>
+                            <div class="col-md-6">
+                                <label for="{{ profile_form.profile_picture.id_for_label }}" class="form-label text-terracotta small fw-semibold">Portrait Picture</label>
                                 {{ profile_form.profile_picture }}
                                 {% if profile_form.profile_picture.errors %}
                                     <div class="text-danger small mt-1">{{ profile_form.profile_picture.errors }}</div>
                                 {% endif %}
                             </div>
+                            <div class="col-12">
+                                <label for="{{ profile_form.address.id_for_label }}" class="form-label text-terracotta small fw-semibold">Postal / Home Residence</label>
+                                {{ profile_form.address }}
+                                {% if profile_form.address.errors %}
+                                    <div class="text-danger small mt-1">{{ profile_form.address.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-12">
+                                <label for="{{ profile_form.bio.id_for_label }}" class="form-label text-terracotta small fw-semibold">Travel Passions & Bio</label>
+                                {{ profile_form.bio }}
+                                {% if profile_form.bio.errors %}
+                                    <div class="text-danger small mt-1">{{ profile_form.bio.errors }}</div>
+                                {% endif %}
+                            </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="{{ profile_form.bio.id_for_label }}" class="form-label text-gold small fw-medium">Traveler Biography</label>
-                            {{ profile_form.bio }}
-                            {% if profile_form.bio.errors %}
-                                <div class="text-danger small mt-1">{{ profile_form.bio.errors }}</div>
-                            {% endif %}
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="{{ profile_form.address.id_for_label }}" class="form-label text-gold small fw-medium">Mailing Address</label>
-                            {{ profile_form.address }}
-                            {% if profile_form.address.errors %}
-                                <div class="text-danger small mt-1">{{ profile_form.address.errors }}</div>
-                            {% endif %}
-                        </div>
-
-                        <div class="d-flex gap-3 mt-4 justify-content-end">
-                            <a href="{% url 'dashboard:profile' %}" class="btn btn-outline-gold px-4 py-2">Cancel</a>
-                            <button type="submit" class="btn btn-gold px-5 py-2"><i class="bi bi-save me-1"></i> Save Changes</button>
+                        <div class="d-flex justify-content-end gap-3">
+                            <a href="{% url 'dashboard:profile' %}" class="btn btn-outline-organic px-4 py-2">Cancel</a>
+                            <button type="submit" class="btn btn-terracotta px-5 py-2"><i class="bi bi-check-lg me-1"></i> Save Changes</button>
                         </div>
                     </form>
                 </div>

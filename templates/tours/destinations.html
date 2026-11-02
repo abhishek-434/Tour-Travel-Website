@@ -1,17 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Explore Luxury Destinations | Wanderlust{% endblock %}
+{% block title %}Boutique Destinations & Sanctuaries | Wanderlust{% endblock %}
 
 {% block content %}
 <!-- Subpage Header -->
-<section class="py-5 text-center position-relative" style="background: linear-gradient(rgba(11, 19, 43, 0.5), rgba(11, 19, 43, 0.7)), url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover; padding-top: 120px !important; padding-bottom: 80px !important;">
+<section class="py-5 text-center position-relative" style="background: linear-gradient(180deg, rgba(19, 26, 22, 0.48) 0%, rgba(19, 26, 22, 0.78) 100%), url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover; padding-top: 100px !important; padding-bottom: 70px !important;">
     <div class="container position-relative z-2" data-aos="fade-up">
-        <h1 class="display-4 text-white fw-bold mb-3 font-heading">Luxury Destinations</h1>
+        <span class="badge bg-terracotta text-white mb-2 text-xs text-uppercase letter-spacing-2">Sanctuary Atlas</span>
+        <h1 class="display-4 text-white fw-bold mb-3 font-heading">Bespoke Destinations</h1>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb justify-content-center mb-0 bg-transparent">
                 <li class="breadcrumb-item"><a href="{% url 'core:home' %}" class="text-white-50 text-decoration-none">Home</a></li>
-                <li class="breadcrumb-item text-gold active" aria-current="page">Destinations</li>
+                <li class="breadcrumb-item text-terracotta active" aria-current="page">Destinations</li>
             </ol>
         </nav>
     </div>
@@ -23,13 +24,13 @@
         
         <!-- Search form widget -->
         <div class="row justify-content-center mb-5" data-aos="fade-up">
-            <div class="col-md-6">
+            <div class="col-md-7 col-lg-6">
                 <form action="{% url 'tours:destinations' %}" method="GET">
-                    <div class="input-group glass-panel p-1">
-                        <input type="text" name="search" class="form-control form-glass border-0" placeholder="Search by destination name or attractions..." value="{{ search_query }}" required>
-                        <button type="submit" class="btn btn-gold rounded-3"><i class="bi bi-search me-1"></i> Find</button>
+                    <div class="input-group organic-card p-1 shadow-sm">
+                        <input type="text" name="search" class="form-control form-organic border-0" placeholder="Search sanctuaries, regions, or charms..." value="{{ search_query }}">
+                        <button type="submit" class="btn btn-terracotta rounded-pill px-4"><i class="bi bi-search me-1"></i> Seek</button>
                         {% if search_query %}
-                            <a href="{% url 'tours:destinations' %}" class="btn btn-outline-secondary d-flex align-items-center justify-content-center border-0 text-muted"><i class="bi bi-x-lg"></i></a>
+                            <a href="{% url 'tours:destinations' %}" class="btn btn-link text-muted d-flex align-items-center"><i class="bi bi-x-lg"></i></a>
                         {% endif %}
                     </div>
                 </form>
@@ -41,20 +42,22 @@
             {% if destinations %}
                 {% for destination in destinations %}
                 <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter }}00">
-                    <div class="glass-panel glass-panel-hover overflow-hidden h-100 d-flex flex-column">
-                        <div class="position-relative ratio ratio-4x3 overflow-hidden">
-                            <img src="{{ destination.hero_image.url }}" class="w-100 h-100 object-fit-cover transition-transform duration-500 hover-scale" alt="{{ destination.name }}">
-                            <div class="position-absolute top-3 end-3 bg-glass-dark text-gold border border-gold border-opacity-25 rounded-pill px-3 py-1 small">
-                                <i class="bi bi-cloud-sun me-1"></i> {{ destination.weather_info }}
-                            </div>
+                    <div class="tour-card">
+                        <div class="tour-card-image-wrap">
+                            {% if destination.hero_image %}
+                                <img src="{{ destination.hero_image.url }}" alt="{{ destination.name }}">
+                            {% else %}
+                                <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80" alt="{{ destination.name }}">
+                            {% endif %}
+                            <span class="tour-card-badge"><i class="bi bi-sun me-1"></i> {{ destination.weather_info }}</span>
                         </div>
                         <div class="p-4 d-flex flex-column flex-grow-1">
                             <h3 class="font-heading fs-4 mb-2 text-primary-theme">{{ destination.name }}</h3>
-                            <p class="text-secondary small mb-3 flex-grow-1">{{ destination.description|truncatewords:25 }}</p>
+                            <p class="text-secondary small mb-4 flex-grow-1 line-clamp-3">{{ destination.description|truncatewords:24 }}</p>
                             
-                            <div class="border-top border-secondary border-opacity-10 pt-3 mt-auto d-flex justify-content-between align-items-center">
-                                <span class="small text-muted"><i class="bi bi-calendar-event text-gold me-1"></i> Best time: {{ destination.best_time_to_visit }}</span>
-                                <a href="{% url 'tours:destination_detail' destination.slug %}" class="btn btn-outline-gold btn-sm">Explore <i class="bi bi-arrow-right ms-1"></i></a>
+                            <div class="border-top border-organic pt-3 mt-auto d-flex justify-content-between align-items-center">
+                                <span class="text-xs text-muted"><i class="bi bi-calendar3 text-terracotta me-1"></i> Best: {{ destination.best_time_to_visit }}</span>
+                                <a href="{% url 'tours:destination_detail' destination.slug %}" class="btn btn-outline-organic py-1 px-3 text-xs">Explore <i class="bi bi-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -62,11 +65,11 @@
                 {% endfor %}
             {% else %}
                 <div class="col-12 text-center py-5">
-                    <div class="glass-panel p-5 mx-auto" style="max-width: 500px;">
-                        <i class="bi bi-geo-fill text-gold display-3 mb-3"></i>
-                        <h4 class="font-heading">No Destinations Found</h4>
-                        <p class="text-secondary">We couldn't find any destinations matching your criteria. Try adjusting your search query.</p>
-                        <a href="{% url 'tours:destinations' %}" class="btn btn-gold">Reset Search</a>
+                    <div class="organic-card p-5 mx-auto" style="max-width: 500px;">
+                        <i class="bi bi-geo-alt text-terracotta display-3 mb-3"></i>
+                        <h4 class="font-heading">No Sanctuaries Found</h4>
+                        <p class="text-secondary text-sm">We couldn't find any destinations matching your criteria. Try adjusting your query or resetting.</p>
+                        <a href="{% url 'tours:destinations' %}" class="btn btn-terracotta">Reset Search</a>
                     </div>
                 </div>
             {% endif %}
@@ -78,24 +81,24 @@
             <ul class="pagination justify-content-center gap-2">
                 {% if destinations.has_previous %}
                     <li class="page-item">
-                        <a class="page-link glass-panel text-gold border-0" href="?page={{ destinations.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
+                        <a class="page-link organic-card text-terracotta border-0 py-2 px-3" href="?page={{ destinations.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}" aria-label="Previous">
+                            &laquo; Previous
                         </a>
                     </li>
                 {% endif %}
                 
                 {% for num in destinations.paginator.page_range %}
                     {% if destinations.number == num %}
-                        <li class="page-item"><span class="page-link btn-gold border-0 text-white rounded-circle active-pagination" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">{{ num }}</span></li>
+                        <li class="page-item"><span class="page-link btn-terracotta border-0 text-white rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">{{ num }}</span></li>
                     {% else %}
-                        <li class="page-item"><a class="page-link glass-panel text-gold border-0 rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;" href="?page={{ num }}{% if search_query %}&search={{ search_query }}{% endif %}">{{ num }}</a></li>
+                        <li class="page-item"><a class="page-link organic-card text-primary-theme border-0 rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;" href="?page={{ num }}{% if search_query %}&search={{ search_query }}{% endif %}">{{ num }}</a></li>
                     {% endif %}
                 {% endfor %}
                 
                 {% if destinations.has_next %}
                     <li class="page-item">
-                        <a class="page-link glass-panel text-gold border-0" href="?page={{ destinations.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
+                        <a class="page-link organic-card text-terracotta border-0 py-2 px-3" href="?page={{ destinations.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}" aria-label="Next">
+                            Next &raquo;
                         </a>
                     </li>
                 {% endif %}
@@ -103,52 +106,6 @@
         </nav>
         {% endif %}
 
-    </div>
-</section>
-
-<!-- Travel Preparation Guides Section -->
-<section class="py-5 bg-secondary-bg-styled" style="background: rgba(197, 160, 89, 0.025);">
-    <div class="container">
-        <div class="text-center mb-5" data-aos="fade-up">
-            <span class="text-gold text-uppercase letter-spacing-1 fw-semibold d-block mb-2">Travel Planning</span>
-            <h2 class="display-5 font-heading">Essential Preparation Guides</h2>
-            <p class="text-secondary mx-auto mb-0" style="max-width: 600px;">Before departing on your luxury tour, make sure you review our essential pre-departure check-lists, visa information, and packing advice.</p>
-        </div>
-        
-        <div class="row g-4 justify-content-center">
-            <!-- Guide item 1 -->
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="glass-panel p-4 h-100 d-flex gap-3">
-                    <div class="text-gold"><i class="bi bi-file-earmark-medical fs-2"></i></div>
-                    <div>
-                        <h4 class="font-heading fs-5 mb-2">Visa & Entry Requirements</h4>
-                        <p class="text-secondary small mb-0">Learn about tourist visa requirements, entry fee structures, and passport validity laws for the specific destinations you're planning to explore.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Guide item 2 -->
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="glass-panel p-4 h-100 d-flex gap-3">
-                    <div class="text-gold"><i class="bi bi-suitcase-lg fs-2"></i></div>
-                    <div>
-                        <h4 class="font-heading fs-5 mb-2">Smart Packing Checklists</h4>
-                        <p class="text-secondary small mb-0">From high-altitude warm gear for alpine excursions to lightweight, breathable fabrics for coastal island retreats. Travel comfortably and prepared.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Guide item 3 -->
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="glass-panel p-4 h-100 d-flex gap-3">
-                    <div class="text-gold"><i class="bi bi-cash-coin fs-2"></i></div>
-                    <div>
-                        <h4 class="font-heading fs-5 mb-2">Currency & Local Payments</h4>
-                        <p class="text-secondary small mb-0">Understand whether a destination runs on cash, credit, or local digital transfers. Learn normal tipping practices and currency conversion guidelines.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
 {% endblock %}
